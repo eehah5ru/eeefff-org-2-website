@@ -15,8 +15,20 @@
     color: white;
   }
 
+  .description {
+    margin-bottom: rem-calc(36px);
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
   .description span {
     color: white;
+  }
+
+  .watch-videos-container {
+    margin-bottom: rem-calc(36px);
   }
 
   .watch-videos {
