@@ -1,0 +1,23 @@
+.project.strawberry {
+  background-color: #5f5f7d;
+  position: relative;
+  min-height: 100%;
+  height: auto;
+  z-index: -2;
+
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+  }
+
+  .header h1 {
+    font-size: 11vw;
+  }
+
+  .description {
+    color: white;
+  }
+}

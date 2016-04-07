@@ -1,0 +1,22 @@
+.project.blockade {
+  .header {
+    .authors {
+
+    }
+
+    a {
+      border-bottom: 5px solid;
+      color: $not-jet;
+    }
+
+    .link-to-website {
+      @include breakpoint(small) {
+        text-align: right;
+      }
+    }
+  }
+
+  .description {
+    margin-top: rem-calc(36px);
+  }
+}

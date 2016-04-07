@@ -1,0 +1,22 @@
+{
+  "name": "eeefff.org",
+  "authors": [
+    "Nicola Spesivtsev <nicola.spesivcev@gmail.com>"
+  ],
+  "description": "eeefff.org website",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "website",
+    "eeefff.org"
+  ],
+  "license": "MIT",
+  "homepage": "http://eeefff.org",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

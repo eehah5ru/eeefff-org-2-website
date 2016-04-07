@@ -1,0 +1,23 @@
+.project.mobile-agitator {
+   background-image: url("/images/mobile-agitator/bg.png");
+   background-size: cover;
+   background-position: 50% 50%;
+   min-height: 100%;
+   color: white;
+
+  .header h1 {
+    font-size: 8vw;
+    color: red;
+    text-shadow: 1vw -1vw white;
+  }
+
+  .description p {
+    text-shadow: 1px 1px red;
+  }
+
+  .video {
+    box-shadow: 0.5vw -0.5vw red;
+  }
+
+
+}
