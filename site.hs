@@ -88,8 +88,11 @@ sassOptions = def { SO.sassIncludePaths = Just [ "css/"
 
 cssAndSassRules =
   do match "css/app.scss" $
-       do route $ setExtension "css"
-          compile $ sassCompilerWith sassOptions >>= return . fmap compressCss
+       do scssDeps <- makePatternDependency "css/_*.scss"
+          rulesExtraDependencies [scssDeps] $ do
+            route $ setExtension "css"
+            compile $ sassCompilerWith sassOptions >>= return . fmap compressCss
+
      match "css/**/*.css" $
        do route idRoute
           compile compressCssCompiler
