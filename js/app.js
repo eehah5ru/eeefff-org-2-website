@@ -134,6 +134,27 @@
 
   //
   //
+  // event handlers
+  //
+  //
+  var onWindowSizeChanged = function () {
+    if (!hasTOCOnPage()) {
+      return;
+    }
+
+    if (inTOCAdjusting) {
+      return;
+    }
+    forgetTOCFontSize();
+    inTOCAdjusting = true;
+    // hideTOC();
+    // setTOCItemHeight(100);
+    // showTOC();
+    setTimeout(_.partial(adjustToc, 0, 100), ITERATION_DELAY);
+  };
+
+  //
+  //
   // init
   //
   //
@@ -162,21 +183,7 @@
     }, ITERATION_DELAY);
   });
 
-  $(window).on("orientationchange", function () {
-    console.log("on orientationchange");
-    if (!hasTOCOnPage()) {
-      return;
-    }
-
-    if (inTOCAdjusting) {
-      return;
-    }
-    forgetTOCFontSize();
-    inTOCAdjusting = true;
-    // hideTOC();
-    // setTOCItemHeight(100);
-    // showTOC();
-    setTimeout(_.partial(adjustToc, 0, 100), ITERATION_DELAY);
-  });
+  $(window).on("orientationchange", onWindowSizeChanged);
+  $(window).resize(onWindowSizeChanged);
 
 })(this);
