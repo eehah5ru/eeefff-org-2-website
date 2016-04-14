@@ -150,7 +150,7 @@
     // hideTOC();
     // setTOCItemHeight(100);
     // showTOC();
-    setTimeout(_.partial(adjustToc, 0, 100), ITERATION_DELAY);
+    setTimeout(_.partial(adjustToc, 0, 100), 2000);
   };
 
   //
