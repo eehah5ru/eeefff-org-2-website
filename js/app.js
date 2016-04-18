@@ -63,6 +63,16 @@
 
   //
   //
+  // UI routines
+  //
+  //
+  var isMobile = function () {
+    var md = new MobileDetect(window.navigator.userAgent);
+    return md.mobile() || md.phone() || md.tablet();
+  };
+
+  //
+  //
   // adjusting
   //
   //
@@ -73,8 +83,8 @@
 
   var showTOC = function () {
     $(".toc-wrapper").removeClass("hidden");
+    // alert("toc is visible now");
   };
-
 
   var hasTOCOnPage = function () {
     return $(".toc-wrapper").length;
@@ -132,12 +142,7 @@
 
   };
 
-  //
-  //
-  // event handlers
-  //
-  //
-  var onWindowSizeChanged = function () {
+  var adjustTocHandler = function () {
     if (!hasTOCOnPage()) {
       return;
     }
@@ -145,12 +150,35 @@
     if (inTOCAdjusting) {
       return;
     }
+
     forgetTOCFontSize();
     inTOCAdjusting = true;
-    // hideTOC();
-    // setTOCItemHeight(100);
-    // showTOC();
-    setTimeout(_.partial(adjustToc, 0, 100), 2000);
+    hideTOC();
+    setTOCItemHeight(100);
+    showTOC();
+    setTimeout(_.partial(adjustToc, 0, 100), 1000);
+  };
+
+  //
+  //
+  // event handlers
+  //
+  //
+  var onWindowSizeChanged = function () {
+    if (isMobile()) {
+      return;
+    }
+    // console.log("changed window size");
+    // alert("changed window size");
+    adjustTocHandler();
+  };
+
+  var onOrientationChanged = function () {
+    if (!isMobile()) {
+      return;
+    }
+
+    adjustTocHandler();
   };
 
   //
@@ -183,7 +211,7 @@
     }, ITERATION_DELAY);
   });
 
-  $(window).on("orientationchange", onWindowSizeChanged);
+  $(window).on("orientationchange", onOrientationChanged);
   $(window).resize(onWindowSizeChanged);
 
 })(this);
