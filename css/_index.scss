@@ -57,8 +57,8 @@ section.toc-wrapper {
   opacity: 100;
 
   &.hidden {
-    opacity: 0;
-    animation: opacity 0.3s ease;
+    /* opacity: 0; */
+    /* animation: opacity 0.3s; */
   }
 
   ul.toc {
