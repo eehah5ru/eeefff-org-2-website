@@ -36,6 +36,7 @@
 
 @import "mobile_agitator";
 
+@import "fleeting_coop";
 
 /* @import "slick"; */
 /* @import "slick-theme"; */
@@ -188,6 +189,15 @@ a {
   }
 }
 
+.project {
+  postion: relative;
+}
+
+.lang-switch {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 
 /* .video-wrapper { */
 /*   position: relative; */
