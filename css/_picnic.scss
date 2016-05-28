@@ -1,0 +1,49 @@
+.project.picnic {
+  color: violet;
+  text-shadow: 1px 1px white;
+
+  .header {
+    position: relative;
+
+    .lang-switch {
+      transform: translate(2.5vw) rotate(90deg);
+      display: block;
+      font-size: 5vw;
+      line-height: 1;
+      padding-left: 6vw;
+      color: blue;
+      text-decoration: underline;
+
+      &:hover {
+        color: lightgray;
+      }
+    }
+  }
+
+  .header h1 {
+    font-size: 12vw;
+    hyphens: manual;
+    /* color: white; */
+  }
+
+  .description {
+    img {
+      min-width: 100%;
+    }
+
+    p {
+      color: black;
+
+      &:first-of-type {
+        margin-top: rem-calc(36px);
+      }
+    }
+  }
+
+  /* p span, */
+  /* h4 span { */
+  /*   background-color: black; */
+  /*   box-shadow: 2px 2px teal; */
+  /* } */
+
+}
