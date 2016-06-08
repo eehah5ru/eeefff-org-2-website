@@ -69,9 +69,38 @@ section.toc-wrapper {
     -ms-transform:translateY(-50%);
     -webkit-transform:translateY(-50%);
     list-style-type: none;
+
+    @include breakpoint(small) {
+      padding-bottom: rem-calc(20px);
+    }
+
+    @include breakpoint(medium) {
+      padding-bottom: 0;
+    }
   }
 
   li {
     font-size: 4vw;
+  }
+}
+
+section.contact-email {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  // margin-right: rem-calc(20px);
+  z-index: 99;
+
+  a {
+    text-transform: none;
+  //   color: blue;
+
+  //   &:hover {
+  //     color: pink;
+  //   }
+
+  //   @include breakpoint(medium) {
+  //     color: black;
+  //   }
   }
 }
