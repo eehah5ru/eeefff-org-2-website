@@ -1,0 +1,53 @@
+.project.expedtion-trough-it-infrastructure {
+
+  background-image: url("/images/expedition-trough-it-infrastructure/bkg-01.jpg");
+  background-size: cover;
+  background-position: 50% 50%;
+
+  h1 {
+    font-size: 8vw;
+    hyphens: auto;
+    color: #19fbeb;
+    text-shadow: 0.5vw 0.5vw #FFB019;
+
+    /* color: white; */
+  }
+
+  .description {
+    img {
+      min-width: 100%;
+    }
+
+    p:first-of-type {
+      margin-top: 0;
+
+      @include breakpoint(large) {
+        margin-top: rem-calc(36px);
+      }
+    }
+
+    p,
+    ul {
+      span {
+        color: #FF7D19;
+        background-color: #3075FC;
+        padding: 1px;
+      }
+
+      li {
+        list-style-type: none;
+        margin-top: rem-cal(0.5rem);
+        margin-bottom: rem-calc(0.5rem);
+      }
+      color: black;
+
+    }
+  }
+
+  /* p span, */
+  /* h4 span { */
+  /*   background-color: black; */
+  /*   box-shadow: 2px 2px teal; */
+  /* } */
+
+}
