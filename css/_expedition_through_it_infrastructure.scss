@@ -1,29 +1,71 @@
-.project.expedtion-trough-it-infrastructure {
+article.project.expedtion-trough-it-infrastructure {
+  @extend .row;
+  @extend .expanded;
 
-  background-image: url("/images/expedition-trough-it-infrastructure/bkg-01.jpg");
-  background-size: cover;
-  background-position: 50% 50%;
 
-  h1 {
-    font-size: 8vw;
-    hyphens: auto;
-    color: #19fbeb;
-    text-shadow: 0.5vw 0.5vw #FFB019;
+  header {
+    @extend .row;
+    @extend .expanded;
+    @extend .small-12;
+    @extend .columns;
 
-    /* color: white; */
+    position: relative;
+    background-image: url("/images/expedition-trough-it-infrastructure/bkg-01.jpg");
+    background-size: cover;
+    background-position: 50% 50%;
+
+
+    h1 {
+      @extend .small-12;
+      @extend .large-6;
+      @extend .columns;
+      @extend .end;
+
+      font-size: 8vw;
+      hyphens: auto;
+      color: #19fbeb;
+      text-shadow: 0.5vw 0.5vw #FFB019;
+
+      /* color: white; */
+    }
+
+    .lang-switch {
+      position: absolute;
+      transform: translate(2.5vw) rotate(90deg);
+      display: block;
+      font-size: 5vw;
+      line-height: 1;
+      padding-left: 6vw;
+      color: blue;
+      text-decoration: underline;
+
+      &:hover {
+        color: lightgray;
+      }
+    }
+
   }
 
   .description {
+    @extend .row;
+    @extend .small-12;
+    @extend .large-6;
+    @extend .columns;
+    @extend .end;
+
+    padding-left: rem-calc(15px);
+    padding-right: rem-calc(15px);
+
     img {
       min-width: 100%;
     }
 
     p:first-of-type {
-      margin-top: 0;
+      margin-top: rem-calc(36px);
 
-      @include breakpoint(large) {
-        margin-top: rem-calc(36px);
-      }
+      // @include breakpoint(large) {
+      //   margin-top: rem-calc(36px);
+      // }
     }
 
     p,
