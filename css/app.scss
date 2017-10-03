@@ -2,7 +2,10 @@
 
 @import "app_settings";
 @import "foundation";
+// @import "motion-ui";
 
+// @include motion-ui-transitions;
+// @include motion-ui-animations;
 
 @include foundation-global-styles;
 @include foundation-grid;
@@ -41,6 +44,8 @@
 @import "picnic";
 
 @import "expedition_through_it_infrastructure";
+
+@import "flcoop_documenta";
 
 /* @import "slick"; */
 /* @import "slick-theme"; */
@@ -82,6 +87,13 @@
 /* //   "foundation/components/type", */
 /* //   "foundation/components/offcanvas", */
 /* //   "foundation/components/visibility"; */
+
+@font-face {
+  font-family: "pt-serifitalic";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/PTSerifItalic.ttf");
+}
 
 @font-face {
   font-family: "AsimovXWid";

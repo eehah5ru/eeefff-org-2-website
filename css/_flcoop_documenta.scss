@@ -1,0 +1,46 @@
+.flcoop-documenta {
+  .orbit {
+    .orbit-figure {
+      text-align: center;
+    }
+
+    .orbit-image {
+      max-height: 470px;
+      width: auto;
+    }
+
+    nav.orbit-bullets {
+      margin-top: 0;
+      margin-bottom: 0;
+
+      button {
+        width: 0.7rem;
+        height: 0.7rem;
+      }
+    }
+  }
+
+  .imgcaption {
+    color: #777;
+    font-size: 100%;
+    text-align: left;
+    font-family: pt-serifitalic;
+    -moz-osx-font-smoothing: auto;
+    text-align: center;
+
+    a {
+      color: #777;
+      font-size: 100%;
+      text-align: left;
+      font-family: pt-serifitalic;
+      -moz-osx-font-smoothing: auto;
+      text-transform: none;
+      text-decoration: underline;
+      letter-spacing: 0.05rem;;
+
+      &:hover {
+        color: blue;
+      }
+    }
+  }
+}
