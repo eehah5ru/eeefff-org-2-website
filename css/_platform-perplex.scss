@@ -1,0 +1,187 @@
+@mixin mask-position($posX, $posY) {
+    -webkit-mask-position: $posX $posY;
+    mask-position: $posX $posY;
+}
+
+@mixin mask-size($size...) {
+  mask-size: $size;
+  -webkit-mask-size: $size;
+
+}
+
+@mixin cover-mask($url) {
+  mask-image: url($url);
+  mask-clip: border-box; /* Can be changed in the live sample */
+  mask-repeat: no-repeat;
+
+  -webkit-mask-image: url($url);
+  -webkit-mask-clip: border-box; /* Can be changed in the live sample */
+  -webkit-mask-repeat: no-repeat;
+
+  @include mask-size(cover);
+  @include mask-position(50%, 50%);
+}
+
+@mixin clip-path($params) {
+  clip-path: $params;
+  -webkit-clip-path: $params;
+}
+
+
+@mixin gradient-rotation ($colors...) {
+  background: linear-gradient(135deg, $colors);
+
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  animation-duration: 10s;
+  animation-name: gradient-rotation-keyframes;
+  animation-iteration-count: infinite;
+
+
+  @keyframes gradient-rotation-keyframes {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+
+
+// @keyframes under-bottom-gradient {
+//   0% {
+//     linear-gradient(45deg, red, gold, cyan);
+//   }
+// }
+
+header.platform-perplex {
+  position: relative;
+
+  min-height: 100%;
+  height: 100%;
+
+
+  .cover {
+    background-image: url(/images/platform-perplex/eeefff-platform-perplex-cover-web.jpg);
+    background-size: cover;
+    background-position: 50% 50%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    height: 100%;
+    width: 100%;
+    min-width: 100%;
+
+    &.top {
+      @include cover-mask("/images/platform-perplex/mask-02.svg");
+      z-index: 20;
+    }
+
+    &.bottom {
+      opacity: 0.4;
+      z-index: 19;
+
+      animation-duration: 13s;
+      animation-name: bottom-cover-opacity;
+      animation-iteration-count: infinite;
+
+      @keyframes bottom-cover-opacity {
+        0% {
+          opacity: 0.4;
+        }
+
+        50% {
+          opacity: 0.8;
+        }
+
+        100% {
+          opacity: 0.4;
+        }
+      }
+
+    }
+
+    &.under-bottom {
+      @include gradient-rotation(red, gold, cyan);
+      z-index: 18;
+    }
+
+    &.top,
+    &.bottom {
+      @include clip-path(polygon(0% 50%,0% 100%,100% 100%,100% 30%));
+
+      // clip-path: url("#mask-01");
+
+      @include breakpoint(large) {
+        @include clip-path(polygon(0% 100%, 100% 100%, 100% 0%, 50% 0%))
+        // clip-path: url(/images/mask-bw-02.svg);
+      }
+    }
+
+  }
+
+  .content {
+    width: 100%;
+    min-height: 100%;
+    position: absolute;
+    top:0;
+    left: 0;
+
+    color: darken(white, 2%);
+
+    // background-color: transparentize(darkgrey, 0.5);
+    z-index: 21;
+
+    .splash {
+      @extend .row;
+      @extend .expanded;
+      //@include vertical-center;
+
+      .description {
+        @extend .small-12;
+        @extend .medium-7;
+        @extend .large-4;
+        @extend .columns;
+        @extend .end;
+
+        margin-top: 1rem;
+
+        font-size: large;
+
+        @include breakpoint(412) {
+          font-size: x-large;
+        }
+
+        @include breakpoint(medium) {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+
+
+
+    h1.title {
+      width: 80%;
+      font-size: 8vw;
+      text-align: center;
+    }
+
+    .credits {
+      color: lighten(grey, 20%);
+      opacity: 0.4;
+
+      position: absolute;
+      bottom: 0;
+      right: 0.5rem;
+    }
+  }
+
+}
