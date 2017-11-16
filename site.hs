@@ -46,6 +46,7 @@ main =
      --
      -- postsRules
      projectsRules
+     platformPerplexRules
 
      --
      -- collections
@@ -152,6 +153,19 @@ jsRules =
 --             loadAndApplyTemplate "templates/default.html" indexCtx >>=
 --             relativizeUrls
 
+platformPerplexRules = do
+  match ("platform-perplex/*.html" .&&. (complement "platform-perplex/index.html")) $ compile templateCompiler
+
+  deps <- makePatternDependency ("platform-perplex/*.html" .&&. (complement "platform-perplex/index.html"))
+
+  rulesExtraDependencies [deps] $ match "platform-perplex/index.slim" $ do
+    route $ setExtension "html"
+    compile $ slimCompiler
+      >>= applyAsTemplate projectCtx
+      >>= loadAndApplyTemplate "templates/default.html" projectCtx
+      >>= relativizeUrls
+
+
 indexPageRules =
   match (fromList ["index.html"]) $
   do route $ setExtension "html"
@@ -189,9 +203,14 @@ coffee = getResourceString >>= withItemBody processCoffee
                     unixFilter "yuicompressor" ["--type", "js"]
 
 slimCompiler :: Compiler (Item String)
-slimCompiler = getResourceString >>= withItemBody processSlim
-  where processSlim = unixFilter "slimrb" ["-s", "-p"]
+slimCompiler = getResourceBody >>= withItemBody compileSlim
 
+
+compileSlim :: String -> Compiler String
+compileSlim = unixFilter "slimrb" [ "-s"
+                                  , "-p"
+                                  , "-r ./slimlib.rb"
+                                  ,  "--trace"]
 --
 --
 -- contexts
