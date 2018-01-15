@@ -5,10 +5,17 @@ cabal-version:      >= 1.10
 
 executable site
   main-is:          site.hs
+  HS-Source-Dirs:   src
   build-depends:    base == 4.*
                   , hakyll == 4.9.*
                   , hakyll-sass == 0.2.*
                   , data-default
                   , hsass  == 0.4.2
+                  , aeson
+                  , bytestring
+                  , string-conversions
+                  , filepath
+                  , MissingH
+                  , binary
   ghc-options:      -threaded
   default-language: Haskell2010
