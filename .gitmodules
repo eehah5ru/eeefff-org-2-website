@@ -1,0 +1,3 @@
+[submodule "src/W7W"]
+	path = src/W7W
+	url = git@github.com:eehah5ru/w7w-core.git
