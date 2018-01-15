@@ -172,6 +172,50 @@ html, body {
 body {
   width: 100%;
   letter-spacing: rem-calc(0.8px);
+
+  position: realtive;
+}
+
+.lang-switch {
+  transform: translate(2.5vw) rotate(90deg);
+  display: block;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  font-size: 5vw;
+  line-height: 1;
+  padding-left: 6vw;
+  color: blue;
+  text-decoration: underline;
+  z-index: 99;
+  opacity: 0.7;
+
+  &:hover {
+    color: lightgray;
+  }
+}
+
+.back-to-home {
+  display: block;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  margin-top: -2vw;
+  font-size: 11vw;
+  line-height: 1;
+  // padding-left: 6vw;
+  color: blue;
+  text-decoration: none;
+  z-index: 99;
+  // opacity: 0.7;
+
+  &:hover {
+    color: lightgray;
+  }
 }
 
 
@@ -209,12 +253,6 @@ a {
 
 .project {
   postion: relative;
-}
-
-.lang-switch {
-  position: absolute;
-  top: 0;
-  right: 0;
 }
 
 /* .video-wrapper { */
