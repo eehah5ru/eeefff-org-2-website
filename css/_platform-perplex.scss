@@ -60,6 +60,18 @@
 //   }
 // }
 
+//
+//
+// BACKGROUND
+//
+//
+
+
+//
+//
+// HEADER
+//
+//
 header.platform-perplex {
   position: relative;
 
@@ -114,17 +126,18 @@ header.platform-perplex {
       z-index: 18;
     }
 
-    &.top,
-    &.bottom {
-      @include clip-path(polygon(0% 50%,0% 100%,100% 100%,100% 30%));
 
-      // clip-path: url("#mask-01");
+    // &.top,
+    // &.bottom {
+    //   @include clip-path(polygon(0% 50%,0% 100%,100% 100%,100% 30%));
 
-      @include breakpoint(large) {
-        @include clip-path(polygon(0% 100%, 100% 100%, 100% 0%, 50% 0%))
-        // clip-path: url(/images/mask-bw-02.svg);
-      }
-    }
+    //   // clip-path: url("#mask-01");
+
+    //   @include breakpoint(large) {
+    //     @include clip-path(polygon(0% 100%, 100% 100%, 100% 0%, 50% 0%))
+    //     // clip-path: url(/images/mask-bw-02.svg);
+    //   }
+    // }
 
   }
 
@@ -213,5 +226,33 @@ header.platform-perplex {
       right: 0.5rem;
     }
   }
+}
 
+//
+//
+// CONTENT
+//
+//
+section.platform-perplex {
+  @include gradient-rotation(red, gold, darken(cyan, 30%));
+
+  .section-row {
+    @extend .row;
+    @extend .expanded;
+  }
+
+
+  article {
+    @extend .small-12;
+    @extend .large-offset-3;
+    @extend .large-6;
+    // @extend .large-expand;
+    @extend .columns;
+
+    padding-top: 2rem;
+
+    p {
+      color: darken(white, 10%);
+    }
+  }
 }
