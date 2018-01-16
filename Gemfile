@@ -2,7 +2,8 @@
 source "https://rubygems.org"
 
 gem 'sass'
-# gem 'slim'
+gem 'redcarpet'
+gem 'slim'
 # gem 'foundation'
 # gem 'compass'
 # gem "rails"
