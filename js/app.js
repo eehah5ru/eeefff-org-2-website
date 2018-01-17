@@ -1,7 +1,46 @@
 (function (self) {
-  const ITERATION_DELAY = 200;
+  const ITERATION_DELAY = 20;
 
   var inTOCAdjusting = false;
+
+  //
+  //
+  // data utils
+  //
+  //
+  var getLang = function () {
+    return $("#lang").data("lang");
+  };
+
+  var getRevision = function () {
+    return $("#revision").data("revision");
+  };
+
+  //
+  //
+  // storage rountines
+  //
+  //
+
+  var fontSizeKey = function () {
+    return getRevision + "_" + getLang() + "_tocFontSize";
+  };
+
+  var storageGetTOCFontSize = function() {
+    return sessionStorage.getItem(fontSizeKey());
+  };
+
+  var storageSetTOCFontSize = function (fontSize) {
+    sessionStorage.setItem(fontSizeKey(), fontSize);
+  };
+
+  var storageHasTOCFontSize = function () {
+    return _.isString(storageGetTOCFontSize()) || _.isNumber(storageGetTOCFontSize());
+  };
+
+  var storageRemoveTOCFontSize = function () {
+    sessionStorage.removeItem(fontSizeKey());
+  };
 
   //
   //
@@ -20,7 +59,7 @@
   var saveTOCFontSize = function (fontSize) {
     return withStorage(
       function () {
-        sessionStorage.tocFontSize = fontSize;
+        storageSetTOCFontSize(fontSize);
       },
       function () {
         return null;
@@ -32,7 +71,7 @@
     return withStorage(
       function () {
         // console.log("isTOCFontSizeSaved: ",  sessionStorage.tocFontSize, typeof(sessionStorage.tocFontSize), _.isString(sessionStorage.tocFontSize));
-        return _.isString(sessionStorage.tocFontSize) || _.isNumber(sessionStorage.tocFontSize);
+        return storageHasTOCFontSize();
       },
       function () {
         return false;
@@ -43,7 +82,7 @@
   var forgetTOCFontSize = function () {
     return withStorage(
       function () {
-        sessionStorage.removeItem("tocFontSize");
+        storageRemoveTOCFontSize();
       },
       function () {}
     );
@@ -52,7 +91,7 @@
   var getTOCFontSize = function () {
     return withStorage(
       function () {
-        return sessionStorage.tocFontSize;
+        return storageGetTOCFontSize();
       },
       function () {
         console.log("getting not saved tocFontSize");
@@ -112,7 +151,7 @@
 
   var adjustToc = function (minFontSize, maxFontSize) {
     var delta = maxFontSize - minFontSize;
-    var fontSize = minFontSize + delta / 2.0;
+    var fontSize = minFontSize + delta / 1.2;
 
     // steps are to small to produce significant changes
     if (delta < 1.0) {

@@ -6,11 +6,14 @@
     $partial("templates/header.html")$
   </head>
   <body>
-    <a class="lang-switch" href="$other_lang_url$">
+    <input type="hidden" id="lang" name="lang" data-lang="$lang$"/>
+    <input type="hidden" id="revision" name="revision" data-revision="$revision$"/>
+
+    <a class="lang-switch $canonical_name$" href="$other_lang_url$">
       $other_lang$
     </a>
 
-    <a class="back-to-home" href="$root_url$">𒑲</a>
+    <a class="back-to-home $canonical_name$" href="$root_url$">𒑲</a>
 
     $body$
     <!-- <script type="text/javascript">
