@@ -67,6 +67,16 @@
 //
 
 
+.back-to-home.platform-perplex,
+.lang-switch.platform-perplex {
+  color: gold;
+
+  &:hover {
+    text-shadow: 0.1vw -0.5vw blue;
+    color: gold;
+  }
+}
+
 //
 //
 // HEADER

@@ -184,13 +184,17 @@ body {
   top: 0;
   right: 0;
 
-  font-size: 5vw;
+  font-size: 7vw;
   line-height: 1;
   padding-left: 6vw;
   color: blue;
   text-decoration: underline;
   z-index: 99;
   opacity: 0.7;
+
+  @include breakpoint(medium) {
+    font-size: 5vw;
+  }
 
   &:hover {
     color: lightgray;
