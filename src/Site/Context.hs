@@ -16,11 +16,14 @@ fieldRootUrl =
   where
     getRootUrl i = return $ "/" ++ (itemLang i) ++ "/"
 
+
 siteCtx :: Context String
 siteCtx = fieldEnUrl
           <> fieldRuUrl
           <> fieldLang
           <> fieldOtherLang
           <> fieldOtherLangUrl
+          <> fieldCanonicalName
           <> fieldRootUrl
+          <> fieldRevision
           <> defaultContext
