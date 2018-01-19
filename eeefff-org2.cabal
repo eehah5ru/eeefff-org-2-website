@@ -17,5 +17,6 @@ executable site
                   , filepath
                   , MissingH
                   , binary
+                  , text
   ghc-options:      -threaded
   default-language: Haskell2010
