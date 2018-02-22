@@ -16,6 +16,25 @@ fieldRootUrl =
   where
     getRootUrl i = return $ "/" ++ (itemLang i) ++ "/"
 
+fieldHideLangSwitch =
+  boolFieldM "hideLangSwitch" hideLangSwitch
+  where
+    hideLangSwitch i = do
+      mF <- getMetadataField (itemIdentifier i) "hideLangSwitch"
+      case mF of
+        Just "true" -> return True
+        -- Just "false" -> return False
+        -- Just _ -> return False
+        _ -> return False
+
+fieldHideMenu =
+  boolFieldM "hideMenu" hideMenu
+  where
+    hideMenu i = do
+      mF <- getMetadataField (itemIdentifier i) "hideMenu"
+      case mF  of
+        Just "true" -> return True
+        _ -> return False
 
 siteCtx :: Context String
 siteCtx = fieldEnUrl
@@ -26,4 +45,6 @@ siteCtx = fieldEnUrl
           <> fieldCanonicalName
           <> fieldRootUrl
           <> fieldRevision
+          <> fieldHideLangSwitch
+          <> fieldHideMenu
           <> defaultContext

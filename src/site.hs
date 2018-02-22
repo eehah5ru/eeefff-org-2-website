@@ -18,6 +18,8 @@ import W7W.Compilers.Slim -- for platform perplex
 import Site.IndexPage.Rules
 import Site.Projects.Rules
 
+import Site.Documenta
+
 import Site.Projects.Context -- for platform perplex
 --------------------------------------------------------------------------------
 
@@ -59,6 +61,8 @@ main =
      --
      projectsRules
      platformPerplexRules
+
+     documentaRules
 
      --
      -- index page
