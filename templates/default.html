@@ -9,11 +9,17 @@
     <input type="hidden" id="lang" name="lang" data-lang="$lang$"/>
     <input type="hidden" id="revision" name="revision" data-revision="$revision$"/>
 
+    $if(hideLangSwitch)$
+    $else$
     <a class="lang-switch $canonical_name$" href="$other_lang_url$">
       $other_lang$
     </a>
+    $endif$
 
+    $if(hideMenu)$
+    $else$
     <a class="back-to-home $canonical_name$" href="$root_url$">𒑲</a>
+    $endif$
 
     $body$
     <!-- <script type="text/javascript">
