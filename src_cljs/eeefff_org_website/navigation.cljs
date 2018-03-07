@@ -135,7 +135,8 @@
                     (radius 100)
                     (iterations 2))]
     (.. js/d3
-        (forceSimulation js-nodes)
+        forceSimulation
+        (nodes js-nodes)
         (force "charge" many-body)
         (force "center" (js/d3.forceCenter (/ width 2) (/ height 2)))
         (force "link" (js/d3.forceLink js-links))
@@ -161,3 +162,12 @@
         svg-nodes (build-nodes svg forces js-nodes)]
     (.on forces "tick"
          (on-tick svg-links svg-nodes))))
+
+
+;;;
+;;;
+;;; useful
+;;;
+;;;
+;;; add and remove nodes
+;;; http://bl.ocks.org/tgk/6068367
