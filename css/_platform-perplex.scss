@@ -70,10 +70,13 @@
 .back-to-home.platform-perplex,
 .lang-switch.platform-perplex {
   color: gold;
+  filter: blur(3px);
+  text-shadow: 0.6vw -0.5vw 0.7vw lightcyan;
 
   &:hover {
-    text-shadow: 0.1vw -0.5vw blue;
+    // text-shadow: 0.1vw -0.5vw blue;
     color: gold;
+    filter: none;
   }
 }
 
@@ -235,6 +238,48 @@ header.platform-perplex {
       bottom: 0;
       right: 0.5rem;
     }
+
+    .description-1 {
+      position: absolute;
+      color: gold;
+
+      top: 0;
+      left: 0;
+      font-size: 100%;
+
+      margin-left: 1rem;
+      margin-right: 1rem;
+
+      font-size: 120%;
+      font-family: "AsimovOu";
+
+      @include breakpoint(390) {
+        font-size: 150%;
+      }
+
+      @include breakpoint(480) {
+        font-size: 170%;
+      }
+
+      @include breakpoint(600) {
+        margin-right: 0;
+        width: 80%;
+      }
+
+      @include breakpoint(medium) {
+        font-size: 200%;
+      }
+
+      @include breakpoint(800) {
+        font-size: 240%;
+        width: 60%;
+      }
+
+      @include breakpoint(1043) {
+
+        font-size: 260%;
+      }
+    }
   }
 }
 
@@ -244,7 +289,7 @@ header.platform-perplex {
 //
 //
 section.platform-perplex {
-  @include gradient-rotation(red, gold, darken(cyan, 30%));
+  @include gradient-rotation(darken(red, 15%), darken(gold, 20%), darken(cyan, 30%));
 
   .section-row {
     @extend .row;
@@ -262,7 +307,26 @@ section.platform-perplex {
     padding-top: 2rem;
 
     p {
-      color: darken(white, 10%);
+      color: darken(white, 5%);
+
+      a {
+        font-size: inherit;
+        color: darken(gold, 10%);
+        text-transform: none;
+        letter-spacing: inherit;
+        text-decoration: dashed underline lighten(gold, 20%);
+
+        &:hover {
+          color: lighten(gold, 20%);
+        }
+      }
+    }
+
+    p.instructions {
+      font-style: italic;
+      font-size: 130%;
+
+      margin-bottom: 0;
     }
   }
 }
