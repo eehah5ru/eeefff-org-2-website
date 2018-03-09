@@ -45,7 +45,7 @@
                           :source-paths ["src_cljs"]
                           :figwheel {:on-jsload "eeefff-org-website.core/mount-root"}
                           :compiler {:main ^:skip-aot eeefff-org-website.core
-                                     :output-to "main.js"
+                                     :output-to "resources/public/js/compiled/out/main.js"
                                      :output-dir "resources/public/js/compiled/out"
                                      :asset-path "/js/compiled/out"
                                      :source-map-timestamp true
