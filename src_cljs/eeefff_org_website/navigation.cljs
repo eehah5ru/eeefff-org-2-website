@@ -1,7 +1,9 @@
 (ns eeefff-org-website.navigation
   (:require [eeefff-org-website.pages :as pages]
             [cljsjs.d3]
-            [cljs.pprint :refer [pprint]]))
+            [cljs.pprint :refer [pprint]]
+            [oops.core :refer [oget oset! ocall oapply ocall! oapply!
+                               oget+ oset!+ ocall+ oapply+ ocall!+ oapply!+]]))
 
 
 ;;;
@@ -36,7 +38,96 @@
 ;;     (reset!)))
 
 ;;;
+;;;
+;;; forces
+;;;
+;;;
+;;;
+;;; build forces simulation
+;;;
+(defn- build-forces [width height js-nodes js-links]
+  (let [many-body (.. js/d3
+                      forceManyBody
+                      (strength -1000)
+                      ;; (theta 0.1)
+                      (distanceMin 200))
+        collide (.. js/d3
+                    forceCollide
+                    (radius 100)
+                    (iterations 2))
+        link (.. js/d3
+                 (forceLink js-links))]
+
+    (.id link (fn [d] (.-id d)))
+
+    (.. js/d3
+        (forceSimulation js-nodes)
+        ;; (nodes js-nodes)
+        (force "charge" many-body)
+        (force "center" (js/d3.forceCenter (/ width 2) (/ height 2)))
+        (force "link" link)
+        (force "collide" collide)
+        (force "x" (js/d3.forceX 0))
+        (force "y" (js/d3.forceY 0)))))
+
+;;;
+;;; set forces nodes and do all necessary routines
+;;;
+(defn- set-forces-nodes [forces new-nodes]
+  (.. forces
+      (nodes (clj->js new-nodes)))
+
+  #_(letfn [(initialize-force [f-name]
+            (.. forces
+                (force f-name)
+                (initialize js-new-nodes)))]
+
+    (doall (map initialize-force
+                ["link"
+                 "charge"
+                 "center"
+                 "collide"
+                 "x"
+                 "y"]))))
+
+;;;
+;;; set using nodes from forces.nodes
+;;;
+(defn- set-forces-links [forces new-links]
+  (let [old-links (js->clj (.. forces
+                               (force "link")
+                               links))
+        js-nodes (.. forces
+                     nodes)]
+      (letfn [(find-node-by-id [id]
+                (first (filter #(= id (.-id %)) js-nodes)))
+
+              ;; on js link
+              (replace-nodes [link]
+                (oset! link "target" (find-node-by-id (oget link "target-id")))
+                (oset! link "source" (find-node-by-id (oget link "source-id")))
+                link)
+
+              ;; cljs link
+              (is-new-link? [link]
+                (not (some #(= (:index link) (:index %)) old-links)))]
+
+        (let [filtred-new-links (filter is-new-link? new-links)
+              js-links (clj->js (sort-by :index (concat old-links filtred-new-links)))]
+          (.forEach js-links replace-nodes)
+
+          (.. forces
+              (force "link")
+              (links js-links))))))
+
+;;;
+;;; update forces links
+;;;
+
+;;;
+;;;
 ;;; SVG
+;;;
 ;;;
 (defn- build-svg [root width height]
   (.. js/d3
@@ -61,59 +152,70 @@
       (selectAll ".link")))
 
 
-(defn- render-links [svg js-links]
+(defn- render-links [svg forces]
   ;; (set! (.-svg-links state) (.data (.-svg-links state) js-links))
 
   ;; (pprint _svg-links)
 
   (let [links-data (.. (svg-links svg)
-                       (data js-links))]
+                       (data (.. forces
+                                 (force "link")
+                                 links)))]
     (.. links-data
         enter
         (append "line")           ; why node?
         (attr "class" "link")
         (attr "stroke" "cyan")
-        (style "stroke-width" 2)))
+        (style "stroke-width" 2))
+
+    (.. links-data
+        exit
+        remove))
 
   #_(.. _svg-links
       exit
       remove))
 
-(defn- render-nodes [svg js-nodes render]
+(defn- render-nodes [svg forces render]
   ;; (set! (.-svg-nodes state) (.data (.-svg-nodes state) js-nodes))
 
   ;; (pprint (.nodes forces))
 
   (let [nodes-data (.. (svg-nodes svg)
-                       (data js-nodes))]
+                       (data (.nodes forces)))]
       (.. nodes-data
        enter
        (append "text")
        (attr "class" "node")
-       ;; (attr "cx" "0")
-       ;; (attr "cy" "10em")
+       (attr "cx" "10em")
+       (attr "cy" "10em")
        (attr "font-size" "200%")
        (attr "font-family" "monospace")
        (attr "fill" "blue")
        (style "text-decoration" "underline dashed #FF0000")
        (text #(.-name %))
-       #_(on "click" (fn [d]
-                       (let [tags (pages/tags-only (pages/nodes))
-                             new-nodes (concat (js->clj (.nodes forces)) tags)]
-                         (pprint "clicked")
-                         #_(pprint d)
-                         (.nodes forces (clj->js new-nodes))
-                         (.tick forces)
-                         (render)
-                         )))
-       ;; exit
-       ;; remove
-                                        ; events here!
-       ))
-
-  #_(.. _svg-nodes
-      exit
-      remove))
+       (on "click"
+           (fn [d]
+             (let [tags (pages/tags-only (pages/nodes))
+                   new-nodes (concat (js->clj (.nodes forces)) tags)
+                   new-links (pages/links)]
+               (pprint "clicked")
+               ;; (pprint (.. forces
+               ;;             (force "link")
+               ;;             links))
+               #_(pprint d)
+               (set-forces-nodes forces new-nodes)
+               (set-forces-links forces new-links)
+               (.restart forces)
+               ;; (.nodes forces (clj->js new-nodes))
+               ;; (.tick forces)
+               (render)
+               )))
+       ;; events here!
+       )
+      (.. nodes-data
+          exit
+          remove)))
 
 
 
@@ -211,30 +313,6 @@
     ))
 
 ;;;
-;;; build forces simulation
-;;;
-(defn- build-forces [width height js-nodes js-links]
-  (let [many-body (.. js/d3
-                      forceManyBody
-                      (strength -1000)
-                      ;; (theta 0.1)
-                      (distanceMin 200))
-        collide (.. js/d3
-                    forceCollide
-                    (radius 100)
-                    (iterations 2))]
-    (.. js/d3
-        (forceSimulation js-nodes)
-        ;; (nodes js-nodes)
-        (force "charge" many-body)
-        (force "center" (js/d3.forceCenter (/ width 2) (/ height 2)))
-        (force "link" (js/d3.forceLink js-links))
-        (force "collide" collide)
-        (force "x" (js/d3.forceX 0))
-        (force "y" (js/d3.forceY 0)))))
-
-
-;;;
 ;;;
 ;;; mount navigation to root node
 ;;;
@@ -254,8 +332,8 @@
         forces (build-forces width height js-nodes js-links)]
 
     (letfn [(render []
-              (render-links svg js-links)
-              (render-nodes svg js-nodes render)
+              (render-links svg forces)
+              (render-nodes svg forces render)
               )]
       ;; (.restart forces)
 

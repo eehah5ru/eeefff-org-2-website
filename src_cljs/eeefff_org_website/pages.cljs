@@ -42,6 +42,12 @@
    {:class :tag
     :target-id :algorithmic-solidarity
     :source-id :platform-perplex}
+   {:class :tag
+    :target-id :algorithmic-solidarity
+    :source-id :programmers-wanna-be}
+   {:class :tag
+    :target-id :digital-materiality
+    :source-id :programmers-wanna-be}
    ])
 
 ;;;
@@ -76,4 +82,9 @@
   (filter #(= (:class %) :tag) xs))
 
 (defn links []
-  (links-to-indices (add-indices links-data) (nodes)))
+  (map #(assoc %
+               :target
+               (:target-id %)
+               :source
+               (:source-id %))
+       (add-indices links-data)))
