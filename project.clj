@@ -8,7 +8,8 @@
                  ;; clojurescript
                  ;;
                  [org.clojure/clojurescript "1.9.946"]
-                 [cljsjs/d3 "4.12.0-0"]]
+                 [cljsjs/d3 "4.12.0-0"]
+                 [binaryage/oops "0.5.8"]]
   :plugins [[lein-cljsbuild "1.1.7"]
             [org.clojars.eehah5ru/cljsbuild-extras "0.0.2"]]
   :main ^:skip-aot eeefff-org-website.core
