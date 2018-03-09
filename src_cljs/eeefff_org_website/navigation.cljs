@@ -1,7 +1,7 @@
 (ns eeefff-org-website.navigation
   (:require [eeefff-org-website.pages :as pages]
             [cljsjs.d3]
-            [cljs.pprint :as pprint]))
+            [cljs.pprint :refer [pprint]]))
 
 
 ;;;
@@ -10,20 +10,30 @@
 ;;;
 ;;;
 
-(defn- links-to-indices [links nodes]
-  (map #(assoc %
-               :target
-               (:index (pages/node-by-id nodes (:target %)))
-               :source
-               (:index (pages/node-by-id nodes (:source %))))
-       links))
-
 ;;;
 ;;;
 ;;; end of utils
 ;;;
 ;;;
 
+;;;
+;;;
+;;; state
+;;;
+;;;
+
+;; (def state (clj->js {:svg nil
+;;                      :svg-nodes nil
+;;                      :svg-links nil}))
+;; (def _svg-nodes nil)
+;; (def _svg-links nil)
+
+
+
+;; (defn with-svg-nodes [f]
+;;   (let [x @_svg-nodes
+;;         y (f x)]
+;;     (reset!)))
 
 ;;;
 ;;; SVG
@@ -39,6 +49,73 @@
       (append "svg")
       (attr "width" "100%")
       (attr "height" "100%")))
+
+
+(defn- svg-nodes [svg]
+  (.. svg
+      (selectAll ".node")))
+
+
+(defn- svg-links [svg]
+  (.. svg
+      (selectAll ".link")))
+
+
+(defn- render-links [svg js-links]
+  ;; (set! (.-svg-links state) (.data (.-svg-links state) js-links))
+
+  ;; (pprint _svg-links)
+
+  (let [links-data (.. (svg-links svg)
+                       (data js-links))]
+    (.. links-data
+        enter
+        (append "line")           ; why node?
+        (attr "class" "link")
+        (attr "stroke" "cyan")
+        (style "stroke-width" 2)))
+
+  #_(.. _svg-links
+      exit
+      remove))
+
+(defn- render-nodes [svg js-nodes render]
+  ;; (set! (.-svg-nodes state) (.data (.-svg-nodes state) js-nodes))
+
+  ;; (pprint (.nodes forces))
+
+  (let [nodes-data (.. (svg-nodes svg)
+                       (data js-nodes))]
+      (.. nodes-data
+       enter
+       (append "text")
+       (attr "class" "node")
+       ;; (attr "cx" "0")
+       ;; (attr "cy" "10em")
+       (attr "font-size" "200%")
+       (attr "font-family" "monospace")
+       (attr "fill" "blue")
+       (style "text-decoration" "underline dashed #FF0000")
+       (text #(.-name %))
+       #_(on "click" (fn [d]
+                       (let [tags (pages/tags-only (pages/nodes))
+                             new-nodes (concat (js->clj (.nodes forces)) tags)]
+                         (pprint "clicked")
+                         #_(pprint d)
+                         (.nodes forces (clj->js new-nodes))
+                         (.tick forces)
+                         (render)
+                         )))
+       ;; exit
+       ;; remove
+                                        ; events here!
+       ))
+
+  #_(.. _svg-nodes
+      exit
+      remove))
+
+
 
 ;;;
 ;;; render links in svg
@@ -59,7 +136,7 @@
 ;;;
 (defn- build-nodes [svg forces js-nodes]
   (let [drag-started (fn [d]
-                       (cljs.pprint/pprint "drag-started")
+                       (pprint "drag-started")
                        (.. forces
                            (alpha 0.3)
                            restart)
@@ -79,7 +156,7 @@
         (selectAll ".node")
         (data js-nodes)
         enter
-        (append "text")
+        (insert "text")
         (attr "cx" 120)
         (attr "cy" "10em")
         (attr "font-size" "200%")
@@ -87,14 +164,24 @@
         (attr "fill" "blue")
         (style "text-decoration" "underline dashed #FF0000")
         (text #(.-name %))
-        (on "click" #(cljs.pprint/pprint "clicked"))
-        (on "mouseover" (fn []
-                          #_(cljs.pprint/pprint "mouseover")
-                          (this-as self
-                            (.. (js/d3.select self)
-                                (style "text-decoration" "underline solid red")
-                                (attr "fill" "red")
-                                (style "cursor" "pointer")))))
+        (on "click" #(pprint "clicked"))
+        (on "mouseover"
+            (fn []
+              #_(pprint "mouseover")
+              (let [forced-nodes (.nodes forces)]
+                #_(pprint all-projects)
+
+                ;; (mk-navigation ".main-app"
+                ;;                640
+                ;;                480
+                ;;                all-projects
+                ;;                (links-to-indices (pages/links) (pages/nodes)))
+
+               (this-as self
+                 (.. (js/d3.select self)
+                     (style "text-decoration" "underline solid red")
+                     (attr "fill" "red")
+                     (style "cursor" "pointer"))))))
         (on "mouseout" (fn []
                          (this-as self
                            (.. (js/d3.select self)
@@ -110,16 +197,18 @@
 ;;;
 ;;; on tick event
 ;;;
-(defn on-tick [link node]
+(defn on-tick [svg]
   (fn []
-    (cljs.pprint/pprint "ticked")
-    (.. link
+    (pprint "ticked")
+    (.. (svg-links svg)
         (attr "x1" #(.. % -source -x))
         (attr "y1" #(.. % -source -y))
         (attr "x2" #(.. % -target -x))
         (attr "y2" #(.. % -target -y)))
-    (.. node
-        (attr "transform" #(str "translate(" (.. % -x) "," (.. % -y) ")")))))
+
+    (.. (svg-nodes svg)
+        (attr "transform" #(str "translate(" (.. % -x) "," (.. % -y) ")")))
+    ))
 
 ;;;
 ;;; build forces simulation
@@ -135,8 +224,8 @@
                     (radius 100)
                     (iterations 2))]
     (.. js/d3
-        forceSimulation
-        (nodes js-nodes)
+        (forceSimulation js-nodes)
+        ;; (nodes js-nodes)
         (force "charge" many-body)
         (force "center" (js/d3.forceCenter (/ width 2) (/ height 2)))
         (force "link" (js/d3.forceLink js-links))
@@ -150,18 +239,37 @@
 ;;; mount navigation to root node
 ;;;
 ;;;
+
 (defn mk-navigation [root width height]
-  (let [nodes (pages/nodes)
-        links (links-to-indices (pages/links) nodes)
+  (let [nodes (pages/projects-only (pages/nodes))
+        links (pages/projects-only (pages/links))
         js-nodes (clj->js nodes)
         js-links (clj->js links)
 
         svg (build-svg root width height)
-        forces (build-forces width height js-nodes js-links)
-        svg-links (build-links svg js-links)
-        svg-nodes (build-nodes svg forces js-nodes)]
-    (.on forces "tick"
-         (on-tick svg-links svg-nodes))))
+
+        ;; svg-nodes (build-svg-nodes svg)
+        ;; svg-links (build-svg-links svg)
+
+        forces (build-forces width height js-nodes js-links)]
+
+    (letfn [(render []
+              (render-links svg js-links)
+              (render-nodes svg js-nodes render)
+              )]
+      ;; (.restart forces)
+
+      ;; (set! (.-svg state) svg)
+      ;; (set! (.-svg-nodes state) (svg-nodes svg))
+      ;; (set! (.-svg-links state) (svg-links svg))
+
+      ;; (render-links svg-links js-links)
+      ;; (render-nodes svg-nodes js-nodes render)
+      (render)
+      (.on forces "tick"
+           (on-tick svg)))
+    ))
+
 
 
 ;;;

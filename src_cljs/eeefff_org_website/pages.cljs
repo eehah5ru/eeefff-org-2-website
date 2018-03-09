@@ -29,21 +29,51 @@
     :name "Digital Materiality"}])
 
 (def links-data
-  [{:target :picnic-near-data-center
-    :source :cat-scout}
-   {:target :platform-perplex
-    :source :cat-scout}
-   {:target :programmers-wanna-be
-    :source :picnic-near-data-center}])
+  [{:class :project
+    :target-id :picnic-near-data-center
+    :source-id :cat-scout}
+   {:class :project
+    :target-id :platform-perplex
+    :source-id :cat-scout}
+   {:class :project
+    :target-id :programmers-wanna-be
+    :source-id :picnic-near-data-center}
+   ;; tags
+   {:class :tag
+    :target-id :algorithmic-solidarity
+    :source-id :platform-perplex}
+   ])
 
+;;;
+;;; add :index to data
+;;;
 (defn- add-indices [xs]
   (map #(assoc %1 :index %2) xs (range)))
 
 (defn node-by-id [nodes id]
   (first (filter #(= (:id %) id) nodes)))
 
+;;;
+;;; added :target and :source indices
+;;;
+(defn- links-to-indices [links nodes]
+  (map #(assoc %
+               :target
+               (:index (node-by-id nodes (:target-id %)))
+               :source
+               (:index (node-by-id nodes (:source-id %))))
+       links))
+
+
+
 (defn nodes []
   (add-indices nodes-data))
 
+(defn projects-only [xs]
+  (filter #(= (:class %) :project) xs))
+
+(defn tags-only [xs]
+  (filter #(= (:class %) :tag) xs))
+
 (defn links []
-  (add-indices links-data))
+  (links-to-indices (add-indices links-data) (nodes)))

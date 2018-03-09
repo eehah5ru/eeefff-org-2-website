@@ -7,7 +7,10 @@
 
 (defn mount-root []
   (.log js/console "root mounted")
-  (navigation/mk-navigation ".main-app" 640 480))
+  (navigation/mk-navigation
+   ".main-app"
+   640
+   480))
 
 
 (defn ^:export init []
