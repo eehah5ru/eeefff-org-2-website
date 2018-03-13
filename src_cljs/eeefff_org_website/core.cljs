@@ -1,16 +1,21 @@
 (ns eeefff-org-website.core
   #_(:gen-class)
   (:require [eeefff-org-website.pages :as pages]
-            [eeefff-org-website.navigation :as navigation]))
+            [eeefff-org-website.navigation :as navigation]
+            [cljs.pprint :refer [pprint]]))
 
 ;; (.log js/console "Hey Seymore sup?!")
 
 (defn mount-root []
   (.log js/console "root mounted")
-  (navigation/mk-navigation
-   ".main-app"
-   640
-   480))
+  (let [root-selector "#main-app"
+        width (.. (js/$ root-selector)
+                  innerWidth)
+        height (.. (js/$ root-selector)
+                   innerHeight)]
+    (navigation/mk-navigation root-selector
+                              width
+                              height)))
 
 
 (defn ^:export init []

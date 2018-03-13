@@ -67,8 +67,8 @@
         (force "center" (js/d3.forceCenter (/ width 2) (/ height 2)))
         (force "link" link)
         (force "collide" collide)
-        (force "x" (js/d3.forceX 0))
-        (force "y" (js/d3.forceY 0)))))
+        (force "x" (js/d3.forceX (/ width 2)))
+        (force "y" (js/d3.forceY (/ height 2))))))
 
 ;;;
 ;;; set forces nodes and do all necessary routines
@@ -164,9 +164,9 @@
     (.. links-data
         enter
         (append "line")           ; why node?
-        (attr "class" "link")
-        (attr "stroke" "cyan")
-        (style "stroke-width" 2))
+        (attr "class" #(apply str (interpose " " ["link" (.-class %)])))
+        #_(attr "stroke" "cyan")
+        #_(style "stroke-width" 2))
 
     (.. links-data
         exit
@@ -176,6 +176,51 @@
       exit
       remove))
 
+;;;
+;;;
+;;; NODES UI
+;;;
+;;;
+
+(defn- colorize-nodes [svg self]
+  (let [current (.. js/d3
+                   (select self)
+                   (classed "active"))]
+
+    (.. svg
+        (selectAll ".node")
+        (classed "active" false))
+
+    (.. js/d3
+        (select self)
+        (classed "active" (not current)))))
+
+;;; on drag started event
+(defn- on-drag-started [forces d]
+  (pprint "drag-started")
+  (.. forces
+      (alpha 0.3)
+      restart)
+  (set! (.-fx d) (.-x d))
+  (set! (.-fy d) (.-y d)))
+
+;;; on dragged
+(defn- on-drag-dragged [forces d]
+  (set! (.-fx d) js/d3.event.x)
+  (set! (.-fy d) js/d3.event.y))
+
+;;; on drag ended
+(defn- on-drag-ended [forces d]
+  (if (not js/d3.event.active)
+    (.. forces
+        (alphaTarget 0)
+        restart))
+  (set! (.-fx d) nil)
+  (set! (.-fy d) nil))
+
+;;;
+;;; render nodes
+;;;
 (defn- render-nodes [svg forces render]
   ;; (set! (.-svg-nodes state) (.data (.-svg-nodes state) js-nodes))
 
@@ -187,32 +232,32 @@
        enter
        (append "text")
        (attr "class" "node")
-       (attr "cx" "10em")
-       (attr "cy" "10em")
-       (attr "font-size" "200%")
-       (attr "font-family" "monospace")
-       (attr "fill" "blue")
-       (style "text-decoration" "underline dashed #FF0000")
+       (attr "cx" "200")
+       (attr "cy" "100")
+       ;; (attr "font-size" "200%")
+       ;; (attr "font-family" "monospace")
+       ;; (attr "fill" "blue")
+       ;; (style "text-decoration" "")
        (text #(.-name %))
        (on "click"
            (fn [d]
-             (let [tags (pages/tags-only (pages/nodes))
-                   new-nodes (concat (js->clj (.nodes forces)) tags)
-                   new-links (pages/links)]
-               (pprint "clicked")
-               ;; (pprint (.. forces
-               ;;             (force "link")
-               ;;             links))
-               #_(pprint d)
-               (set-forces-nodes forces new-nodes)
-               (set-forces-links forces new-links)
-               (.restart forces)
-               ;; (.nodes forces (clj->js new-nodes))
-               ;; (.tick forces)
-               (render)
-               )))
+             (this-as self
+               (let [tags (pages/tags-only (pages/nodes))
+                     new-nodes (concat (js->clj (.nodes forces)) tags)
+                     new-links (pages/links)]
+                 (pprint "clicked")
+                 (set-forces-nodes forces new-nodes)
+                 (set-forces-links forces new-links)
+                 ;; (.restart forces)
+                 (render)
+                 (colorize-nodes svg self)
+                 ))))
        ;; events here!
-       )
+       (call (.. (js/d3.drag)
+                 (on "start" (partial on-drag-started forces))
+                 (on "drag" (partial on-drag-dragged forces))
+                 (on "end" (partial on-drag-ended forces)))))
+
       (.. nodes-data
           exit
           remove)))
