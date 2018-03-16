@@ -227,6 +227,33 @@
   //
   $(document).ready(function () {
     $(document).foundation();
+
+    WebFont.load({
+      custom: {
+        families: ['AsimovXWid', 'Asimov']
+      },
+      active: function() {
+        $('.bigtext').bigtext();
+
+        setTimeout(
+          function() {
+            $(".hidden").removeClass("hidden");
+          },
+          100
+        );
+      }
+    });
+
+    $("video.top").mousemove(function(e) {
+      var h = e.pageY / $(window).height() * 100;
+      var w = e.pageX / $(window).width() * 100;
+
+      $("video.top")
+        .css("-webkit-mask-position", w + "% " + h + "%")
+        .css("mask-position", w + "% " + h + "%");
+      console.log(e.pageX, e.pageY, w, h);
+    });
+
     setTimeout(function () {
       if (!hasTOCOnPage()) {
         return;
