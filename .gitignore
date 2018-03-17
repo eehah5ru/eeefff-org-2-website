@@ -1,7 +1,7 @@
 /_cache
 /_site
-/bower_components
 /dist
 /.stack-work
 .DS_Store
 /css/_cache
+/bower_components
