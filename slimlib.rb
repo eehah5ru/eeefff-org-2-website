@@ -4,8 +4,14 @@ require "slim/include"
 Slim::Engine.set_options(:disable_escape => true)
 
 def include_file f
-  File.read f
+  File.open(f, "r") {|io| io.read }
 end
+
+# def include_lines f
+#   File.open(f, "r") do |io|
+#     yield
+#   end
+# end
 
 def markdown(text)
   rc = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
