@@ -10,15 +10,15 @@ import Site.Templates
 import Site.Projects.Context
 
 projectsDeps :: Pattern
-projectsDeps = ("ru/**/_*.slim" .||. "en/**/_*.slim" .||. "ru/**/_*.md" .||. "en/**/_*.md")
+projectsDeps = ("ru/**/_*.slim" .||. "en/**/_*.slim" .||. "ru/**/_*.md" .||. "en/**/_*.md" .||. "ru/**/_*.html" .||. "en/**/_*.html" .||. "ru/**/_*.raw" .||. "en/**/_*.raw")
 
 projectsRules = do
   -- deps
   match projectsDeps $ compile getResourceBody
 
   withProjectsDeps $ do
-    staticPandocPageRules rootTpl projectPageTpl projectCtx "projects/*.md"
-    staticSlimPageRules rootTpl projectPageTpl projectCtx "projects/*.slim"
+    staticPandocPageRules rootTpl (Just projectPageTpl) Nothing projectCtx "projects/*.md"
+    staticSlimPageRules rootTpl (Just projectPageTpl) Nothing projectCtx "projects/*.slim"
 
 withProjectsDeps rules = do
   deps <- makePatternDependency projectsDeps

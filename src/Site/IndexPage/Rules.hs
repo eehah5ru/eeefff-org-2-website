@@ -10,4 +10,4 @@ import Site.Templates
 import Site.IndexPage.Context
 
 indexPageRules = do
-  staticHtmlPageRules rootTpl indexPageTpl indexCtx "index.html"
+  staticHtmlPageRules rootTpl (Just indexPageTpl) Nothing indexCtx "index.html"
