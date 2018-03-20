@@ -36,6 +36,15 @@ fieldHideMenu =
         Just "true" -> return True
         _ -> return False
 
+functionIncludeFile =
+  functionField "includeFile" includeFile
+
+  where
+    getFileContent p = do
+      (loadBody (fromFilePath p) :: Compiler String)
+    includeFile [] _ = error "includeFile: missing file path"
+    includeFile (p:[]) _ = getFileContent p
+    includeFile _ _ = error "includeFile: Usage includeFile(filePath)"
 siteCtx :: Context String
 siteCtx = fieldEnUrl
           <> fieldRuUrl
@@ -47,4 +56,5 @@ siteCtx = fieldEnUrl
           <> fieldRevision
           <> fieldHideLangSwitch
           <> fieldHideMenu
+          <> functionIncludeFile
           <> defaultContext
