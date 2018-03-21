@@ -5,3 +5,8 @@
 .DS_Store
 /css/_cache
 /bower_components
+/.nrepl-port
+/figwheel_server.log
+/log
+/main.js
+/target

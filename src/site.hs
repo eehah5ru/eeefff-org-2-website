@@ -9,6 +9,8 @@ import Hakyll.Core.Configuration (Configuration, previewPort)
 import Data.Default (def)
 import qualified Text.Sass.Options as SO
 
+import Data.List (isPrefixOf)
+
 import qualified W7W.Config as W7WConfig
 
 import W7W.Rules.Templates
@@ -23,8 +25,19 @@ import Site.Documenta
 import Site.Projects.Context -- for platform perplex
 --------------------------------------------------------------------------------
 
+ignoredFiles :: FilePath -> Bool
+ignoredFiles f =
+  any (\x -> x f)
+      [ (ignoreFile defaultConfiguration)
+      , ignoreTarget
+      , ignoreResources]
+  where
+    ignoreTarget = isPrefixOf "target"
+    ignoreResources = isPrefixOf "resources"
+
 config :: Configuration
-config = W7WConfig.config { previewPort = 8111 }
+config = W7WConfig.config { previewPort = 8111
+                          , ignoreFile = ignoredFiles}
 
 
 main :: IO ()

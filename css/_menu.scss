@@ -1,0 +1,35 @@
+#main-app {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  z-index: 98;
+
+  svg {
+    @include absolute-center;
+
+    .link {
+      stroke: cyan;
+      stroke-width: 2;
+
+      &.tag {
+        stroke: red;
+      }
+    }
+
+    .node {
+      font-size: 200%;
+      font-family: monospace;
+      fill: grey;
+      text-decoration: underline dashed red;
+
+      &.active {
+        fill: blue;
+        text-decoration: underline solid blue;
+      }
+
+    }
+  }
+}
