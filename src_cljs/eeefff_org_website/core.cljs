@@ -25,5 +25,5 @@
                      "load"
                      (fn []
                        (ue/declare-jquery-random)
-                       (ue/start-erosion)
+                       (ue/setup-erosion)
                        (mount-root))))

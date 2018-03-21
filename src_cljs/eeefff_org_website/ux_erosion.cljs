@@ -25,6 +25,8 @@
 
 (defonce interval (atom 0))
 
+(defonce timeout (atom 0))
+
 (defn stop-erosion []
   (pprint "stopped")
   (js/clearInterval @interval))
@@ -51,4 +53,21 @@
       (html (mk-replacement (rand-nth phrases)))))
 
 (defn start-erosion []
+  (pprint "started")
   (reset! interval (js/setInterval erode-ux 500)))
+
+(defn stop-screensaver-delay []
+  (js/clearTimeout @timeout))
+
+(defn start-screensaver-delay []
+  (reset! timeout
+          (js/setTimeout start-erosion 10000)))
+
+(defn setup-erosion []
+  (start-screensaver-delay)
+
+  (.. (js/jQuery js/document)
+      (mousemove (fn []
+                   (stop-erosion)
+                   (stop-screensaver-delay)
+                   (start-screensaver-delay)))))
