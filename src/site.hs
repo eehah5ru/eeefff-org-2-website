@@ -21,6 +21,7 @@ import Site.IndexPage.Rules
 import Site.Projects.Rules
 
 import Site.Documenta
+import Site.Innovation
 
 import Site.Projects.Context -- for platform perplex
 --------------------------------------------------------------------------------
@@ -76,6 +77,7 @@ main =
      platformPerplexRules
 
      documentaRules
+     innovationRules
 
      --
      -- index page
