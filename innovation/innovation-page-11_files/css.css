@@ -1,0 +1,243 @@
+
+
+@font-face {
+  font-family: "Austin";
+  src:  url("/fonts/typetoday/AustinCy-Roman-Web.woff2?domain=readymag.com&md5=UmMefWiK4xBAN2z-ODVOyA") format("woff2"),
+        url("/fonts/typetoday/AustinCy-Roman-Web.woff?domain=readymag.com&md5=AZweLdnRybPVGrCRAA9UgQ") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Austin";
+  src:  url("/fonts/typetoday/AustinCy-Italic-Web.woff2?domain=readymag.com&md5=eMa_R1aGbZqhhAJpLrf5dA") format("woff2"),
+        url("/fonts/typetoday/AustinCy-Italic-Web.woff?domain=readymag.com&md5=c6jD5jvqMLzRecOQ2iYOPw") format("woff");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Austin";
+  src:  url("/fonts/typetoday/AustinCy-Semibold-Web.woff2?domain=readymag.com&md5=dbMc84R6kl437cWHuv7iPw") format("woff2"),
+        url("/fonts/typetoday/AustinCy-Semibold-Web.woff?domain=readymag.com&md5=PX45D-ONi6Kc1K2MQzANbg") format("woff");
+  font-style: normal;
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Austin";
+  src:  url("/fonts/typetoday/AustinCy-Bold-Web.woff2?domain=readymag.com&md5=nQheTXrQpOrYvJWJEZK-NA") format("woff2"),
+        url("/fonts/typetoday/AustinCy-Bold-Web.woff?domain=readymag.com&md5=GS--Sidg7JrdAqnhRYzm_g") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Austin";
+  src:  url("/fonts/typetoday/AustinCy-Ultra-Web.woff2?domain=readymag.com&md5=W3erovVd4Cw4WpjSlrCeRQ") format("woff2"),
+        url("/fonts/typetoday/AustinCy-Ultra-Web.woff?domain=readymag.com&md5=m-6hauc4Ku58-lSwLk5UyA") format("woff");
+  font-style: normal;
+  font-weight: 900;
+}
+@font-face {
+  font-family: "Austin";
+  src:  url("/fonts/typetoday/AustinCy-UltraItalic-Web.woff2?domain=readymag.com&md5=DRB_fXYdcOR9n0PW1uMvTQ") format("woff2"),
+        url("/fonts/typetoday/AustinCy-UltraItalic-Web.woff?domain=readymag.com&md5=ubsXq_HMAlQO4edVUON1ug") format("woff");
+  font-style: italic;
+  font-weight: 900;
+}
+
+
+@font-face {
+  font-family: "Giorgio Sans";
+  src:  url("/fonts/typetoday/GiorgioSansLC-Thin-Web.woff2?domain=readymag.com&md5=ItmUdYjUKaIAfK5I9NGIjw") format("woff2"),
+        url("/fonts/typetoday/GiorgioSansLC-Thin-Web.woff?domain=readymag.com&md5=7WT8pbOywEbLm8EjtYvZ6w") format("woff");
+  font-style: normal;
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Giorgio Sans";
+  src:  url("/fonts/typetoday/GiorgioSansLC-Regular-Web.woff2?domain=readymag.com&md5=81WbbAe8fVkTMpDiKecc4Q") format("woff2"),
+        url("/fonts/typetoday/GiorgioSansLC-Regular-Web.woff?domain=readymag.com&md5=QSqUuRDoz7JmKm6U9pW1uQ") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Giorgio Sans";
+  src:  url("/fonts/typetoday/GiorgioSansLC-RegularItalic-Web.woff2?domain=readymag.com&md5=oV-e5uRiymqLvlUZDCD5bg") format("woff2"),
+        url("/fonts/typetoday/GiorgioSansLC-RegularItalic-Web.woff?domain=readymag.com&md5=MsWUJJX83GfC4UMBAvDwxA") format("woff");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Giorgio Sans";
+  src:  url("/fonts/typetoday/GiorgioSansLC-Medium-Web.woff2?domain=readymag.com&md5=vN0RzV1neI64YF5m96K4kw") format("woff2"),
+        url("/fonts/typetoday/GiorgioSansLC-Medium-Web.woff?domain=readymag.com&md5=cLC3v0DxIfjBptNzcq7Kag") format("woff");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Giorgio Sans";
+  src:  url("/fonts/typetoday/GiorgioSansLC-Bold-Web.woff2?domain=readymag.com&md5=2ZEqZisEQz6iE2GbOSiOkg") format("woff2"),
+        url("/fonts/typetoday/GiorgioSansLC-Bold-Web.woff?domain=readymag.com&md5=dPNQuUfhv-KPPf0r3Ixq4Q") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Giorgio Sans";
+  src:  url("/fonts/typetoday/GiorgioSansLC-BoldItalic-Web.woff2?domain=readymag.com&md5=Wt5LdY-fYMgX__Zc0JHt4g") format("woff2"),
+        url("/fonts/typetoday/GiorgioSansLC-BoldItalic-Web.woff?domain=readymag.com&md5=oNB7z9BxdpCBG1ouMWayuw") format("woff");
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Giorgio Sans";
+  src:  url("/fonts/typetoday/GiorgioSansLC-Heavy-Web.woff2?domain=readymag.com&md5=FpJZKbpz7veUtUqB63Ox0w") format("woff2"),
+        url("/fonts/typetoday/GiorgioSansLC-Heavy-Web.woff?domain=readymag.com&md5=3rYKZiVYyGp1dHwMYPdHbg") format("woff");
+  font-style: normal;
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Giorgio Sans";
+  src:  url("/fonts/typetoday/GiorgioSansLC-Black-Web.woff2?domain=readymag.com&md5=GplZSxwueh4UWrjFAsZ-MQ") format("woff2"),
+        url("/fonts/typetoday/GiorgioSansLC-Black-Web.woff?domain=readymag.com&md5=Zem3_kLQFYVsRuqNHPip6Q") format("woff");
+  font-style: normal;
+  font-weight: 900;
+}
+
+
+@font-face {
+  font-family: "Graphik";
+  src:  url("/fonts/typetoday/GraphikLC-Thin-Web.woff2?domain=readymag.com&md5=0cdQrMKRyknE-AOBgL0Chw") format("woff2"),
+        url("/fonts/typetoday/GraphikLC-Thin-Web.woff?domain=readymag.com&md5=POeu4EoIWKUL4FjU1Jr_4Q") format("woff");
+  font-style: normal;
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Graphik";
+  src:  url("/fonts/typetoday/GraphikLC-Light-Web.woff2?domain=readymag.com&md5=6NnHYvKOWFnNY3NTzYRuYA") format("woff2"),
+        url("/fonts/typetoday/GraphikLC-Light-Web.woff?domain=readymag.com&md5=qoBuWqJmistSi27jL7MoIA") format("woff");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Graphik";
+  src:  url("/fonts/typetoday/GraphikLC-Regular-Web.woff2?domain=readymag.com&md5=mGllDsB7vCzTn-Q_QTQHVQ") format("woff2"),
+        url("/fonts/typetoday/GraphikLC-Regular-Web.woff?domain=readymag.com&md5=-1ost7inN1p8byIBXUq0rQ") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Graphik";
+  src:  url("/fonts/typetoday/GraphikLC-RegularItalic-Web.woff2?domain=readymag.com&md5=X3grLqr7rhEl1lfzhoxTDw") format("woff2"),
+        url("/fonts/typetoday/GraphikLC-RegularItalic-Web.woff?domain=readymag.com&md5=KzlvJQcqF8kLRjbz0f-lPA") format("woff");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Graphik";
+  src:  url("/fonts/typetoday/GraphikLC-Medium-Web.woff2?domain=readymag.com&md5=KvMDbtiaUYXRGCoGJ1Vu3A") format("woff2"),
+        url("/fonts/typetoday/GraphikLC-Medium-Web.woff?domain=readymag.com&md5=7wG4I2rqimu-5OMChig0cQ") format("woff");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Graphik";
+  src:  url("/fonts/typetoday/GraphikLC-Bold-Web.woff2?domain=readymag.com&md5=TqwfZ9MAEYmJJp7DmsksXA") format("woff2"),
+        url("/fonts/typetoday/GraphikLC-Bold-Web.woff?domain=readymag.com&md5=_WeqQrqyo4XC3-jQRjGpIg") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Graphik";
+  src:  url("/fonts/typetoday/GraphikLC-BoldItalic-Web.woff2?domain=readymag.com&md5=py69ulfXH4ut4N9-Stb_EQ") format("woff2"),
+        url("/fonts/typetoday/GraphikLC-BoldItalic-Web.woff?domain=readymag.com&md5=W7GDnKWBnGNkkbPkk3ojYw") format("woff");
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Graphik";
+  src:  url("/fonts/typetoday/GraphikLC-Black-Web.woff2?domain=readymag.com&md5=vnn5tm4JtwD38afxZRQtWg") format("woff2"),
+        url("/fonts/typetoday/GraphikLC-Black-Web.woff?domain=readymag.com&md5=jsUR_jTAQUCnJAtZ3Ipg6A") format("woff");
+  font-style: normal;
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Graphik";
+  src:  url("/fonts/typetoday/GraphikLC-Super-Web.woff2?domain=readymag.com&md5=Awb_LQUn5l0Aw6qbE8zjWg") format("woff2"),
+        url("/fonts/typetoday/GraphikLC-Super-Web.woff?domain=readymag.com&md5=rZ3J7iNnO6myEwp-MffX2A") format("woff");
+  font-style: normal;
+  font-weight: 900;
+}
+
+
+@font-face {
+  font-family: "Kazimir";
+  src:  url("/fonts/typetoday/Kazimir-Web-Regular.woff2?domain=readymag.com&md5=rPc6vT0lIorg-Kds2ElGfw") format("woff2"),
+        url("/fonts/typetoday/Kazimir-Web-Regular.woff?domain=readymag.com&md5=Jc-OZhub679d2AYCOAm2DQ") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Kazimir";
+  src:  url("/fonts/typetoday/Kazimir-Web-Medium.woff2?domain=readymag.com&md5=xR4vZZVcZ0alC1Zk_vwamA") format("woff2"),
+        url("/fonts/typetoday/Kazimir-Web-Medium.woff?domain=readymag.com&md5=83BP_HzSO2XdBIAMLh5eeg") format("woff");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Kazimir";
+  src:  url("/fonts/typetoday/Kazimir-Web-Bold.woff2?domain=readymag.com&md5=qpUvvcRaN3ly8Bj5RCDELA") format("woff2"),
+        url("/fonts/typetoday/Kazimir-Web-Bold.woff?domain=readymag.com&md5=2oR78R1OvjCEn8d0IkNG3A") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Kazimir";
+  src:  url("/fonts/typetoday/Kazimir-Web-Black.woff2?domain=readymag.com&md5=1RgSI_w7HZFoX64NMC5ELw") format("woff2"),
+        url("/fonts/typetoday/Kazimir-Web-Black.woff?domain=readymag.com&md5=7Ydg77qF3rfjxGVGaDY2Zg") format("woff");
+  font-style: normal;
+  font-weight: 900;
+}
+
+
+@font-face {
+  font-family: "Kazimir Text";
+  src:  url("/fonts/typetoday/KazimirText-Hairline_web.woff2?domain=readymag.com&md5=Cz1qdy1cZpW0WB6QUVTogQ") format("woff2"),
+        url("/fonts/typetoday/KazimirText-Hairline_web.woff?domain=readymag.com&md5=ukGeyyufLvglt7FCQVrebw") format("woff");
+  font-style: normal;
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Kazimir Text";
+  src:  url("/fonts/typetoday/KazimirText-Book_web.woff2?domain=readymag.com&md5=6PnfMhQlUZlcXjmzZKmilw") format("woff2"),
+        url("/fonts/typetoday/KazimirText-Book_web.woff?domain=readymag.com&md5=O1MvpOI_OocICPE6MSAW5Q") format("woff");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Kazimir Text";
+  src:  url("/fonts/typetoday/KazimirText-Regular_web.woff2?domain=readymag.com&md5=KAzfpYvjbTZG6HAfyc7q8g") format("woff2"),
+        url("/fonts/typetoday/KazimirText-Regular_web.woff?domain=readymag.com&md5=wxTIUwZbPqo8Q0eth664iw") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+
+
+@font-face {
+  font-family: "NWT Bodoni";
+  src:  url("/fonts/typetoday/NWT_Bodoni-Regular-Web.woff?domain=readymag.com&md5=iKqgkS3rMg4nfUzoc-Atkg") format("woff"),
+        url("/fonts/typetoday/NWT_Bodoni-Regular-Web.woff?domain=readymag.com&md5=iKqgkS3rMg4nfUzoc-Atkg") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "NWT Bodoni";
+  src:  url("/fonts/typetoday/NWT_Bodoni-Italic-Web.woff2?domain=readymag.com&md5=3p3_qqhOnG9MLAssdf7O2A") format("woff2"),
+        url("/fonts/typetoday/NWT_Bodoni-Italic-Web.woff?domain=readymag.com&md5=s5pXujpl_F-EFk8bvswRQw") format("woff");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "NWT Bodoni";
+  src:  url("/fonts/typetoday/NWT_Bodoni-Bold-Web.woff2?domain=readymag.com&md5=sk3dK7q96Gn8wfwolLLKPw") format("woff2"),
+        url("/fonts/typetoday/NWT_Bodoni-Bold-Web.woff?domain=readymag.com&md5=m_Q2JFKo2U_zc1v2XFxMLA") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
