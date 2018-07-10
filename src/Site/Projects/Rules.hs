@@ -17,8 +17,8 @@ projectsRules = do
   match projectsDeps $ compile getResourceBody
 
   withProjectsDeps $ do
-    staticPandocPageRules rootTpl projectPageTpl projectCtx "projects/*.md"
-    staticSlimPageRules rootTpl projectPageTpl projectCtx "projects/*.slim"
+    staticPandocPageRules rootTpl (Just projectPageTpl) Nothing projectCtx "projects/*.md"
+    staticSlimPageRules rootTpl (Just projectPageTpl) Nothing projectCtx "projects/*.slim"
 
 withProjectsDeps rules = do
   deps <- makePatternDependency projectsDeps
