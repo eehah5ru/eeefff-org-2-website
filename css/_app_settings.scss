@@ -15,7 +15,7 @@ $header-font-family: $font-family-sans-serif;
 $paragraph-font-size: 1.2rem;
 $paragraph-line-height: 1.5;
 
-$button-function-factor: -20;
+$button-function-factor: -20%;
 $button-bg-color: $primary-color;
 $button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor);
 
