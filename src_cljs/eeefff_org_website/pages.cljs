@@ -113,33 +113,58 @@
 ;;     :source-id :programmers-wanna-be}
 ;;    ])
 
-(defn mk-projects-nodes-data []
-  (map #(hash-map
-         :id (s/replace (:name %) #" " "-")
-         :name (:name %))
-       raw-projects))
+
+;;;
+;;;
+;;; tags builders
+;;;
+;;;
 
 ;;;
 ;;; mk tag name
 ;;;
+
+;;; sanitize tag name
 (defn mk-tag-name [n]
   (->> (s/split n #" ")
       (map s/capitalize)
       ;; (interpose " ")
       (s/join " ")))
 
+;;; make tage id from tag name
+(defn mk-tag-id [tag-name]
+  (s/replace tag-name #" " "-"))
+
+;;; extract tag names as array from project's tags string
+(defn extract-tag-names [tags-string]
+  (-> tags-string
+      (s/split #", ")
+      sort
+      distinct))
 
 (defn mk-tags-nodes-data []
   (let [tags-string (->> (map :tags
                              raw-projects)
                         (s/join ", "))
-        tag-names (-> tags-string
-                      (s/split #", ")
-                      sort
-                      distinct)]
-    (map #(hash-map :id (s/replace % #" " "-")
+        tag-names (extract-tag-names tags-string)]
+    (map #(hash-map :id (mk-tag-id %)
                     :name (mk-tag-name %))
          tag-names)))
+
+;;;
+;;;
+;;; project builders
+;;;
+;;;
+(defn mk-projects-nodes-data []
+  (map #(hash-map
+         :id (s/replace (:name %) #" " "-")
+         :name (:name %)
+         :tag-ids (->> (:tags %)
+                       extract-tag-names
+                       (map mk-tag-id)))
+       raw-projects))
+
 
 (defn mk-links-data []
   [])
@@ -179,11 +204,32 @@
         all-nodes (concat project-nodes tags-nodes)]
       (add-indices all-nodes)))
 
+
 (defn projects-only [xs]
   (filter #(= (:class %) :project) xs))
 
+
 (defn tags-only [xs]
   (filter #(= (:class %) :tag) xs))
+
+(defn filter-nodes [node-ids]
+  (filter (fn [x]
+            (some #(= (:id x) %)
+                  node-ids))
+          (nodes)))
+
+(defn tags-for-node [node-id]
+  (-> (nodes)
+      (node-by-id node-id)
+      :tag-ids
+      filter-nodes))
+
+(defn nodes-difference [xs ys]
+  (filter (fn [x]
+            (every? #(not (= (:id x) (:id %)))
+                    ys))
+          xs))
+
 
 (defn links []
   (map #(assoc %

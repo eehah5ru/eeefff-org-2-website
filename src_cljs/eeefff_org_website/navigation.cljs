@@ -1,6 +1,8 @@
 (ns eeefff-org-website.navigation
   (:require [eeefff-org-website.pages :as pages]
             [cljsjs.d3]
+            [clojure.string :as s]
+            [clojure.set :refer [difference]]
             [cljs.pprint :refer [pprint]]
             [oops.core :refer [oget oset! ocall oapply ocall! oapply!
                                oget+ oset!+ ocall+ oapply+ ocall!+ oapply!+]]))
@@ -24,12 +26,7 @@
 ;;;
 ;;;
 
-;; (def state (clj->js {:svg nil
-;;                      :svg-nodes nil
-;;                      :svg-links nil}))
-;; (def _svg-nodes nil)
-;; (def _svg-links nil)
-
+(def active-node-id (atom nil))
 
 
 ;; (defn with-svg-nodes [f]
@@ -48,13 +45,13 @@
 (defn- build-forces [width height js-nodes js-links]
   (let [many-body (.. js/d3
                       forceManyBody
-                      (strength -1000)
-                      ;; (theta 0.1)
-                      (distanceMin 200))
+                      (strength -500)
+                      (theta 0.1)
+                      (distanceMin 50))
         collide (.. js/d3
                     forceCollide
-                    (radius 100)
-                    (iterations 2))
+                    (radius 50)
+                    (iterations 8))
         link (.. js/d3
                  (forceLink js-links))]
 
@@ -75,20 +72,7 @@
 ;;;
 (defn- set-forces-nodes [forces new-nodes]
   (.. forces
-      (nodes (clj->js new-nodes)))
-
-  #_(letfn [(initialize-force [f-name]
-            (.. forces
-                (force f-name)
-                (initialize js-new-nodes)))]
-
-    (doall (map initialize-force
-                ["link"
-                 "charge"
-                 "center"
-                 "collide"
-                 "x"
-                 "y"]))))
+      (nodes (clj->js new-nodes))))
 
 ;;;
 ;;; set using nodes from forces.nodes
@@ -218,14 +202,26 @@
   (set! (.-fx d) nil)
   (set! (.-fy d) nil))
 
+
+;;; on node clicked
+(defn- on-node-clicked [self svg forces render d]
+  (let [new-tags (pages/tags-for-node (.-id d))
+        old-nodes (js->clj (.nodes forces))
+        old-tags (pages/tags-for-node @active-node-id)
+        new-nodes (concat (pages/nodes-difference old-nodes old-tags) new-tags)
+        new-links (pages/links)]
+    (pprint (str "clicked " (.-name d)))
+    (reset! active-node-id (.-id d))
+    (set-forces-nodes forces new-nodes)
+    (set-forces-links forces new-links)
+    (render)
+    (colorize-nodes svg self)
+    ))
+
 ;;;
 ;;; render nodes
 ;;;
 (defn- render-nodes [svg forces render]
-  ;; (set! (.-svg-nodes state) (.data (.-svg-nodes state) js-nodes))
-
-  ;; (pprint (.nodes forces))
-
   (let [nodes-data (.. (svg-nodes svg)
                        (data (.nodes forces)))]
       (.. nodes-data
@@ -234,24 +230,11 @@
        (attr "class" "node")
        (attr "cx" "200")
        (attr "cy" "100")
-       ;; (attr "font-size" "200%")
-       ;; (attr "font-family" "monospace")
-       ;; (attr "fill" "blue")
-       ;; (style "text-decoration" "")
        (text #(.-name %))
-       (on "click"
-           (fn [d]
-             (this-as self
-               (let [tags (pages/tags-only (pages/nodes))
-                     new-nodes (concat (js->clj (.nodes forces)) tags)
-                     new-links (pages/links)]
-                 (pprint "clicked")
-                 (set-forces-nodes forces new-nodes)
-                 (set-forces-links forces new-links)
-                 ;; (.restart forces)
-                 (render)
-                 (colorize-nodes svg self)
-                 ))))
+       
+       (on "click" #(this-as self
+                      (on-node-clicked self svg forces render %)))
+
        ;; events here!
        (call (.. (js/d3.drag)
                  (on "start" (partial on-drag-started forces))
@@ -312,6 +295,7 @@
         (style "text-decoration" "underline dashed #FF0000")
         (text #(.-name %))
         (on "click" #(pprint "clicked"))
+        
         (on "mouseover"
             (fn []
               #_(pprint "mouseover")
@@ -346,7 +330,6 @@
 ;;;
 (defn on-tick [svg]
   (fn []
-    (pprint "ticked")
     (.. (svg-links svg)
         (attr "x1" #(.. % -source -x))
         (attr "y1" #(.. % -source -y))
