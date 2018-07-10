@@ -18,5 +18,11 @@ executable site
                   , MissingH
                   , binary
                   , text
+                  , attoparsec
+                  , mtl
+                  , errors
+                  , directory
+                  , MissingH
+                  , colour
   ghc-options:      -threaded
   default-language: Haskell2010
