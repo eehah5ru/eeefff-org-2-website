@@ -1,0 +1,7 @@
+Hackathon is a session on collective prototyping of ideas. The length of such a session is from 24 to 72 hours without interruptions. Ripened in technical communities, this form of knowledge production was captured by capitalist structures and then, thanks to the popularity of start-ups as a method of producing the future (profitable), it gained popularity in other communities that solve non-capitalist production problems rather than social, urban planning or economic inequality. In general, this method of producing knowledge is popular where it is necessary to  bring together people with different competencies quickly and effectively.
+
+What is specific about knowledge production at the hackathon? On the one hand, long-term togetherness forms a dense temporal collectivity. The way of thinking is deformed. The extra-subjective consciousness is gaining momentum. It's like a party that has already culminated and crumbled a few times, but it still lasts. You are locked in a room and no chance to leave. You fall into a dream, but there is no sleep: everyone around keeps the rhythm of informal production.
+
+On the other hand, it reminds a sports hall, the half-gentrified workshop of the factory or the lobby of the business center, where such events usually take place. No chance to hide or fence off or to do something by their own. This is a thoroughly visible space of hopes and conflicts - the public space of cognitive workers.
+
+What promises us a foray into the hackathon as a form of production? What trophies can we take with us? Or discard as useless?
