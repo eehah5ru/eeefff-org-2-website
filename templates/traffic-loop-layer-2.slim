@@ -1,0 +1,18 @@
+| $partial("templates/traffic-loop-nav.slim")$
+
+section.traffic-loop.layer-2.user.small-video-container.show-for-small-only
+  .video
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/$youtubeVideoId$" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+section.traffic-loop.layer-2.user
+  .bkg.pink
+    | &nbsp;
+  .bkg.blue
+    | &nbsp;
+
+  .overlay.show-for-medium
+    .video-container
+      .video
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/$youtubeVideoId$" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  article
+    | $body$

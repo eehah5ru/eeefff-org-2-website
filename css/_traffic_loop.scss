@@ -1,0 +1,385 @@
+@mixin big-text {
+  p, ol {
+    @extend .small-12;
+    @extend .columns;
+    @extend .end;
+
+    color: white;
+
+    font-size: 18px;
+
+    @include breakpoint(medium) {
+      font-size: 36px;
+    }
+
+    strong {
+      font-family: "AsimovOu";
+    }
+  }
+
+  li {
+    list-style-position: inside;
+  }
+
+  code {
+    background-color: #dab8b87d;
+    font-family: inherit;
+    color: white;
+    border: 0;
+
+  }
+}
+
+@mixin normal-text {
+  font-size: 12px;
+
+  @include breakpoint(medium) {
+    font-size: 18px;
+  }
+
+  color: white;
+
+  code {
+    background-color: #dab8b87d;
+    font-family: inherit;
+    color: white;
+    border: 0;
+  }
+}
+
+@mixin nav-mask($index) {
+  mask-image: url("/images/traffic-loop/nav-masks/nav-" + $index + "-mask.svg");
+}
+
+@mixin nav-clip($index) {
+  clip-path: url("#clipPolygon-" + $index + "");
+  -webkit-clip-path: url("#clipPolygon-" + $index + "");
+}
+
+@mixin nav-el-pulse-keyframes {
+  0% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+
+}
+@-webkit-keyframes nav-el-pulse {
+  @include nav-el-pulse-keyframes;
+}
+@keyframes nav-el-pulse {
+  @include nav-el-pulse-keyframes;
+}
+
+.tl-clipping-masks {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+a.nav.traffic-loop {
+  position: fixed;
+  z-index: 10000;
+  width: auto;
+  height: auto;
+
+  transform: scale(0.4);
+
+  @include breakpoint(medium) {
+    transform: scale(0.7);
+  }
+
+  @include breakpoint(large) {
+    transform: scale(1);
+  }
+
+  .nav-el {
+    width: 150px;
+    height: 225px;
+
+
+    // animation: nav-el-pulse 2s infinite;
+
+    // &:hover {
+    //   animation: none;
+    // }
+  }
+
+  img,
+  .shadow,
+  .hover {
+    &.nav-1 {
+      @include nav-clip(1);
+    }
+    &.nav-2 {
+      @include nav-clip(2);
+    }
+    &.nav-3 {
+      @include nav-clip(3);
+    }
+    &.nav-4 {
+      @include nav-clip(4);
+    }
+  }
+
+  .shadow,
+  .hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .hover {
+    background-image: linear-gradient(-90deg, #F161FC 0%, #F6F6F6 100%);
+  }
+
+
+  .shadow {
+    background-color: darkslateblue;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  img {
+    &:hover {
+      opacity: 0;
+    }
+  }
+}
+
+
+section.traffic-loop {
+  background-image: linear-gradient(-90deg, #F161FC 0%, #F6F6F6 100%);
+  // height: 100%;
+  min-height: 100%;
+  @extend .row;
+  @extend .expanded;
+
+  .bkg {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    &.pink {
+      background-image: linear-gradient(-90deg, #F161FC 0%, #F6F6F6 100%);
+    }
+
+    &.blue {
+      background-image: linear-gradient(90deg, #0022FF 0%, #FFFFFF 100%);
+      mix-blend-mode: darken;
+    }
+  }
+
+  .overlay {
+    z-index: 200;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    &.bkg {
+      z-index: 199;
+      background-image: linear-gradient(-90deg, #0022FF 0%, #FFFFFF 100%);
+      mix-blend-mode: lighten;
+    }
+
+    h1 {
+      @include absolute-center;
+    }
+
+    .video-container {
+      @include absolute-center;
+      width: 60%;
+      height: auto;
+
+      padding: 1rem;
+
+      background-image: linear-gradient(90deg, #DE6CE5 0%, #FFFFFF 100%);
+
+    }
+    .video {
+      @extend .responsive-embed;
+      @extend .widescreen;
+
+      margin-bottom: 0;
+    }
+  }
+
+  &.layer-1 {
+    background: none;
+
+    .bkg {
+      position: fixed;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+
+      &.pink {
+        background-image: linear-gradient(-90deg, #F161FC 0%, #F6F6F6 100%);
+        // mix-blend-mode: lighten;
+      }
+
+      &.blue {
+        background-image: linear-gradient(90deg, #0022FF 0%, #FFFFFF 100%);
+        mix-blend-mode: darken;
+      }
+    }
+
+    article {
+      @extend .small-12;
+      @extend .medium-10;
+      @extend .large-6;
+      @extend .columns;
+      @extend .end;
+      @extend .medium-offset-1;
+      @extend .large-offset-3;
+
+      @include normal-text;
+    }
+  }
+
+  &.layer-2 {
+    padding-top: 1rem;
+
+    figure {
+      @extend .small-12;
+      @extend .medium-9;
+      @extend .columns;
+      @extend .end;
+
+      position: relative;
+      margin-bottom: 2rem;
+
+      @include breakpoint(medium) {
+        margin-bottom: 4rem;
+      }
+
+      &:last-of-type {
+        margin-bottom: 1rem;
+
+        @include breakpoint(medium) {
+          margin-bottom: 2rem;
+        }
+      }
+
+      &:nth-of-type(odd) {
+        @extend .medium-offset-2;
+      }
+
+
+      svg {
+        mix-blend-mode: screen;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        padding: inherit;
+
+        box-shadow: none;
+        z-index: 99;
+
+        width: 100%;
+        height: auto;
+
+        .screen {
+          cursor: pointer;
+
+          &:hover {
+            fill: blue;
+          }
+        }
+      }
+
+      img {
+        box-shadow: 0.3rem 0.3rem 0px white;
+
+        @include breakpoint(medium) {
+          box-shadow: 1rem 1rem 0px white;
+        }
+      }
+    }
+
+  }
+
+  &.layer-2.user {
+    background: none;
+
+    article {
+      @include big-text;
+
+      @include breakpoint(small only) {
+        p:last-of-type {
+          padding-bottom: 100%;
+        }
+      }
+    }
+
+    &.small-video-container {
+
+      position: fixed;
+      height: auto;
+      left: 0;
+      right: 0;
+      bottom: 2rem;
+
+      min-height: 0;
+
+      padding-right: 0.625rem;
+      padding-left: 0.625rem;
+
+      .video {
+        @extend .responsive-embed;
+        @extend .widescreen;
+
+        margin-bottom: 0;
+      }
+    }
+
+    .video-container {
+      width: 40%;
+      transform: translate(-30%,-10%);
+    }
+  }
+
+  &.layer-4 {
+    background: none;
+
+    article {
+      @include big-text;
+    }
+
+    .overlay.scheme {
+      mix-blend-mode: hard-light;
+    }
+
+    .scheme-container {
+      @include absolute-center;
+      width: 100%;
+      height: 100%;
+
+      padding: 1rem;
+      margin: 0;
+
+      background-image: none;
+
+
+      img {
+        box-shadow: none;
+        width: 100%;
+        height: 100%;
+
+      }
+    }
+  }
+}

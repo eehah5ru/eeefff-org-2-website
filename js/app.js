@@ -222,11 +222,54 @@
 
   //
   //
+  // TRAFIC LOOP
+  //
+  //
+
+  var onScreenClick = function (self) {
+    var url = "traffic-loop-2-user-" + $(self.target).data("user") + ".html";
+    window.location.href = url;
+  };
+
+  var randomizeNav = function () {
+    var winH = document.documentElement.clientHeight;
+    var winW = document.documentElement.clientWidth;
+
+    $("a.nav.traffic-loop").each(function(i, navEl) {
+      var h = $(navEl).outerHeight();
+      var w = $(navEl).outerWidth();
+
+      var pX = Math.random() * (winW - w);
+      var pY = Math.random() * (winH - h);
+
+      console.log(winW, winH, w, h, pX, pY);
+
+      $(navEl).css("top", pY);
+      $(navEl).css("left", pX);
+    });
+  };
+
+  var initTrafficLoop = function () {
+    $(".traffic-loop figure svg .screen").click(onScreenClick);
+
+    randomizeNav();
+  };
+
+  //
+  //
+  // END OF TRAFFIC LOOP
+  //
+  //
+
+
+  //
+  //
   // init
   //
   //
   $(document).ready(function () {
     $(document).foundation();
+    initTrafficLoop();
     setTimeout(function () {
       if (!hasTOCOnPage()) {
         return;
