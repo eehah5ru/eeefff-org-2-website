@@ -264,12 +264,45 @@
 
   //
   //
+  // error-friendly footnotes
+  //
+  //
+  var onClickFootnoteName = function(self) {
+    var descrSelector = "#" + $(self).data("footnote") + "-descr";
+
+    console.log(descrSelector);
+    console.log($(descrSelector));
+    if ($(self).hasClass("active")) {
+      // hide
+      $(self).removeClass("active");
+
+      $(descrSelector).addClass("hidden");
+    } else {
+      // show
+      $(self).addClass("active");
+      $(descrSelector).removeClass("hidden");
+    }
+
+    return false;
+  };
+
+
+  //
+  //
   // init
   //
   //
   $(document).ready(function () {
     $(document).foundation();
     initTrafficLoop();
+
+    //
+    // footnotes
+    //
+    $("a.footnote-name").click(function(e) {
+      return onClickFootnoteName(e.target);
+    });
+
     setTimeout(function () {
       if (!hasTOCOnPage()) {
         return;
