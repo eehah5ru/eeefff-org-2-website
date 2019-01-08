@@ -26,8 +26,8 @@ extra-deps:
 # Override default flag values for local packages and extra-deps
 flags:
   hlibsass:
-    sharedlibsass: true
-    # externallibsass: true
+    #sharedlibsass: true
+    externallibsass: true
 
 # Extra package databases containing global packages
 extra-package-dbs: []
