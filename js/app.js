@@ -286,6 +286,37 @@
     return false;
   };
 
+  //
+  //
+  // human works as human
+  //
+  //
+
+  var showHWASHVideo = function(startPos, endPos) {
+    // diable controls
+    // show video
+    // set start pos
+    // setup event listener to track end of the script part
+    // when end is reached hide video stop it, remove event listener
+  };
+
+
+  var onClickScriptPart = function(self) {
+    var startPos = $(self).data("startPos");
+    var endPos = $(self).data("endPos");
+
+    if (_.some([startPos, endPos], _.isEmpty)) {
+      console.log("startPos o endPos data is not set for " + self);
+      return;
+    }
+
+    $(".script-part.active").removeClass("active");
+
+    $(self).addClass("active");
+
+    showHWASHVideo(startPos, endPos);
+  };
+
 
   //
   //
