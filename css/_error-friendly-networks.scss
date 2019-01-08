@@ -1,0 +1,136 @@
+a.lang-switch.error-friendly-networks {
+  opacity: 0.5;
+
+}
+//
+//
+// HEADER
+//
+//
+
+section.error-friendly-networks {
+  @extend .row;
+  @extend .expanded;
+
+  background-color: lightsalmon;
+
+  min-height: 100%;
+
+  font-size: 110%;
+
+  @include breakpoint(medium) {
+    font-size: 140%;
+  }
+
+  h1 {
+
+    color: darken(aqua, 10%);
+
+    font-size: 13vw;
+
+    margin-bottom: 0;
+
+    @include breakpoint(large) {
+      font-size: 11vw;
+    }
+
+    padding: 0;
+  }
+}
+section.error-friendly-networks header {
+    @extend .large-6;
+    @extend .medium-8;
+    @extend .small-12;
+    @extend .columns;
+    // @extend .end;
+
+}
+
+//
+//
+// CONTENT
+//
+//
+section.error-friendly-networks article {
+  // @extend .row;
+  // @extend .expanded;
+    @extend .small-12;
+    @extend .medium-12;
+    @extend .large-6;
+    // @extend .large-offset-6;
+    @extend .columns;
+
+    color: darkslategray;
+    // padding-top: 1rem;
+
+    margin-top: 0;
+
+    @include breakpoint(large) {
+      margin-top: 2.8vw;
+    }
+
+
+    a {
+      text-transform: none;
+      text-decoration: line-through;
+      color: cornsilk;
+
+      &:hover {
+        color: darkslategray;
+        text-decoration: line-through;
+      }
+
+      &.footnote-name {
+        text-decoration: none;
+        border-bottom: 2px dashed darkslategray;
+        // margin-bottom: 1px;
+        // color: darkcyan;
+
+        &.active {
+          text-decoration: line-through darkslategray;
+          border-bottom: none;
+          color: darkslategray;
+        }
+        &:hover {
+          text-decoration: line-through solid darkslategray;
+          color: darkslategray;
+          border-bottom: none;
+        }
+      }
+    }
+  p,
+  figure {
+    @extend .small-12;
+    // @extend .medium-12;
+    // @extend .large-6;
+    // @extend .large-offset-6;
+  }
+
+  figure {
+    margin-bottom: 1em;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  p span.footnote-descr,
+  div.footnote-descr {
+    display: block;
+    border-left: 0.5rem solid;
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 0.6rem;
+
+    &.hidden {
+      display: none;
+    }
+
+    &.active {
+      display: block;
+    }
+  }
+
+
+}
