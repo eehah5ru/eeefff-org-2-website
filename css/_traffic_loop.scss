@@ -1,11 +1,19 @@
 @mixin big-text {
-  p, ol {
+  h1 {
+    font-family: "AsimovOu";
+    font-size: 10vw;
+
+  }
+  
+  p, ol, h1 {
     @extend .small-12;
     @extend .columns;
     @extend .end;
 
     color: white;
+  }
 
+  p, ol {
     font-size: 18px;
 
     @include breakpoint(medium) {
@@ -14,7 +22,7 @@
 
     strong {
       font-family: "AsimovOu";
-    }
+    }    
   }
 
   li {
@@ -75,6 +83,28 @@
   @include nav-el-pulse-keyframes;
 }
 
+
+//
+//
+// HOME BUTTON
+//
+//
+.back-to-home {
+  &.traffic-loop-1,
+  &.traffic-loop-2-user-1,
+  &.traffic-loop-2-user-2,
+  &.traffic-loop-2-user-3,
+  &.traffic-loop-2-user-4,
+  &.traffic-loop-2-user-5 {
+   @include home-button-color(#F161FC, #F6F6F6); 
+  }
+}
+
+//
+//
+// NAVIGATION
+//
+//
 .tl-clipping-masks {
   position: absolute;
   top: 0;
@@ -139,7 +169,8 @@ a.nav.traffic-loop {
 
 
   .shadow {
-    background-color: darkslateblue;
+    background-color: white;
+    // background-color: darkslateblue;
     margin-top: 10px;
     margin-left: 10px;
   }
@@ -213,6 +244,11 @@ section.traffic-loop {
     }
   }
 
+  //
+  //
+  // LAYER 1
+  //
+  //
   &.layer-1 {
     background: none;
 
@@ -245,9 +281,18 @@ section.traffic-loop {
       @extend .large-offset-3;
 
       @include normal-text;
+
+      padding-top: 2rem;
+      padding-bottom: 2rem;
     }
   }
 
+
+  //
+  //
+  // LAYER 2
+  //
+  //
   &.layer-2 {
     padding-top: 1rem;
 
@@ -318,10 +363,8 @@ section.traffic-loop {
     article {
       @include big-text;
 
-      @include breakpoint(small only) {
-        p:last-of-type {
-          padding-bottom: 100%;
-        }
+      p:last-of-type {
+        padding-bottom: 100%;
       }
     }
 
@@ -331,12 +374,12 @@ section.traffic-loop {
       height: auto;
       left: 0;
       right: 0;
-      bottom: 2rem;
+      bottom: 0;
 
       min-height: 0;
 
-      padding-right: 0.625rem;
-      padding-left: 0.625rem;
+      // padding-right: 0.625rem;
+      // padding-left: 0.625rem;
 
       .video {
         @extend .responsive-embed;
@@ -347,8 +390,22 @@ section.traffic-loop {
     }
 
     .video-container {
-      width: 40%;
-      transform: translate(-30%,-10%);
+      // width: 40%;             
+      // transform: translate(-30%,-10%);
+
+      position: fixed;
+      right: 0;
+      bottom: 0;
+
+      // padding: 1rem;
+      // background-color: white;
+
+      .video {
+        // @extend .responsive-embed;
+        // @extend .widescreen;
+        
+        margin-bottom: 0;
+      }
     }
   }
 

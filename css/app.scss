@@ -78,6 +78,34 @@
 @include foundation-orbit;
 @include foundation-responsive-embed;
 
+
+//
+//
+// MIXINS
+//
+//
+
+@mixin home-button-color($color, $hovercolor) {
+  svg #back-to-home {
+    fill: $color;
+
+    &:hover {
+      fill: $hovercolor;
+    }
+  }
+}
+
+//
+//
+// END OF MIXINS
+//
+//
+
+//
+//
+// page specific css
+//
+//
 @import "menu";
 
 @import "index";
@@ -282,6 +310,11 @@ body {
   }
 }
 
+//
+//
+// HOME BUTTON
+//
+//
 .back-to-home {
   display: block;
 
@@ -305,13 +338,8 @@ body {
     width: 100px;
   }
 
-  svg #back-to-home {
-    fill: darkblue;
+  @include home-button-color(darkblue, lightgray);
 
-    &:hover {
-      fill: lightgray;
-    }
-  }
 }
 
 
