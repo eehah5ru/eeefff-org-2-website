@@ -220,6 +220,53 @@
     adjustTocHandler();
   };
 
+
+  //
+  //
+  // GENERATIVE TITLE
+  //
+  //
+  var setTitle = function(title) {
+    document.title = title;
+  };
+
+
+  var findNewTitle = function() {
+    // console.log("finding new title...");
+    var el = _.shuffle($("html *"))
+        .find(function(o) {
+          if(!_.isEmpty($(o).find("*"))) {
+            return false;
+          }
+          
+          if (_.isEmpty($(o).text()) || _.chain($(o).text()).trim().isEmpty().value()) {
+            return false;
+          }
+
+          return true;
+        });
+
+    // console.log("el:" + el);
+
+    return _.chain($(el).text()).trim().split(" ").shuffle().head().value();
+  };
+
+
+  var runSetNewTitle = function() {
+    setInterval(
+      function() {
+        setTitle(findNewTitle());
+      },
+      100
+    );
+  };
+
+  //
+  //
+  // END OF GENERATIVE TITLE
+  //
+  // 
+
   //
   //
   // TRAFIC LOOP
@@ -327,6 +374,10 @@
     $(document).foundation();
     initTrafficLoop();
 
+
+    // title changer
+    runSetNewTitle();
+    
     //
     // footnotes
     //
