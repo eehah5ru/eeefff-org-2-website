@@ -298,7 +298,7 @@ body {
   padding-left: 6vw;
   color: blue;
   text-decoration: underline;
-  z-index: 99;
+  z-index: 9999;
   // opacity: 0.7;
 
   @include breakpoint(medium) {

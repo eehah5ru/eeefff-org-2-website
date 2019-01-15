@@ -2,7 +2,26 @@
   h1 {
     font-family: "AsimovOu";
     font-size: 10vw;
+    
+    text-shadow: 0px 0px 20px gold;
+  }
 
+  h2 {
+    font-family: "AsimovXWid";
+    font-size: 7vw;
+    color: white;
+    
+  }
+
+  a {
+    color: white;
+    text-decoration: underline;
+
+    &:hover {
+      color: aqua;
+      text-decoration: line-through;
+      background-color: aqua;
+    }
   }
   
   p, ol, h1 {
@@ -55,6 +74,12 @@
   }
 }
 
+//
+//
+// NAV MIXINS
+//
+//
+
 @mixin nav-mask($index) {
   mask-image: url("/images/traffic-loop/nav-masks/nav-" + $index + "-mask.svg");
 }
@@ -62,6 +87,13 @@
 @mixin nav-clip($index) {
   clip-path: url("#clipPolygon-" + $index + "");
   -webkit-clip-path: url("#clipPolygon-" + $index + "");
+}
+
+@mixin nav-el-size($width, $height, $add: 0) {
+  width: 150px + $add;
+  height: 225px + $add;
+  padding-top: $add/2;
+  padding-left: $add/2;
 }
 
 @mixin nav-el-pulse-keyframes {
@@ -76,6 +108,7 @@
   }
 
 }
+
 @-webkit-keyframes nav-el-pulse {
   @include nav-el-pulse-keyframes;
 }
@@ -83,6 +116,11 @@
   @include nav-el-pulse-keyframes;
 }
 
+//
+//
+// END NAV MIXINS
+//
+//
 
 //
 //
@@ -91,6 +129,7 @@
 //
 .back-to-home {
   &.traffic-loop-1,
+  &.traffic-loop-2,
   &.traffic-loop-2-user-1,
   &.traffic-loop-2-user-2,
   &.traffic-loop-2-user-3,
@@ -128,19 +167,35 @@ a.nav.traffic-loop {
   }
 
   .nav-el {
-    width: 150px;
-    height: 225px;
+    @include nav-el-size(150px, 225px, 50px);
 
-
-    // animation: nav-el-pulse 2s infinite;
-
-    // &:hover {
-    //   animation: none;
-    // }
   }
 
+  .shadow {
+    @include nav-el-size(150px, 225px, 50px);
+
+    position: absolute;    
+    top: 0;
+    left: 0;
+
+    padding: 0;
+    
+    
+    svg {
+      @include nav-el-size(150px, 225px, 50px);
+
+      padding: 0;
+
+      use {
+        fill: aqua;
+      }
+    }
+  }
+
+
+  &,
   img,
-  .shadow,
+  // .shadow,
   .hover {
     &.nav-1 {
       @include nav-clip(1);
@@ -156,24 +211,13 @@ a.nav.traffic-loop {
     }
   }
 
-  .shadow,
-  .hover {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
   .hover {
     background-image: linear-gradient(-90deg, #F161FC 0%, #F6F6F6 100%);
+    position: absolute;    
+    top: 25px;
+    left: 25px;    
   }
 
-
-  .shadow {
-    background-color: white;
-    // background-color: darkslateblue;
-    margin-top: 10px;
-    margin-left: 10px;
-  }
 
   img {
     &:hover {
@@ -350,7 +394,7 @@ section.traffic-loop {
         box-shadow: 0.3rem 0.3rem 0px white;
 
         @include breakpoint(medium) {
-          box-shadow: 1rem 1rem 0px white;
+          box-shadow: 0rem 0rem 30px blue;
         }
       }
     }
@@ -366,6 +410,7 @@ section.traffic-loop {
       p:last-of-type {
         padding-bottom: 100%;
       }
+
     }
 
     &.small-video-container {
@@ -409,18 +454,24 @@ section.traffic-loop {
     }
   }
 
-  &.layer-4 {
+  &.layer-3 {
     background: none;
 
     article {
+      @extend .row;
+      @extend .expanded;      
+      
       @include big-text;
     }
 
     .overlay.scheme {
       mix-blend-mode: hard-light;
+
+      pointer-events: none;      
     }
 
     .scheme-container {
+
       @include absolute-center;
       width: 100%;
       height: 100%;
@@ -430,8 +481,10 @@ section.traffic-loop {
 
       background-image: none;
 
+      text-align: center;
 
-      img {
+      
+      svg {
         box-shadow: none;
         width: 100%;
         height: 100%;
