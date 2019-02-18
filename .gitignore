@@ -12,3 +12,4 @@
 /target
 .vagrant
 .sass-cache
+/node_modules/
