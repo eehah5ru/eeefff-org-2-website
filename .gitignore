@@ -11,3 +11,4 @@
 /main.js
 /target
 .vagrant
+.sass-cache
