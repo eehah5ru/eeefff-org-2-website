@@ -253,6 +253,9 @@
 
 
   var runSetNewTitle = function() {
+    if (window.location.hostname.match(/localhost/)) {
+      return;
+    }
     setInterval(
       function() {
         setTitle(findNewTitle());
