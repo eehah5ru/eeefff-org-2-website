@@ -1,6 +1,6 @@
 ---
 title: Error-friendly networks
-og_image_url: /images/hackathon-choreography/og-image.jpg
+og_image_url: /images/error-friendly-networks/og-image.png
 template: templates/error-friendly-networks.slim
 ---
 
@@ -136,22 +136,22 @@ Nicolay Novikov (Saint Petersburg)
 [Anna Tokareva](http://annatokareva.net/) (London)  
 [Dzina Zhuk](https://eeefff.org/) (Minsk/Moscow)
 
-__༻:__ "We have focused mainly on a landscape that we are in, High-Tech Park, and the Museum of Stones that you need to pass to get there. Someone of us had no energy to go outside of the place that made us traumatized. Someone decided to start from the epicentre of trauma and use this “self-harming-like” behaviour as a tool for a recursive augmentation — a process of transforming individual psychosomatic lacuna into more systematic situated knowledge about techno-social topology of burnout.
+__[]{class="sign-1"}:__ "We have focused mainly on a landscape that we are in, High-Tech Park, and the Museum of Stones that you need to pass to get there. Someone of us had no energy to go outside of the place that made us traumatized. Someone decided to start from the epicentre of trauma and use this “self-harming-like” behaviour as a tool for a recursive augmentation — a process of transforming individual psychosomatic lacuna into more systematic situated knowledge about techno-social topology of burnout.
 
-__᚜:__ The stones from being non-player agents became those from the perspective of which we were trying to think about our "holed futurism".
+__[]{class="sign-2"}:__ The stones from being non-player agents became those from the perspective of which we were trying to think about our "holed futurism".
 
 ![3d-scan of stones at the Museum of stones in Minsk / Taken by eeefff](/images/error-friendly-networks/image3.jpg)
 
-__⧛:__ “Our first trajectory was to discover the agents, attributes, states and operators which can help foster travel from one situation to another.”
+__[]{class="sign-3"}:__ “Our first trajectory was to discover the agents, attributes, states and operators which can help foster travel from one situation to another.”
 
-__⦖:__ “This video sketch is a guided tour through a skeleton of a traumatic environment of our science fiction of the present day: [https://youtu.be/vBgCgJcIkSA](https://youtu.be/vBgCgJcIkSA) Traumatic interface, positive panic attack, curated traumas, surface amnesia are the background of our collective thoughts and discussions. We thought about complex connections that are difficult to grasp, so we somehow came to the idea of having diagram-as-skin. 
+__[]{class="sign-4"}:__ “This video sketch is a guided tour through a skeleton of a traumatic environment of our science fiction of the present day: [https://youtu.be/vBgCgJcIkSA](https://youtu.be/vBgCgJcIkSA) Traumatic interface, positive panic attack, curated traumas, surface amnesia are the background of our collective thoughts and discussions. We thought about complex connections that are difficult to grasp, so we somehow came to the idea of having diagram-as-skin. 
 By creating our vision of "holed futurism" we tried to ruffle our imaginations and to take a fresh look at the production of networks in which we are entangled. Using the process of sharing our collective half-fictional situated knowledge we shape the environment where these networks are being unrolled. Holes between nodes and connections are becoming active parts of the environment, making assemblages between human and inhuman.”
 
 ![3d-sketch of the diagram in environment / Ekaterina Butorina, Juan Gomez, Nicolay Novikov, Patricia Reed, Nicolay Spesivtsev, Anna Tokareva, Dzina Zhuk](/images/error-friendly-networks/image1.jpg)
 
-__⊇:__ “After we plunged into trauma, we came into contact with the interface. Its surface materialized holes, which revealed another, even more reptilian interface. Inside it, objects collided in another way, from which emerged a different logic of interaction: the logic of trauma. The operations took place without external mediation, but in and of themselves, collapsing from internal contradictions. Digital texts blocked and consumed each other, forming unfamiliar assemblages for such a high order of virtuality. They were definitively here long before us, waiting for a host.”
+__[]{class="sign-5"}:__ “After we plunged into trauma, we came into contact with the interface. Its surface materialized holes, which revealed another, even more reptilian interface. Inside it, objects collided in another way, from which emerged a different logic of interaction: the logic of trauma. The operations took place without external mediation, but in and of themselves, collapsing from internal contradictions. Digital texts blocked and consumed each other, forming unfamiliar assemblages for such a high order of virtuality. They were definitively here long before us, waiting for a host.”
 
-__༼:__ “We squatted the imaginary of this place collectively. And the landscape you see here is the map of it.”
+__[]{class="sign-6"}:__ “We squatted the imaginary of this place collectively. And the landscape you see here is the map of it.”
 
 ![3d-sketch of the diagram in environment / Ekaterina Butorina, Juan Gomez, Nicolay Novikov, Patricia Reed, Nicolay Spesivtsev, Anna Tokareva, Dzina Zhuk](/images/error-friendly-networks/image2.jpg)
 

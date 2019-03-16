@@ -8,6 +8,17 @@ a.lang-switch.error-friendly-networks {
 //
 //
 
+@mixin sign-span($index) {
+  span.sign-#{$index} {
+    background-image: url(/images/error-friendly-networks/signs/sign-#{$index}.svg);
+    content: " ";
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: middle;
+    background-size: cover;
+  }
+}
 
 section.error-friendly-networks {
   // width: 100%;
@@ -47,6 +58,13 @@ section.error-friendly-networks {
     background-color: cyan;
     box-shadow: 0px 0px 3px 0px black;
   }
+
+  @include sign-span(1);
+  @include sign-span(2);
+  @include sign-span(3);
+  @include sign-span(4);
+  @include sign-span(5);
+  @include sign-span(6);
 
   p,
   h1,
