@@ -44,7 +44,7 @@ You can find [HERE](https://www.zotero.org/groups/2269041/error-friendly-network
 
 ## *Session with Oracles* ##
 🐙 04.02 / 17:00 / Ianina Prudenko / “Cybernetics in the humanities and art in the USSR. Analysis of big databases and computer art"  
-🐙 05.02 / 18:00 / Alexandra Anikina / “After modelling”  
+🐙 05.02 / 18:00 / Alexandra Anikina / “After Modelling: What Moves Non-Player Characters”  
 🐙 06.02 / 20:10 Jozhi Stolet / ["Intimate interfaces"](http://workhardplay.pw/en/collective-glossary/intimate-interfaces.html#)
 
 ## *Program* ##
