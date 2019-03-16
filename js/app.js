@@ -1,3 +1,4 @@
+
 (function (self) {
   const ITERATION_DELAY = 20;
 
@@ -387,6 +388,11 @@
     $("a.footnote-name").click(function(e) {
       return onClickFootnoteName(e.target);
     });
+
+    //
+    // error friendly links
+    //
+    $("section.error-friendly-networks article a").attr('target','_blank');
 
     setTimeout(function () {
       if (!hasTOCOnPage()) {
