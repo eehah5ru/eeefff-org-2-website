@@ -6,7 +6,7 @@ template: templates/error-friendly-networks.slim
 
 # ༻[༻](https://drive.google.com/file/d/1s7ZbHfyWJ-UhCXsYzAM3iiA-IMS86ZoE/view?usp=sharing)༻*error-friendly networks*༻[༻](http://doxajournal.ru/events/di_school_en) #
 
-# ༻༻[handout]{.em-line-through}*burnout*༻[༻](https://drive.google.com/file/d/1VdLMhicr3YjBLwgdsNAjftdbFxTdFXyi/view?usp=sharing) #
+# ༻༻༻[handout]{.em-line-through}*burnout*༻[༻](https://drive.google.com/file/d/1VdLMhicr3YjBLwgdsNAjftdbFxTdFXyi/view?usp=sharing) #
 
 ## *Background* ##
 Dear ༻,
@@ -114,7 +114,7 @@ Augmented imagination play-tested
 __19:00 &mdash; 19:40__  
 Dinner
 
-__20:10 &mdash; 21:00__
+__20:10 &mdash; 21:00__  
 🐙 Session with Oracle: Jozhi Stolet / "Intimate interfaces"  
 Practices of ourselves
 
