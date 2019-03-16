@@ -11,6 +11,7 @@ import qualified Text.Sass.Options as SO
 
 import Data.List (isPrefixOf)
 
+import qualified W7W.Cache as Cache
 import qualified W7W.Config as W7WConfig
 
 import W7W.Rules.Templates
@@ -41,62 +42,66 @@ config = W7WConfig.config { previewPort = 8111
 
 
 main :: IO ()
-main =
+main = do
+  caches <- Cache.newCaches
+
   hakyllWith config $
-  do
+    do
 
-     --
-     -- templates
-     --
-     templatesRules
+       --
+       -- templates
+       --
+       templatesRules
 
-     --
-     -- assets
-     --
-     imagesRules
-     fontsRules
-     dataRules
-     cssAndSassRules
-     jsRules
+       --
+       -- assets
+       --
+       imagesRules
+       fontsRules
+       dataRules
+       cssAndSassRules
+       jsRules
 
-     --
-     -- deps
-     --
-     -- slim partials for deps
+       --
+       -- deps
+       --
+       -- slim partials for deps
 
-     --
-     -- static pages
-     --
-     -- staticPagesRules
+       --
+       -- static pages
+       --
+       -- staticPagesRules
 
-     --
-     -- projects and posts
-     --
-     projectsRules
-     platformPerplexRules
+       --
+       -- projects and posts
+       --
+       projectsRules caches
+       platformPerplexRules caches
 
-     documentaRules
+       documentaRules caches
 
-     --
-     -- index page
-     --
-     indexPageRules
+       --
+       -- index page
+       --
+       indexPageRules caches
 
 
 --------------------------------------------------------------------------------
 
 
-platformPerplexRules = do
+platformPerplexRules caches = do
   match ("platform-perplex/*.html" .&&. (complement "platform-perplex/index.html")) $ compile templateCompiler
 
   deps <- makePatternDependency ("platform-perplex/*.html" .&&. (complement "platform-perplex/index.html"))
 
   rulesExtraDependencies [deps] $ match "platform-perplex/index.slim" $ do
     route $ setExtension "html"
-    compile $ slimCompiler
-      >>= applyAsTemplate projectCtx
-      >>= loadAndApplyTemplate "templates/default.html" projectCtx
-      >>= relativizeUrls
+    compile $ do
+      c <- mkProjectCtx caches
+      slimCompiler
+        >>= applyAsTemplate c
+        >>= loadAndApplyTemplate "templates/default.html" c
+        >>= relativizeUrls
 
 
 -- projectsRules =

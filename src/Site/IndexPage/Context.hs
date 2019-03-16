@@ -4,4 +4,4 @@ module Site.IndexPage.Context where
 
 import Site.Context
 
-indexCtx = siteCtx
+mkIndexCtx caches = mkSiteCtx caches

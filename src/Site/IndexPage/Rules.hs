@@ -9,5 +9,5 @@ import W7W.Rules.StaticPages
 import Site.Templates
 import Site.IndexPage.Context
 
-indexPageRules = do
-  staticHtmlPageRules rootTpl (Just indexPageTpl) Nothing indexCtx "index.html"
+indexPageRules caches = do
+  staticHtmlPageRulesM rootTpl (Just indexPageTpl) Nothing (mkIndexCtx caches) "index.html"

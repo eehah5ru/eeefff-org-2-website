@@ -36,15 +36,17 @@ fieldHideMenu =
         Just "true" -> return True
         _ -> return False
 
-siteCtx :: Context String
-siteCtx = fieldEnUrl
-          <> fieldRuUrl
-          <> fieldLang
-          <> fieldOtherLang
-          <> fieldOtherLangUrl
-          <> fieldCanonicalName
-          <> fieldRootUrl
-          <> fieldRevision
-          <> fieldHideLangSwitch
-          <> fieldHideMenu
-          <> defaultContext
+-- mkSiteCtx :: Compiler (Context String)
+mkSiteCtx caches = do
+    r <- mkFieldRevision
+    return $ fieldEnUrl
+             <> fieldRuUrl
+             <> fieldLang
+             <> fieldOtherLang
+             <> fieldOtherLangUrl
+             <> fieldCanonicalName
+             <> fieldRootUrl
+             <> r
+             <> fieldHideLangSwitch
+             <> fieldHideMenu
+             <> defaultContext
