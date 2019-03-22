@@ -3,19 +3,28 @@
   :url "https://eeefff.org"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.9.0"]
+  :dependencies [[org.clojure/clojure "1.10.0"]
                  ;;
                  ;; clojurescript
                  ;;
-                 [org.clojure/clojurescript "1.9.946"]
-                 [cljsjs/d3 "4.12.0-0"]
-                 [binaryage/oops "0.5.8"]]
+                 [org.clojure/clojurescript "1.10.520"]
+                 [cljsjs/d3 "5.9.1-0"]
+                 [binaryage/oops "0.7.0"]
+
+                 [enfocus "2.1.1"]
+
+                 [reagent "0.8.0-alpha2"]
+                 [reagent-utils "0.3.1"]
+                 [re-frame "0.10.5"]
+                 [jayq "2.5.4"]]
+
   :plugins [[lein-cljsbuild "1.1.7"]
             [org.clojars.eehah5ru/cljsbuild-extras "0.0.2"]]
-  :main ^:skip-aot eeefff-org-website.core
+
+  ; :main ^:skip-aot eeefff-org-website.core
   :target-path "target/%s"
 
-  :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
+  :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
 
   :profiles
   {
@@ -24,11 +33,12 @@
    ;;
    :dev
    {:dependencies [[binaryage/devtools "0.8.2"]
-                   [com.cemerick/piggieback "0.2.1"]
-                   [figwheel-sidecar "0.5.13"]
-                   [org.clojure/tools.nrepl "0.2.11"]]
+                                        ;[com.cemerick/piggieback "0.2.1"]
+                   [cider/piggieback "0.4.0"]
+                   [figwheel-sidecar "0.5.18"]
+                   [org.clojure/tools.nrepl "0.2.13"]]
 
-    :plugins [[lein-figwheel "0.5.13"]]
+    :plugins [[lein-figwheel "0.5.18"]]
 
     :source-paths ["src_cljs" "env/dev"]
     ;;
