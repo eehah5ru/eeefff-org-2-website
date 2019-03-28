@@ -1,3 +1,50 @@
+section.prepare-to-synchronize-model {
+  background-color: lightgrey;
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+
+  .scene-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .scene {
+      perspective: 0px;
+      z-index: -1;
+
+      x-model {  
+        width: 100vw;
+        height: 100vh;
+
+        @include breakpoint(medium) {
+          width: 80vw;
+          height: 80vh;          
+        }
+
+        animation: 10s spin linear infinite;
+      }
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotateY(1turn);
+    }
+  }  
+}
+
+.prepare-to-synchronize-model-iframe {
+  border: none;
+  position: fixed;
+  top: 0;
+  bottom: 50%;
+  width: 100%;
+  height: 100%;
+  left: 0;  
+}
+
 section.prepare-to-synchronize {
   @extend .grid-x;
   @extend .grid-margin-x;
@@ -8,35 +55,6 @@ section.prepare-to-synchronize {
   z-index: 0;
   background-color: lightgrey;
   
-  .wrap {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .scene {
-    @include absolute-center;
-    perspective: 0px;
-    z-index: -1;
-    // width: 80vmin;
-    // height: 80vmin;
-    // max-width: 500px;
-    // max-height: 500px;
-
-  }
-  
-  x-model {  
-    width: 50vw;
-    height: 50vh;
-    animation: 10s spin linear infinite;
-  }
-
-  @keyframes spin {
-    to {
-      transform: rotateY(1turn);
-    }
-  }
   
   article {
     @extend .cell;
@@ -74,7 +92,8 @@ section.prepare-to-synchronize {
       margin-bottom: 2rem;
 
       img {
-        border: white 0.5rem solid;        
+        border: white 0.5rem solid;
+        align-self: center;
       }
       
       &.head-pictures {
