@@ -1,6 +1,7 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 
+
 import Data.Monoid (mappend, (<>))
 import Control.Monad ((>=>))
 import Hakyll
@@ -18,8 +19,11 @@ import W7W.Rules.Templates
 import W7W.Rules.Assets
 import W7W.Compilers.Slim -- for platform perplex
 
-import Site.IndexPage.Rules
+import W7W.Pictures.Rules
+
+import Site.StaticPages.Rules
 import Site.Projects.Rules
+
 
 import Site.Documenta
 
@@ -57,6 +61,7 @@ main = do
        -- assets
        --
        imagesRules
+       picturesRules (1280, 1280) "pictures/**/*"
        fontsRules
        dataRules
        cssAndSassRules
@@ -81,9 +86,9 @@ main = do
        documentaRules caches
 
        --
-       -- index page
+       -- staticpages
        --
-       indexPageRules caches
+       staticPagesRules caches
 
 
 --------------------------------------------------------------------------------
