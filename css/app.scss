@@ -20,7 +20,7 @@
 @import 'typography/typography';
 // Components
 @import 'grid/grid';
-// @import 'xy-grid/xy-grid';
+@import 'xy-grid/xy-grid';
 @import 'typography/typography';
 // @import 'forms/forms';
 @import 'components/visibility';
@@ -78,6 +78,16 @@
 @include foundation-orbit;
 @include foundation-responsive-embed;
 
+@include foundation-xy-grid-classes(
+  $base-grid: true,
+  $margin-grid: true,
+  $padding-grid: true,
+  $block-grid: true,
+  $collapse: true,
+  $offset: true,
+  $vertical-grid: true,
+  $frame-grid: true
+);
 
 //
 //
@@ -110,6 +120,8 @@
 
 @import "index";
 
+@import "about";
+
 @import "cat_scout";
 
 @import "psychodata";
@@ -139,6 +151,8 @@
 @import "error-friendly-networks";
 
 @import "traffic_loop";
+
+@import "prepare-to-synchronize";
 
 @import "synchronisation";
 
@@ -295,7 +309,7 @@ body {
   top: 0;
   right: 0;
 
-  font-size: 7vw;
+  font-size: 10vw;
   line-height: 1;
   padding-left: 6vw;
   color: blue;

@@ -1,0 +1,92 @@
+section.prepare-to-synchronize {
+  @extend .grid-x;
+  @extend .grid-margin-x;
+  
+  min-height: 100%;
+  max-width: 100%;
+  
+  z-index: 0;
+  background-color: lightgrey;
+  
+  .wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .scene {
+    @include absolute-center;
+    perspective: 0px;
+    z-index: -1;
+    // width: 80vmin;
+    // height: 80vmin;
+    // max-width: 500px;
+    // max-height: 500px;
+
+  }
+  
+  x-model {  
+    width: 50vw;
+    height: 50vh;
+    animation: 10s spin linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotateY(1turn);
+    }
+  }
+  
+  article {
+    @extend .cell;
+    @extend .small-12;
+    @extend .medium-8;
+    @extend .large-6;
+    @extend .medium-offset-2;
+    @extend .large-offset-3;
+
+    z-index: 1;
+
+    margin-top: 2rem;
+
+    @include breakpoint(medium) {
+      margin-top: 4rem;
+    }
+
+    p {
+      
+    }
+
+    em,
+    strong,
+    b {
+      background-color: white;
+      
+    }
+
+    em {
+      font-style: inherit;
+    }
+
+    figure {
+
+      margin-bottom: 2rem;
+
+      img {
+        border: white 0.5rem solid;        
+      }
+      
+      &.head-pictures {
+        @extend .grid-x;
+
+        img {
+          @extend .cell;
+          @extend .small-12;
+          @extend .medium-6;
+
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.back-to-home.about,
+.lang-switch.about {
+  opacity: 0.5;
+}
+section.about {
+  @extend .row;
+
+  article {
+    @extend .small-12;
+    @extend .medium-8;
+    @extend .large-6;
+    @extend .columns;
+    // @extend .medium-offset-2;
+    // @extend .large-offset-3;
+
+    margin-top: 1rem;
+  }
+}
