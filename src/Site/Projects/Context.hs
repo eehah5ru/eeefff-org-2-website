@@ -18,4 +18,4 @@ mkProjectCtx caches = do
                <> (fieldHasPictures pPattern)
                <> (fieldFunctionPictureUrl pPattern)
   where
-    pPattern = picturesPattern "*"
+    pPattern = picturesPatternNg (Just "projects") "*"
