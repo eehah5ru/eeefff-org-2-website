@@ -10,12 +10,16 @@ import Site.Templates
 import Site.StaticPages.Context
 
 staticPagesRules caches = do
-  indexPageRules caches
-  aboutPageRules caches
+  htmlPageRules caches
+  mdPageRules caches
+  slimPageRules caches
 
 
-indexPageRules caches = do
-  staticHtmlPageRulesM rootTpl (Just indexPageTpl) Nothing (mkStaticPageCtx caches) "index.html"
+htmlPageRules caches = do
+  staticHtmlPageRulesM rootTpl Nothing Nothing (mkStaticPageCtx caches) "*.html"
 
-aboutPageRules caches = do
-  staticPandocPageRulesM rootTpl (Just aboutPageTpl) Nothing (mkStaticPageCtx caches) "about.md"
+mdPageRules caches = do
+  staticPandocPageRulesM rootTpl Nothing Nothing (mkStaticPageCtx caches) "*.md"
+
+slimPageRules caches = do
+  staticSlimPageRulesM rootTpl Nothing Nothing (mkStaticPageCtx caches) "*.slim"
