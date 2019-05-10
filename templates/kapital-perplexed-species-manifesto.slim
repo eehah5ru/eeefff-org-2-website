@@ -1,0 +1,16 @@
+section.kapital-perplexed-species-manifesto
+  article
+    | $body$
+
+    = _if "hidePictures"
+      div style="display:hidden"
+    = _else
+      = _for "pictures"
+        figure
+          img src="$pictureUrl$" alt="$if(hasExifInfo)$$pictureTitle$ - $pictureCreator$ $if(hasPictureDescription)$ - $pictureDescription$$endif$$endif$" title="$if(hasExifInfo)$$pictureTitle$ - $pictureCreator$ $if(hasPictureDescription)$ - $pictureDescription$$endif$$endif$"
+          = _if "hasPictureCreator"
+           .picture-creator
+             | $pictureCreator$
+          = _endif
+      = _endfor
+    = _endif

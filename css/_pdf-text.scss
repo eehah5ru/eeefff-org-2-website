@@ -1,0 +1,26 @@
+section.pdf-text {
+  @extend .grid-x;
+  @extend .grid-margin-x;
+  min-height: 100%;
+  max-width: 100%;
+
+  z-index: 0;
+
+  background-color: coral;
+
+  > article,
+  > iframe {
+    @extend .cell;
+    @extend .small-12;
+    @extend .medium-8;
+    @extend .medium-offset-2;
+  }
+
+  iframe {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    border: none;
+    box-shadow: 0px 0px 10px 0px black;
+  }
+}

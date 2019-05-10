@@ -37,6 +37,10 @@ article.index {
       &.new a {
         background-color: yellow;
       }
+
+      &.text a {
+        font-family: "AsimovOu";
+      }
     }
   }
 }

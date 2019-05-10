@@ -378,6 +378,14 @@
     $(document).foundation();
     initTrafficLoop();
 
+    //
+    // dynamic light
+    //
+    // window.addEventListener("devicelight", function (event) {
+    //  // Getting lux
+    //  var luminosity = event.value;
+    //  console.log(luminosity);
+    // });
 
     // title changer
     runSetNewTitle();

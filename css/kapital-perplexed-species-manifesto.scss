@@ -1,0 +1,25 @@
+section.kapital-perplexed-species-manifesto {
+    @extend .grid-x;
+    @extend .grid-margin-x;
+
+    min-height: 100%;
+    max-width: 100%;
+
+    article {
+      @extend .cell;
+      @extend .small-12;
+      @extend .medium-8;
+      @extend .large-6;
+      @extend .medium-offset-2;
+      @extend .large-offset-3;
+
+      figure {
+
+        margin-bottom: 1rem;
+
+        img {
+          align-self: center;
+        }
+      }
+    }
+}

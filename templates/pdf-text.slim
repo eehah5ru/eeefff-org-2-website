@@ -1,0 +1,8 @@
+section.pdf-text class="$canonicalName$"
+  = _if "hasBody"
+    article
+      | $body$
+      iframe src="$pdfUrl$"
+  = _else
+    iframe src="$pdfUrl$"
+  = _endif
