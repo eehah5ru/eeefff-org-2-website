@@ -1,6 +1,3 @@
 [submodule "w7w"]
 	path = w7w
 	url = git@github.com:eehah5ru/w7w-core.git
-[submodule "w7w"]
-	path = w7w
-	url = git@github.com:eehah5ru/w7w-core.git
