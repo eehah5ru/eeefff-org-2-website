@@ -48,6 +48,9 @@
 
 (defn erode-ux []
   (.. (js/jQuery "body *:not(.eroded)")
+      (filter (fn [i, e]
+                (.. (js/jQuery e)
+                    visible)))
       random
       (addClass "eroded")
       (html (mk-replacement (rand-nth phrases)))))
@@ -63,11 +66,20 @@
   (reset! timeout
           (js/setTimeout start-erosion 10000)))
 
+(defn restart-screensaver []
+  (stop-erosion)
+  (stop-screensaver-delay)
+  (start-screensaver-delay))
+
+
 (defn setup-erosion []
   (start-screensaver-delay)
 
   (.. (js/jQuery js/document)
       (mousemove (fn []
-                   (stop-erosion)
-                   (stop-screensaver-delay)
-                   (start-screensaver-delay)))))
+                   (restart-screensaver))))
+
+  (.. (js/jQuery js/window)
+      (scroll (fn []
+                (pprint "onscroll")
+                (restart-screensaver)))))
