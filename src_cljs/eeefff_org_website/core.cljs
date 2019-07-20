@@ -2,6 +2,7 @@
   #_(:gen-class)
   (:require [eeefff-org-website.pages :as pages]
             [eeefff-org-website.navigation :as navigation]
+            [eeefff-org-website.ux-erosion :as ue]
             [cljs.pprint :refer [pprint]]))
 
 ;; (.log js/console "Hey Seymore sup?!")
@@ -23,4 +24,6 @@
   (.addEventListener js/window
                      "load"
                      (fn []
+                       (ue/declare-jquery-random)
+                       (ue/setup-erosion)
                        (mount-root))))
