@@ -26,4 +26,4 @@
                      (fn []
                        (ue/declare-jquery-random)
                        (ue/setup-erosion)
-                       (mount-root))))
+                       #_(mount-root))))

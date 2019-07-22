@@ -12,7 +12,8 @@
   ["Как поверить в будущее, если оно плохо отрендерено?"
    "Утопия с применением плагинов к браузеру и ворованного диджейского софта"
    "Как оккупировать абстракцию?"
-   "Поглощение на этапе концептулизации"])
+   "Поглощение на этапе концептулизации"
+   "<img width=300 height=300 src=''></img>"])
 
 (defn mk-replacement [phrase]
   (let [font-size (+ 20
@@ -47,22 +48,30 @@
 
 
 (defn erode-ux []
-  (.. (js/jQuery "body *:not(.eroded)")
-      (filter (fn [i, e]
-                (.. (js/jQuery e)
-                    visible)))
-      random
-      (addClass "eroded")
-      (html (mk-replacement (rand-nth phrases)))))
+  (let [nodes (.. (js/jQuery js/document)
+                  (deepest "body *:not(.eroded)")
+                  (filter (fn [i, e]
+                            (.. (js/jQuery e)
+                                (visible true)))))]
+
+    (pprint (str "nodes found: " (.-length nodes)))
+
+    (.. nodes
+        random
+        (addClass "eroded")
+        (html (mk-replacement (rand-nth phrases))))))
 
 (defn start-erosion []
   (pprint "started")
   (reset! interval (js/setInterval erode-ux 500)))
 
 (defn stop-screensaver-delay []
+  (pprint "clearing erosion delay")
   (js/clearTimeout @timeout))
 
 (defn start-screensaver-delay []
+  (pprint "setting erosion delay")
+
   (reset! timeout
           (js/setTimeout start-erosion 10000)))
 
@@ -77,6 +86,7 @@
 
   (.. (js/jQuery js/document)
       (mousemove (fn []
+                   (pprint "mousemove")
                    (restart-screensaver))))
 
   (.. (js/jQuery js/window)
