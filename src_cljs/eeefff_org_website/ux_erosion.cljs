@@ -8,14 +8,35 @@
 ;;     return jQuery(this[randomIndex]);
 ;; };
 
-(def phrases
-  ["Как поверить в будущее, если оно плохо отрендерено?"
-   "Утопия с применением плагинов к браузеру и ворованного диджейского софта"
-   "Как оккупировать абстракцию?"
-   "Поглощение на этапе концептулизации"
-   "<img width=300 height=300 src=''></img>"])
 
-(defn mk-replacement [phrase]
+(def phrases
+  [{:type :text
+    :text "Как поверить в будущее, если оно плохо отрендерено?"
+    :css "transform: scale(0.7);"}
+   {:type :text
+    :text "Утопия с применением плагинов к браузеру и ворованного диджейского софта"}
+   {:type :text
+    :text "Как оккупировать абстракцию?"}
+   {:type :text
+    :text "Поглощение на этапе концептулизации"}
+   {:type :video
+    :url "01.mp4.mp4"}
+   {:type :video
+    :url "02.mp4.mp4"}
+   {:type :video
+    :url "03.mp4.mp4"}
+   {:type :video
+    :url "04.mp4.mp4"}
+   {:type :video
+    :url "05.mp4.mp4"}])
+
+(defn mk-replacement-video [url]
+  (str "<video class='eroded' onloadeddata=\"this.play();\" autoplay='autoplay' loop muted width=380 height=240 controls>"
+       "<source class='eroded' src='/data/parasite-interaces/" url "' type='video/mp4'>"
+       "</video>"))
+
+
+(defn mk-replacement-text [phrase]
   (let [font-size (+ 20
                      (* 50 (Math/random)))]
     (str "<span class=\"eroded\" style='font-size: "
@@ -23,6 +44,15 @@
          "px';>"
          phrase
          "</span>")))
+
+
+(defn mk-replacement [src]
+  (case (:type src)
+    :text (mk-replacement-text (:text src))
+    :video (mk-replacement-video (:url src))
+    ;; missing type
+    (throw (js/Error. (src "Unknown replacement type: " (:type src))))))
+
 
 (defonce interval (atom 0))
 
@@ -48,8 +78,11 @@
 
 
 (defn erode-ux []
-  (let [nodes (.. (js/jQuery js/document)
-                  (deepest "body *:not(.eroded)")
+  (let [selector "body *:not(.eroded)"
+        js-doc (js/jQuery js/document)
+        find-fn (first (shuffle ["deepest" "deepest" "deepest" "find"]))
+
+        nodes (.. (js-invoke js-doc find-fn selector)
                   (filter (fn [i, e]
                             (.. (js/jQuery e)
                                 (visible true)))))]
