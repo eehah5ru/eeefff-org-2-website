@@ -59,7 +59,7 @@
   (swap! app-state #(update % :erosion-level inc)))
 
 (defn reset-erosion-level []
-  ((swap! app-state #(assoc % :erosion-level 0))))
+  (swap! app-state #(assoc % :erosion-level 0)))
 
 ;;;
 ;;; end of control erosion funcs
@@ -162,15 +162,31 @@
   (reset-erosion-level))
 
 
+;;;
+;;; check erosion is force stopped
+;;;
+(defn erosion-stopped? []
+  (if-not (exists? js/stop_erosion)
+    false
+    js/stop_erosion))
+
+;;;
+;;; setup
+;;;
 (defn setup-erosion []
-  (start-screensaver-delay)
 
-  (.. (js/jQuery js/document)
-      (mousemove (fn []
-                   (pprint "mousemove")
-                   (restart-screensaver))))
+  (if-not (erosion-stopped?)
+    (do
+      (start-screensaver-delay)
 
-  (.. (js/jQuery js/window)
-      (scroll (fn []
-                (pprint "onscroll")
-                (restart-screensaver)))))
+      (.. (js/jQuery js/document)
+          (mousemove (fn []
+                       (pprint "mousemove")
+                       (restart-screensaver))))
+
+      (.. (js/jQuery js/window)
+          (scroll (fn []
+                    (pprint "onscroll")
+                    (restart-screensaver)))))
+
+    (pprint "erosion stopped")))
