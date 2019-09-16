@@ -1,0 +1,74 @@
+section.flow {
+  .block {
+    width: 100%;
+
+    color: white;
+
+    @extend .row;
+
+    min-width: 100%;
+
+  }
+
+  .normal {
+    height: 30vh;
+    min-height: 30vh;
+
+    img {
+      max-height: 30vh;
+    }
+  }
+
+  .big {
+    height: 60vh;
+    min-height: 60vh;
+
+    img {
+      max-height: 60vh;
+    }
+  }
+
+  .huge {
+    height: 100vh;
+    min-height: 100vh;
+
+    img {
+      max-height: 100vh;
+    }
+  }
+
+  .auto {
+    height: auto;
+  }
+
+  .text {
+    @extend .small-6;
+    @extend .columns;
+  }
+
+
+  p {
+    @extend .small-6;
+    @extend .columns;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  figure {
+    @extend .small-6;
+    @extend .columns;
+  }
+}
+
+
+section.flow {
+  .whph-side-affects {
+    font-family: "AsimovOu";
+    font-size: 8vh;
+    text-align: center;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}

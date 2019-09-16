@@ -368,6 +368,33 @@
     showHWASHVideo(startPos, endPos);
   };
 
+  //
+  // 
+  // END OF human works as human
+  //
+  // 
+
+  //
+  //
+  // FLOW
+  //
+  //
+  var initFlowColors = function(self) {
+    var currentColor = "#000000";
+
+    $("section.flow .block").each(function(i, v) {
+      var hexArray = ['red','black','gold', 'blue', 'violet'];
+      var randomColor = hexArray[Math.floor(Math.random() * hexArray.length)];
+
+      $(v).css("background-color",randomColor); //A class selector would work too      
+    });
+  };
+  
+  //
+  //
+  // END OF FLOW
+  //
+  // 
 
   //
   //
@@ -377,6 +404,7 @@
   $(document).ready(function () {
     $(document).foundation();
     initTrafficLoop();
+    initFlowColors();
 
     //
     // dynamic light
