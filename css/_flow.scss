@@ -1,64 +1,77 @@
+@mixin flow-block-figure($width, $height) {
+  figure {
+    img {
+      width: $width;
+      height: $height;
+    }
+  }
+}
+
 section.flow {
+  @extend .grid-container;
+  @extend .fluid;
+  @text-align: center;
+
   .block {
-    width: 100%;
 
     color: white;
 
-    @extend .row;
+    // USE XY GRID
+    @extend .grid-x;
+    @extend .grid-margin-x;
 
-    min-width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 
   }
 
   .normal {
-    height: 30vh;
-    min-height: 30vh;
-
     img {
+      width: auto;
+      height: 30vh;
       max-height: 30vh;
     }
   }
 
   .big {
-    height: 60vh;
-    min-height: 60vh;
-
     img {
+      width: auto;
+      height: 60vh;
       max-height: 60vh;
     }
   }
 
   .huge {
-    height: 100vh;
-    min-height: 100vh;
-
-    img {
-      max-height: 100vh;
-    }
+    @include flow-block-figure(100vh, auto);
   }
 
-  .auto {
+  .auto-heigh {
     height: auto;
   }
 
   .text {
-    @extend .small-6;
-    @extend .columns;
+    @extend .cell;
+    @extend .small-12;
+    @extend .large-auto;
+
+
   }
 
 
   p {
-    @extend .small-6;
-    @extend .columns;
-
     &:last-of-type {
       margin-bottom: 0;
     }
   }
 
   figure {
-    @extend .small-6;
-    @extend .columns;
+    @extend .cell;
+    @extend .small-12;
+    @extend .large-shrink;
+
+    figcaption {
+      display: none;
+    }
   }
 }
 

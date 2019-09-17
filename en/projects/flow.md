@@ -8,42 +8,47 @@ template: "templates/flow.slim"
 Тайнa, прикрытая мраком @ camp as one
 :::
 
-![](/pictures/projects/flow/dark-room-01.jpg)
+![dark room](/pictures/projects/flow/dark-room-01.jpg)
 ::::
 
 :::: {.block .huge}
 ::: {.text}
 # Dzina @ Norgergfestival
+
+A performance that touches issues of body modifications, interlacing of (extra)science-fiction with affects, emanating from interfaces that are concealing potential jeopardy.
 :::
 
-![](/pictures/projects/flow/bitchcoin-norber-01.JPG)
+![Dzina @ Norgergfestival](/pictures/projects/flow/bitchcoin-norber-01.JPG)
 ::::
 
-:::: {.block .huge}
+:::: {.block .big}
 ::: {.text}
 # Obey Ne Robey @ Better than Dior
+
+Fake Mermaid and Fake Emotionality as a tool to remove stress from the kinship.
 ::: 
 
-![](/pictures/projects/flow/obey-ne-robey-fake-mermaid-01.jpg)
+![Obey Ne Robey @ Better than Dior](/pictures/projects/flow/obey-ne-robey-fake-mermaid-01.jpg)
 ::::
 
 
-:::: {.block .huge}
+:::: {.block .large}
 ::: {.text}
 Дырявый футуризм в снятой квартире в минске — Ларп про самоэксплуатацию и эмоциональный труд
 :::
 
-![](/pictures/projects/flow/holed-futurism-01.jpg)
+![Дырявый футуризм в снятой квартире в минске — Ларп про самоэксплуатацию и эмоциональный труд](/pictures/projects/flow/holed-futurism-01.jpg)
 ::::
 
-:::: {.block .auto .whph-side-affects}
-Работай больше отдыхай больше Побочные аффекты — минск, 1 - 7 июля
+:::: {.block .auto-heigh .whph-side-affects}
+
+[Работай больше отдыхай больше Побочные аффекты — минск, 1 - 7 июля](http://workhardplay.pw/ru/2019){target="_blank"}
 ::::
 
 :::: {.block .huge}
 ::: {.text}
-Сети, дружелюбные к ошибкам
+# Сети, дружелюбные к ошибкам
 :::
 
-![](/pictures/projects/flow/eeefff-error-friendly-networks-02.jpg)
+![Сети, дружелюбные к ошибкам - часть итоговой диаграммы](/pictures/projects/flow/eeefff-error-friendly-networks-02.jpg)
 ::::
