@@ -34,11 +34,7 @@ section.flow {
   }
 
   .big {
-    img {
-      width: auto;
-      height: 60vh;
-      max-height: 60vh;
-    }
+    @include flow-block-figure(60vh, auto);
   }
 
   .huge {
@@ -53,6 +49,9 @@ section.flow {
     @extend .cell;
     @extend .small-12;
     @extend .large-auto;
+
+    @extend .small-order-2;
+    @extend .large-order-1;
 
 
   }
@@ -69,6 +68,10 @@ section.flow {
     @extend .small-12;
     @extend .large-shrink;
 
+
+    @extend .small-order-1;
+    @extend .large-order-2;
+
     figcaption {
       display: none;
     }
@@ -76,6 +79,9 @@ section.flow {
 }
 
 
+//
+// custom styles per block
+//
 section.flow {
   .whph-side-affects {
     font-family: "AsimovOu";
@@ -83,5 +89,10 @@ section.flow {
     text-align: center;
     padding-left: 10%;
     padding-right: 10%;
+  }
+
+  .perplexed-scpecies-manifesto {
+    font-size: 8vh;
+    text-align: center;
   }
 }

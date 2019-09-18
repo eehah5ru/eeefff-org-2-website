@@ -4,18 +4,29 @@ template: "templates/flow.slim"
 ---
 :::: {.block .big}
 ::: {.text}
-# hey hey
-Тайнa, прикрытая мраком @ camp as one
+# Тайнa, прикрытая мраком @ camp as one
+##  [-> Documentation <-](/en/projects/mystery-covered-with-the-darkness.html)
 :::
-
 ![dark room](/pictures/projects/flow/dark-room-01.jpg)
 ::::
+
+:::: {.block .auto-heigh .perplexed-scpecies-manifesto}
+мы – аутсорсеры, когнитивные работницы, фрилансеры,  
+те, кто продает свои аффективные часы.  
+мы – пролетарии, привязанные через интимные интерфейсы  
+к машинам, которые производят случайности,  
+от которых зависит наша жизнь.  
+мы коммунализируем нашу отчужденную распределенную интимность.
+::::
+
 
 :::: {.block .huge}
 ::: {.text}
 # Dzina @ Norgergfestival
 
-A performance that touches issues of body modifications, interlacing of (extra)science-fiction with affects, emanating from interfaces that are concealing potential jeopardy.
+## A performance that touches issues of body modifications, interlacing of (extra)science-fiction with affects, emanating from interfaces that are concealing potential jeopardy.
+
+## [MORE INFO ->>](https://norbergfestival.com/artist/dzina-zhuk/){target="_blank"}
 :::
 
 ![Dzina @ Norgergfestival](/pictures/projects/flow/bitchcoin-norber-01.JPG)
@@ -41,7 +52,6 @@ Fake Mermaid and Fake Emotionality as a tool to remove stress from the kinship.
 ::::
 
 :::: {.block .auto-heigh .whph-side-affects}
-
 [Работай больше отдыхай больше Побочные аффекты — минск, 1 - 7 июля](http://workhardplay.pw/ru/2019){target="_blank"}
 ::::
 

@@ -30,8 +30,8 @@
 // USE XY GRID
 @import 'xy-grid/xy-grid';
 
-// @include foundation-flex-classes;
-// @include foundation-flex-grid;
+@include foundation-flex-classes;
+// и@include foundation-flex-grid;
 
 @import 'typography/typography';
 // @import 'forms/forms';
