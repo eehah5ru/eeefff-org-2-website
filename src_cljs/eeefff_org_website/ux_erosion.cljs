@@ -74,7 +74,7 @@
         pos-y (rand-int (:height @app-state))]
 
     (str "<video class='eroded' onloadeddata=\"this.play();\" autoplay='autoplay' loop muted width=" video-width " height=" video-height " controls style='position:fixed;top:" pos-y "px;left:" pos-x "px;'>"
-       "<source class='eroded' src='/data/pi-02/" url "' type='video/mp4'>"
+       "<source class='eroded' src='/data/outsourcing-paradise-parasite/pi-02/" url "' type='video/mp4'>"
        "</video>")))
 
 
@@ -170,11 +170,13 @@
     false
     js/stop_erosion))
 
+
+
 ;;;
 ;;; setup
 ;;;
 (defn setup-erosion []
-
+  (pprint erosion-objects)
   (if-not (erosion-stopped?)
     (do
       (start-screensaver-delay)
