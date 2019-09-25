@@ -64,6 +64,22 @@ namespace :hakyll do
   after 'deploy:started', 'hakyll:build'
 end
 
+namespace :outsourcing_paradise do
+  task :setup_timeline do
+    on roles(:all) do
+      execute :mkdir, "-p",  "#{release_path}/data/outsourcing-paradise-parasite"
+
+      json = File.read("data/outsourcing-paradise-parasite/erosion-machine-timeline.json").gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name))
+
+      upload! StringIO.new(json), "#{release_path}/data/outsourcing-paradise-parasite/erosion-machine-timeline.json"
+
+      puts "OUTSOURCING PARADISE: HOST is #{fetch(:outsourcing_paradise_host_name)}"
+    end
+  end
+
+  after "deploy:updated", "outsourcing_paradise:setup_timeline"
+end
+
 # Override default tasks which are not relevant to a non-rails app.
 namespace :deploy do
   task :migrate do
