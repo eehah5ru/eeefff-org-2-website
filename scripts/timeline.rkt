@@ -11,81 +11,17 @@
 
 (require json)
 (require racket/hash)
+(require racket/path)
 
 (require "video_utils.rkt")
 
 
 
-(define delay 30)
-(define force-stop #f)
+(define settings-delay 30)
+(define settings-disabled #f)
 
-
-;; {
-;;   "config": {
-;;     "delay": 30,
-;;     "disabled": false
-;;   },
-
-;;   "timeline": [
-;;     {
-;;       "type": "showText",
-;;       "duration": 20000,
-;;       "position": "absolute",
-;;       "text": "Как поверить в будущее, если оно плохо отрендерено?",
-;;       "class": "erosion text-01"
-;;     },
-;;     {
-;;       "type": "showVideo",
-;;       "loop": true,
-;;       "duration": 24664,
-;;       "position": "absolute",
-;;       "class": "video-01",
-;;       "url_mp4": "https://dev.eeefff.org/data/outsourcing-paradise-parasite/pi-02/01.mov.mp4",
-;;       "subtitles_en": "https://dev.eeefff.org/data/outsourcing-paradise-parasite/subtitles_test.vtt",
-;;       "class": "erosion video-01"
-;;     },
-;;     {
-;;       "type": "assemblage",
-;;       "duration": 40000,
-;;       "events": [
-;;         {
-;;           "type": "showVideo",
-;;           "loop": false,
-;;           "position": "absolute",
-;;           "duration": 14084,
-;;           "url_mp4": "https://dev.eeefff.org/data/outsourcing-paradise-parasite/pi-02/02.mp4.mp4",
-;;           "subtitles_en": "https://dev.eeefff.org/data/outsourcing-paradise-parasite/subtitles_test.vtt",
-;;           "class": "erosion video-02"
-;;         },
-;;         {
-;;           "type": "showText",
-;;           "duration": 10000,
-;;           "position": "erosion",
-;;           "text": "Утопия с применением плагинов к браузеру и ворованного диджейского софта",
-;;           "class": "erosion text-02"
-;;         }
-;;       ]
-;;     }
-;;   ]
-;; }
-
-;;;
-;;;
-;;; EXAMPLE
-;;;
-;;;
-
-;;     {
-;;       "type": "showVideo",
-;;       "loop": true,
-;;       "duration": 24664,
-;;       "position": "absolute",
-;;       "class": "video-01",
-;;       "url_mp4": "https://dev.eeefff.org/data/outsourcing-paradise-parasite/pi-02/01.mov.mp4",
-;;       "subtitles_en": "https://dev.eeefff.org/data/outsourcing-paradise-parasite/subtitles_test.vtt",
-;;       "class": "erosion video-01"
-;;     },
-
+(define settings-video-base-url
+  "https://dev.eeefff.org/data/outsourcing-paradise-parasite/pi-02/")
 
 ;;;
 ;;;
@@ -99,6 +35,7 @@
 
 (define (attr->hasheq k v)
   (hasheq k (normalize-attr v)))
+
 ;;;
 ;;;
 ;;; video utils
@@ -107,16 +44,29 @@
 
 ;;; FIXME: replace with actual function
 (define (video-duration path)
-  11)
+  (get-video-duration path))
 
 ;;; FIXME: implement
 (define (mk-video-url kind path)
-  "this-is-video-url")
+  (cond
+   ;; MP4 URL
+   [(eq? kind 'mp4)
+    (string-append settings-video-base-url (path->string (file-name-from-path path)))]
+   ;; WEBM URL
+   [(eq? kind 'webm)
+    (error "webm url is unimplemented")]
+   ;; UNKNOWN
+   [else
+    (error (string-append "unknown video type: " (symbol->string kind)))])
+  )
 
 
 ;;; FIXME: implement!
 (define (mk-subtitles-url lang path)
-  "this-is-subtitle-url")
+  (unless (member lang (list 'ru 'en))
+    (error "unknown lang:" lang))
+
+  (string-append settings-video-base-url (path->string (file-name-from-path path)) "_" (symbol->string lang) ".vtt"))
 
 ;;;
 ;;;
@@ -129,6 +79,8 @@
 (define position
   (curry attr->hasheq 'position))
 
+(define looped
+  (curry attr->hasheq 'loop))
 
 ;;;
 ;;;
@@ -138,28 +90,24 @@
 ;; (define-for-syntax (blah-blah k v)
 ;;   `(hasheq ,k (normalize-attr ,v)))
 
-;; ;;;
-;; ;;;
-;; ;;; general syntax
-;; ;;;
-;; ;;; css-class syntax
-;; (define-syntax (css-class stx)
-;;   (syntax-parse
-;;    stx
-;;    [(_ a-class:expr)
-;;     (let ([bbb (blah-blah 'class #'a-class)])
-;;         #bbb)]))
+;;;
+;;;
+;;; general syntax
+;;;
 
 
-;; ;;; position syntax
-;; (define-syntax (position stx)
-;;   (syntax-parse
-;;    stx
-;;    [(_ a-position)
-;;     #'(hasheq 'position (normalize-attr a-position))]))
+(begin-for-syntax
+ ;;; event label
+ (define-syntax-class event-label
+   #:attributes (sym)
+   (pattern el:id
+            #:attr sym #''el)))
 
-
+;;;
+;;;
 ;;; video syntax
+;;;
+;;;
 (define-syntax (video stx)
   (define-syntax-class video-label
     #:attributes (sym)
@@ -179,7 +127,7 @@
         (hasheq 'type "showVideo"
                 'label (normalize-attr vl.sym)
                 'url_mp4 (mk-video-url 'mp4 vp)
-                'url_webm (mk-video-url 'webm vp)
+                ;; 'url_webm (mk-video-url 'webm vp)
                 'subtitles_en (mk-subtitles-url 'en vp)
                 'subtitles_ru (mk-subtitles-url 'ru vp)
                 'duration ((curry durexpr ...) (video-duration vp)))
@@ -207,7 +155,9 @@
        attrs1 ...
        attrs2 ...)]))
 
-
+;;;
+;;; assemblage syntax
+;;;
 (define-syntax (assemblage stx)
   (define-syntax-class assemblage-label
     #:attributes (sym)
@@ -222,10 +172,37 @@
               'events (list evs ...))]))
 
 ;;;
+;;; timline syntax
+;;;
+(define-syntax (timeline stx)
+  (syntax-parse
+   stx
+   [(_ el:event-label tls:expr ...+)
+    #'(hasheq 'delay settings-delay
+              'disabled settings-disabled
+              'timeline (list tls ...))]))
+;;;
 ;;;
 ;;; tests
 ;;;
 ;;;
+
+;;; test timeline
+(define (test-timeline)
+  (let ([data (delay (timeline this-is-timeline
+                    ;; first video
+                    (video some-video
+                           "path-to-video-file"
+                           (duration (const 3))
+                           (css-class 'video-class-01)
+                           (position 'absolute))
+
+                    (text some-text
+                          "this is some text to show on the website"
+                          (duration 3333)
+                          (css-class 'text-class-01)
+                          (position 'fixed))))])
+    (force data)))
 
 ;;; test video syntax
 (define (test-video)
@@ -322,20 +299,52 @@
 ;;;
 ;;;
 
-(define (filter-by-index f xs)
-  (for/list ([x xs]
-             [i (range (length xs))]
-             #:when (f i))
-    x))
+;; (define (filter-by-index f xs)
+;;   (for/list ([x xs]
+;;              [i (range (length xs))]
+;;              #:when (f i))
+;;     x))
 
 
-(define even-elements
-  (curry filter-by-index even?))
+;; (define even-elements
+;;   (curry filter-by-index even?))
 
-(define odd-elements
-  (curry filter-by-index odd?))
+;; (define odd-elements
+;;   (curry filter-by-index odd?))
 
 
-(let ([xs '(a b c d e)])
-  `(,(even-elements xs)
-    ,(odd-elements xs)))
+;; (let ([xs '(a b c d e)])
+;;   `(,(even-elements xs)
+;;     ,(odd-elements xs)))
+
+;;;
+;;; JSON UTILS
+;;;
+(define (timeline->json->clipboard tml)
+  (with-input-from-string (jsexpr->string tml) (lambda () (system "pbcopy"))))
+
+;;;
+;;;
+;;; TIMELINES
+;;;
+;;;
+
+;;; simple test
+(define (mk-timeline base-dir)
+  (parameterize ([current-directory base-dir])
+    (timeline
+     simple-test-timeline
+     ;; first video
+     (let ([aaa 100])
+       (video some-video
+              "data/outsourcing-paradise-parasite/pi-02/02.mp4.mp4"
+              (duration (* 2 aaa))
+              (looped true)
+              (css-class 'video-class-01)
+              (position 'absolute)))
+
+     (text some-text
+           "this is some text to show on the website"
+           (duration 3333)
+           (css-class 'text-class-01)
+           (position 'absolute)))))
