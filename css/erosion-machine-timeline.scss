@@ -1,0 +1,19 @@
+.erosion {
+  &.text-01 {
+    color: red;
+  }
+
+  &.text-02 {
+    color: blue;
+  }
+
+  &.video-01 {
+    width: 640px;
+    height: 380px;
+  }
+
+  &.video-02 {
+    width: 200px;
+    height: 300px;
+  }
+}
