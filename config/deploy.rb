@@ -65,6 +65,23 @@ namespace :hakyll do
 end
 
 namespace :outsourcing_paradise do
+  task :force_upload do
+    on roles(:all) do
+      #
+      # JSON
+      #
+      json = File.read("data/outsourcing-paradise-parasite/erosion-machine-timeline.json").gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name))
+
+      upload! StringIO.new(json), "#{current_path}/data/outsourcing-paradise-parasite/erosion-machine-timeline.json"
+
+      #
+      # CSS
+      #
+      upload! "_site/css/erosion-machine-timeline.css", "#{current_path}/css/erosion-machine-timeline.css"
+    end
+  end
+
+
   task :setup_timeline do
     on roles(:all) do
       execute :mkdir, "-p",  "#{release_path}/data/outsourcing-paradise-parasite"

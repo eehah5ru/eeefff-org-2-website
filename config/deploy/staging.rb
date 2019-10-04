@@ -67,4 +67,4 @@ server "deploy.do.myfutures.trade",
 # OUTSOURCING_PARADISE
 #
 #
-set :outsourcing_paradise_host_name, "http://dev.eeefff.org"
+set :outsourcing_paradise_host_name, "https://dev.eeefff.org"
