@@ -17,11 +17,11 @@
 
 
 
-(define settings-delay 30)
+(define settings-delay 5)
 (define settings-disabled #f)
 
 (define settings-video-base-url
-  "https://dev.eeefff.org/data/outsourcing-paradise-parasite/pi-02/")
+  "HOST_NAME/")
 
 ;;;
 ;;;
@@ -51,7 +51,7 @@
   (cond
    ;; MP4 URL
    [(eq? kind 'mp4)
-    (string-append settings-video-base-url (path->string (file-name-from-path path)))]
+    (string-append settings-video-base-url path)]
    ;; WEBM URL
    [(eq? kind 'webm)
     (error "webm url is unimplemented")]
@@ -66,21 +66,38 @@
   (unless (member lang (list 'ru 'en))
     (error "unknown lang:" lang))
 
-  (string-append settings-video-base-url (path->string (file-name-from-path path)) "_" (symbol->string lang) ".vtt"))
+  (string-append settings-video-base-url path "_" (symbol->string lang) ".vtt"))
 
 ;;;
 ;;;
 ;;; attrs
 ;;;
 ;;;
-(define css-class
-  (curry attr->hasheq 'class))
+
+(define css-id
+  (curry attr->hasheq 'id))
+
+(define (css-class a-class)
+  ((compose1 (curry attr->hasheq 'class)
+             (curry string-append "erosion ")
+             symbol->string)
+   a-class))
 
 (define position
   (curry attr->hasheq 'position))
 
 (define looped
   (curry attr->hasheq 'loop))
+
+(define overlay
+  (curry attr->hasheq 'overlay))
+
+(define z-index
+  (curry attr->hasheq 'z-index))
+
+(define delayed
+  (curry attr->hasheq 'delayed))
+
 
 ;;;
 ;;;
@@ -166,10 +183,13 @@
 
   (syntax-parse
    stx
-   [(_ al:assemblage-label evs:expr ...+)
+   #:datum-literals (duration)
+   [(_ al:assemblage-label  evs1:expr ... (duration durexpr:expr) evs2:expr ...)
     #'(hasheq 'type "assemblage"
               'label (normalize-attr al.sym)
-              'events (list evs ...))]))
+              'duration durexpr
+              'events (list evs1 ...
+                            evs2 ...))]))
 
 ;;;
 ;;; timline syntax
@@ -178,9 +198,32 @@
   (syntax-parse
    stx
    [(_ el:event-label tls:expr ...+)
-    #'(hasheq 'delay settings-delay
-              'disabled settings-disabled
+    #'(hasheq 'config (hasheq 'disabled settings-disabled
+                              'delay settings-delay)
               'timeline (list tls ...))]))
+
+
+;;;
+;;; mk-timeline syntax
+;;; defines the whole function to generate it
+;;;
+(define-syntax (mk-timeline stx)
+  (syntax-parse
+   stx
+   [(_ tml-name:event-label tls:expr ...+)
+    (let ([timeline-func-name (format-id #'tml-name "mk-~a-timeline" #'tml-name)]
+          [slurp-json-func-name (format-id #'tml-name "slurp-json-~a-timeline" #'tml-name)])
+      #`(begin
+          (define (#,timeline-func-name base-dir)
+           (parameterize ([current-directory base-dir])
+             (timeline
+              tml-name
+              tls ...)))
+
+          (define (#,slurp-json-func-name base-dir)
+            (timeline->json->clipboard (#,timeline-func-name base-dir)))))]))
+
+
 ;;;
 ;;;
 ;;; tests
@@ -224,6 +267,7 @@
 ;;; test assemblage
 (define (test-assemblage)
   (assemblage some-assemblage
+              (duration 1000)
               (video some-other-video
                      "path-to-video-2"
                      (duration (+ 100000)))
@@ -330,21 +374,49 @@
 ;;;
 
 ;;; simple test
-(define (mk-timeline base-dir)
-  (parameterize ([current-directory base-dir])
-    (timeline
-     simple-test-timeline
-     ;; first video
-     (let ([aaa 100])
-       (video some-video
-              "data/outsourcing-paradise-parasite/pi-02/02.mp4.mp4"
-              (duration (* 2 aaa))
-              (looped true)
-              (css-class 'video-class-01)
-              (position 'absolute)))
+(mk-timeline
+  simple-test-2
+  ;; first video
+  (let ([factor 0.1])
+    (video some-video
+           "data/outsourcing-paradise-parasite/pi-02/02.mp4.mp4"
+           (duration (* 2 factor))
+           (looped true)
+           (css-class 'video-class-01)
+           (position 'absolute)))
 
-     (text some-text
-           "this is some text to show on the website"
-           (duration 3333)
-           (css-class 'text-class-01)
-           (position 'absolute)))))
+  (text some-text
+        "this is some text to show on the website"
+        (duration 3333)
+        (css-class 'text-class-01)
+        (position 'absolute)))
+
+
+
+
+(mk-timeline
+ no-name-outsourcers
+ (text no-name-outsourcers-01
+       "no-name outsourcers will be here in a short time"
+       (duration 6000)
+       (position 'absolute)
+       (css-class 'no-name-outsourcers-01))
+
+ (assemblage
+  no-name-outsourcers-02
+  (duration 10000)
+
+  (text no-name-outsourcers-02-text
+       "do not move and wait for them"
+       (duration 6000)
+       (delayed 3000)
+       (position 'absolute)
+       (css-class 'no-name-outsourcers-02))
+
+  (video no-name-outsourcers-02-video
+           "data/outsourcing-paradise-parasite/pi-02/02.mp4.mp4.mp4"
+           (duration (* 2))
+           (looped true)
+           (css-class 'no-name-outsourcers-02-video)
+           (position 'absolute)))
+ )

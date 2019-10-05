@@ -16,4 +16,14 @@
     width: 200px;
     height: 300px;
   }
+
+  &.no-name-outsourcers-01,
+  &.no-name-outsourcers-02 {
+    font-size: 89px;
+    color: #00F3FF;
+    text-shadow: 0 1px 40px #FF0000;
+
+    width: 50vw;
+    height: auto;
+  }
 }
