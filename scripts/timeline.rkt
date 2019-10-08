@@ -1,13 +1,22 @@
 #lang racket
 
+
+;;; here are some details about complex macroses:
+;;; https://stackoverflow.com/questions/41139868/dynamically-binding-free-identifiers-in-a-function-body
+
 ;; (provide main)
 
 (require (for-syntax racket/syntax
+                     syntax/parse/define
                      syntax/parse
                      racket))
 
 (require (for-template racket))
+(require syntax/parse/define)
 (require syntax/parse)
+(require racket/stxparam)
+(require lathe-comforts)
+(require lathe-comforts/hash)
 
 (require json)
 (require racket/hash)
@@ -101,6 +110,52 @@
 
 ;;;
 ;;;
+;;; paramaterezed duration utils
+;;;
+;;;
+(define-syntax-parameter test-syntax-par #f)
+
+(define durations (make-hash))
+
+(define (duration-get p)
+  (hash-ref durations
+            p))
+
+(define (duration-set p d)
+  (hash-set! durations
+             p
+             d))
+
+(define (duration-has? p)
+  (hash-has-key? durations p))
+
+
+(define-syntax (dur stx)
+  (syntax-parse stx
+    [(_ p:id)
+     #'(duration-get 'p)]))
+
+
+
+(define (force-timeline t)
+  (pretty-display t)
+  (cond
+    [(promise? t)
+     (begin
+       (displayln 'promise)
+      (force t))]
+
+    [(hash? t)
+     (begin
+       (displayln 'hash)
+       (hash-v-map t force-timeline))]
+    [(list? t)
+     (map force-timeline t)]
+
+    [else t]))
+
+;;;
+;;;
 ;;; syntax utils
 ;;;
 ;;;
@@ -120,6 +175,14 @@
    (pattern el:id
             #:attr sym #''el)))
 
+
+;; (define-syntax (duration-set stx)
+;;    (syntax-parse stx
+;;      [(duration-set an-id:id v:expr)
+;;       #'(duration-set-func 'an-if v)]))
+
+
+
 ;;;
 ;;;
 ;;; video syntax
@@ -138,18 +201,23 @@
    stx
    #:datum-literals (duration)
    [(_ vl:video-label vp:video-path attrs1:expr ... (duration (durexpr ...+)) attrs2:expr ...)
-    #'(hash-union
-       ;;
+    #:with syntax-local-introduce #'duration-set-func
+    (displayln (syntax->datum #'vl))
+    #`(begin
+       (displayln 'runtime-video)
+       (duration-set 'vl (video-duration vp))
        (hash-union
-        (hasheq 'type "showVideo"
-                'label (normalize-attr vl.sym)
-                'url_mp4 (mk-video-url 'mp4 vp)
-                ;; 'url_webm (mk-video-url 'webm vp)
-                'subtitles_en (mk-subtitles-url 'en vp)
-                'subtitles_ru (mk-subtitles-url 'ru vp)
-                'duration ((curry durexpr ...) (video-duration vp)))
-        attrs1 ...
-        attrs2 ... ))]))
+        ;;
+        (hash-union
+         (hasheq 'type "showVideo"
+                 'label (normalize-attr vl.sym)
+                 'url_mp4 (mk-video-url 'mp4 vp)
+                 ;; 'url_webm (mk-video-url 'webm vp)
+                 'subtitles_en (mk-subtitles-url 'en vp)
+                 'subtitles_ru (mk-subtitles-url 'ru vp)
+                 'duration ((curry durexpr ...) (video-duration vp)))
+         attrs1 ...
+         attrs2 ... )))]))
 
 ;;;
 ;;; text syntax
@@ -168,7 +236,7 @@
        (hasheq 'type "showText"
                'label (normalize-attr tl.sym)
                'text t
-               'duration durexpr)
+               'duration (delay durexpr))
        attrs1 ...
        attrs2 ...)]))
 
@@ -198,9 +266,15 @@
   (syntax-parse
    stx
    [(_ el:event-label tls:expr ...+)
-    #'(hasheq 'config (hasheq 'disabled settings-disabled
-                              'delay settings-delay)
-              'timeline (list tls ...))]))
+    (displayln (syntax->datum #'el))
+    #'(force-timeline
+       (begin
+         (syntax-parameterize ([test-syntax-par 'aaa])
+          (displayln 'runtime-timeline)
+          (pretty-print durations)
+          (hasheq 'config (hasheq 'disabled settings-disabled
+                                  'delay settings-delay)
+                  'timeline (list tls ...)))))]))
 
 
 ;;;
@@ -231,53 +305,53 @@
 ;;;
 
 ;;; test timeline
-(define (test-timeline)
-  (let ([data (delay (timeline this-is-timeline
-                    ;; first video
-                    (video some-video
-                           "path-to-video-file"
-                           (duration (const 3))
-                           (css-class 'video-class-01)
-                           (position 'absolute))
+;; (define (test-timeline)
+;;   (let ([data (delay (timeline this-is-timeline
+;;                     ;; first video
+;;                     (video some-video
+;;                            "path-to-video-file"
+;;                            (duration (const 3))
+;;                            (css-class 'video-class-01)
+;;                            (position 'absolute))
 
-                    (text some-text
-                          "this is some text to show on the website"
-                          (duration 3333)
-                          (css-class 'text-class-01)
-                          (position 'fixed))))])
-    (force data)))
+;;                     (text some-text
+;;                           "this is some text to show on the website"
+;;                           (duration 3333)
+;;                           (css-class 'text-class-01)
+;;                           (position 'fixed))))])
+;;     (force data)))
 
-;;; test video syntax
-(define (test-video)
-  (video some-video
-         "path-to-video-file"
-         (duration (const 3))
-         (css-class 'video-class-01)
-         (position 'absolute)))
+;; ;;; test video syntax
+;; (define (test-video)
+;;   (video some-video
+;;          "path-to-video-file"
+;;          (duration (const 3))
+;;          (css-class 'video-class-01)
+;;          (position 'absolute)))
 
-;;; test text syntax
-(define (test-text)
-  (text some-text
-        "this is some text to show on the website"
-        (duration 3333)
-        (css-class 'text-class-01)
-        (position 'fixed)))
+;; ;;; test text syntax
+;; (define (test-text)
+;;   (text some-text
+;;         "this is some text to show on the website"
+;;         (duration 3333)
+;;         (css-class 'text-class-01)
+;;         (position 'fixed)))
 
 
-;;; test assemblage
-(define (test-assemblage)
-  (assemblage some-assemblage
-              (duration 1000)
-              (video some-other-video
-                     "path-to-video-2"
-                     (duration (+ 100000)))
-              (video totally-different-video
-                     "path-to-video-3"
-                     (duration (identity)))
+;; ;;; test assemblage
+;; (define (test-assemblage)
+;;   (assemblage some-assemblage
+;;               (duration 1000)
+;;               (video some-other-video
+;;                      "path-to-video-2"
+;;                      (duration (+ 100000)))
+;;               (video totally-different-video
+;;                      "path-to-video-3"
+;;                      (duration (identity)))
 
-              (text text-2
-                    "this is text number 2"
-                    (duration 1000))))
+;;               (text text-2
+;;                     "this is text number 2"
+;;                     (duration 1000))))
 
 ;;;
 ;;;
@@ -374,22 +448,22 @@
 ;;;
 
 ;;; simple test
-(mk-timeline
-  simple-test-2
-  ;; first video
-  (let ([factor 0.1])
-    (video some-video
-           "data/outsourcing-paradise-parasite/pi-02/02.mp4.mp4"
-           (duration (* 2 factor))
-           (looped true)
-           (css-class 'video-class-01)
-           (position 'absolute)))
+;; (mk-timeline
+;;   simple-test-2
+;;   ;; first video
+;;   (let ([factor 0.1])
+;;     (video some-video
+;;            "data/outsourcing-paradise-parasite/pi-02/02.mp4.mp4"
+;;            (duration (* 2 factor))
+;;            (looped true)
+;;            (css-class 'video-class-01)
+;;            (position 'absolute)))
 
-  (text some-text
-        "this is some text to show on the website"
-        (duration 3333)
-        (css-class 'text-class-01)
-        (position 'absolute)))
+;;   (text some-text
+;;         "this is some text to show on the website"
+;;         (duration 3333)
+;;         (css-class 'text-class-01)
+;;         (position 'absolute)))
 
 
 
@@ -408,7 +482,7 @@
 
   (text no-name-outsourcers-02-text
        "do not move and wait for them"
-       (duration 6000)
+       (duration (* 10000 (dur no-name-outsourcers-02-video)))
        (delayed 3000)
        (position 'absolute)
        (css-class 'no-name-outsourcers-02))
