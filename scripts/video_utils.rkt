@@ -17,18 +17,22 @@
 ;;;
 ;;; parser for video duration
 ;;;
-;;; FIXME: not longer than a minute!
 (define duration/p
+
   (do
     (string/p "Duration")
     (many+/p space/p)
     (string/p ":")
     (many+/p space/p)
+    [hours <- integer/p]
+    (string/p ":")
+    [mins <- integer/p]
+    (string/p ":")
     [secs <- integer/p]
-    (string/p " s ")
+    (string/p ".")
     [millis <- integer/p]
-    (string/p " ms")
-    (pure (list secs millis))))
+
+    (pure (list hours mins secs millis))))
 
 ;;;
 ;;; get video duration
@@ -37,16 +41,19 @@
   (check-video-eixists video-path)
 
   (let* ([mediainfo-cmd (string-join (list "mediainfo"
+                                           "-f"
                                         video-path
                                         "| grep Duration"
+                                        "| grep '[0-9][0-9]:[0-9][0-9]:[0-9][0-9]\\.'"
                                         "| head -1"))]
-         [raw-data (with-output-to-string (lambda () (system mediainfo-cmd)))]
-         [dur-list (parse-result! (parse-string duration/p raw-data))])
-    ;;
-    ;; FIXME: not longer than a minute
-    ;;
-    (+ (last dur-list)
-       (* 1000 (first dur-list)))))
+         [raw-data (with-output-to-string (lambda () (system mediainfo-cmd)))])
+
+    (match-let ([(list hours mins secs millis) (parse-result! (parse-string duration/p raw-data))])
+      (+ millis
+         (* 1000
+            (+ secs
+               (* 60 mins)
+               (* 3600 hours)))))))
 
 
 ;;;

@@ -55,6 +55,7 @@
 (define (video-duration path)
   (get-video-duration path))
 
+
 ;;; FIXME: implement
 (define (mk-video-url kind path)
   (cond
@@ -69,13 +70,32 @@
     (error (string-append "unknown video type: " (symbol->string kind)))])
   )
 
+;;;
+;;; subtitles utils
+;;;
 
-;;; FIXME: implement!
+;;; true or false
+(define (subtitels-exists? path)
+  (file-exists? path))
+
+;;; nothing or raise error
+(define (check-subtitels-exists? path)
+  (unless (subtitels-exists? path)
+    (error "cannot find subtitles file: " path)))
+
+
+;;; return url of raise error
 (define (mk-subtitles-url lang path)
   (unless (member lang (list 'ru 'en))
     (error "unknown lang:" lang))
 
-  (string-append settings-video-base-url path "_" (symbol->string lang) ".vtt"))
+  (let* ([subtitels-path (string-append path "_" (symbol->string lang) ".vtt")]
+        [subtitels-url (string-append settings-video-base-url subtitels-path)])
+
+    (check-subtitels-exists? subtitels-path)
+
+    subtitels-url))
+
 
 ;;;
 ;;;
@@ -86,11 +106,19 @@
 (define css-id
   (curry attr->hasheq 'id))
 
-(define (css-class a-class)
-  ((compose1 (curry attr->hasheq 'class)
-             (curry string-append "erosion ")
-             symbol->string)
-   a-class))
+;;;
+;;; CSS class
+;;;
+(define (css-class a-classes)
+  (let ([css-classes (cond
+                       [(list? a-classes)
+                        (string-join (map symbol->string
+                                          a-classes))]
+
+                       [else (symbol->string a-classes)])])
+    ((compose1 (curry attr->hasheq 'class)
+               (curry string-append "erosion "))
+     css-classes)))
 
 (define position
   (curry attr->hasheq 'position))
@@ -104,7 +132,7 @@
 (define z-index
   (curry attr->hasheq 'z-index))
 
-(define delayed
+(define delayed-impl
   (curry attr->hasheq 'delayed))
 
 
@@ -138,16 +166,13 @@
 
 
 (define (force-timeline t)
-  (pretty-display t)
   (cond
     [(promise? t)
      (begin
-       (displayln 'promise)
       (force t))]
 
     [(hash? t)
      (begin
-       (displayln 'hash)
        (hash-v-map t force-timeline))]
     [(list? t)
      (map force-timeline t)]
@@ -181,6 +206,11 @@
 ;;      [(duration-set an-id:id v:expr)
 ;;       #'(duration-set-func 'an-if v)]))
 
+
+(define-syntax (delayed stx)
+  (syntax-parse stx
+    [(_ durexpr:expr)
+     #'(delayed-impl (delay durexpr))]))
 
 
 ;;;
@@ -216,6 +246,7 @@
                  'subtitles_en (mk-subtitles-url 'en vp)
                  'subtitles_ru (mk-subtitles-url 'ru vp)
                  'duration ((curry durexpr ...) (video-duration vp)))
+         (css-class (list 'erosion-video 'vl))
          attrs1 ...
          attrs2 ... )))]))
 
@@ -237,6 +268,7 @@
                'label (normalize-attr tl.sym)
                'text t
                'duration (delay durexpr))
+       (css-class (list 'erosion-text 'tl))
        attrs1 ...
        attrs2 ...)]))
 
@@ -255,7 +287,7 @@
    [(_ al:assemblage-label  evs1:expr ... (duration durexpr:expr) evs2:expr ...)
     #'(hasheq 'type "assemblage"
               'label (normalize-attr al.sym)
-              'duration durexpr
+              'duration (delay durexpr)
               'events (list evs1 ...
                             evs2 ...))]))
 
@@ -466,31 +498,33 @@
 ;;         (position 'absolute)))
 
 
-
-
 (mk-timeline
  no-name-outsourcers
+ ;;
+ ;; beginning text
+ ;;
  (text no-name-outsourcers-01
        "no-name outsourcers will be here in a short time"
        (duration 6000)
-       (position 'absolute)
-       (css-class 'no-name-outsourcers-01))
+       (position 'absolute))
+
+ (text outsourcing-orgy
+       "Outsourcing Orgy"
+       (duration 20000)
+       (position 'erosion))
 
  (assemblage
   no-name-outsourcers-02
-  (duration 10000)
+  (duration (* 2 (dur spinner-video)))
 
   (text no-name-outsourcers-02-text
        "do not move and wait for them"
-       (duration (* 10000 (dur no-name-outsourcers-02-video)))
-       (delayed 3000)
-       (position 'absolute)
-       (css-class 'no-name-outsourcers-02))
+       (duration (dur spinner-video))
+       (delayed (dur spinner-video))
+       (position 'absolute))
 
-  (video no-name-outsourcers-02-video
-           "data/outsourcing-paradise-parasite/pi-02/02.mp4.mp4.mp4"
+  (video spinner-video
+           "data/outsourcing-paradise-parasite/selected-04/spinner.mp4"
            (duration (* 2))
            (looped true)
-           (css-class 'no-name-outsourcers-02-video)
-           (position 'absolute)))
- )
+           (position 'absolute))))
