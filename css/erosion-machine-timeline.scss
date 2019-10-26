@@ -1,23 +1,33 @@
+//
+// disable all video subtitles inside of video frame
+//
+video::cue {
+  opacity: 0;
+}
+
+//
+// SUBTITLES
+//
+.subtitle-box {
+  z-index: 1000000;
+
+  font-size: 10vh;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: gold;
+  text-shadow: darkblue 1px 0 10px;
+}
+
+
+//
+//
+// DEFAULTS
+//
+//
 .erosion {
-  &.text-01 {
-    color: red;
-  }
-
-  &.text-02 {
-    color: blue;
-  }
-
-  &.video-01 {
-    width: 640px;
-    height: 380px;
-  }
-
-  &.video-02 {
-    width: 200px;
-    height: 300px;
-  }
-
-
   &.erosion-video {
     width: 640px;
     height: 380px;
@@ -27,24 +37,7 @@
     width: 70vw;
     height: auto;
   }
-
-  &.outsourcing-orgy {
-    font-size: 120px;
-    color: red;
-  }
-
-  &.spinner-video {
-    text-shadow: 0 0 20px gold;
-  }
-
-
-  &.no-name-outsourcers-01,
-  &.no-name-outsourcers-02-text {
-    font-size: 89px;
-    color: #00F3FF;
-    text-shadow: 0 1px 40px #FF0000;
-
-    width: 50vw;
-    height: auto;
-  }
 }
+
+
+@import "erosion-machine/_watchdog.scss"

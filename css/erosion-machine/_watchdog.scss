@@ -1,0 +1,47 @@
+@mixin watchdog-text {
+  // border: 2px solid #000000;
+  // font-family: InputMono-Regular;
+  font-size: 80px;
+  color: #FFFFFF;
+  text-align: left;
+  text-shadow: 0 0 12px #00FFAD;  
+}
+ 
+//
+// video watchdog-video
+//
+.erosion.watchdog-video {
+  box-shadow: 0 2px 60px 0 #FF00DA;
+}
+
+
+//
+// text watchdog-text-01
+//
+.erosion.watchdog-text-01 {
+  @include watchdog-text;
+}
+
+
+//
+// text watchdog-text-02
+//
+.erosion.watchdog-text-02 {
+  @include watchdog-text;
+}
+
+
+//
+// text watchdog-text-03
+//
+.erosion.watchdog-text-03 {
+  @include watchdog-text;
+}
+
+
+//
+// text watchdog-text-04
+//
+.erosion.watchdog-text-04 {
+  @include watchdog-text;
+}
