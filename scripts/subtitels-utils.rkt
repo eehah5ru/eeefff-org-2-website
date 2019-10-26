@@ -45,7 +45,12 @@
             [p (filter (compose not (curry video-has-subtitels? lang)) (filter video-file? (sequence->list (in-directory))))])
     (list lang p)))
 
-
+;;
+;;
+;; create dummy subtitles if theay are missing
+;;
+;; (dummy-missing-subtitels ".." "data/outsourcing-paradise-parasite/")
+;;
 (define (dummy-missing-subtitels path-to-root base-path)
   (parameterize ([current-directory path-to-root])
     (let ([dummy-subtitels-content (dummy-subtitels->string)])
