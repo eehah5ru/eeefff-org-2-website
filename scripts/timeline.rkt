@@ -16,29 +16,29 @@
 
 
 (mk-timeline
- test-minimal
+ outsoursing-paradise-parasite
 
- ;; (outsourcing-orgy)
- ;; (general-intellect-care)
- ;; (water-in-office)
- ;; (pause)
- ;; assemblage-watchdog
- ;; (assemblage-kot-odin)
+ (outsourcing-orgy)
+ (general-intellect-care)
+ (water-in-office)
+ (pause)
+ (watchdog)
+ (kot-odin)
 
 
- ;; video-spinner-spi
- ;; (screen-is-blinking)
- ;; (cradle-song-03-blur)
- ;; (dominatrix-volgograd-01)
- ;; (perezagruzka)
- ;; (scroll-rab)
- ;; (sleep-vertical)
- ;; (spinner-dorogoi-posetitel-kluba)
- ;; (spinner-konec)
- ;; (stop-word-vertical)
- ;; (taxi-driver)
- ;; (user-experience-vertical)
- ;; (vremya-prikljucheniy-nastupilo)
+ (video-spinner-spi)
+ (screen-is-blinking)
+ (cradle-song-03-blur)
+ (dominatrix-volgograd-01)
+ (perezagruzka)
+ (scroll-rab)
+ (sleep-vertical)
+ (spinner-dorogoi-posetitel-kluba)
+ (spinner-konec)
+ (stop-word-vertical)
+ (taxi-driver)
+ (user-experience-vertical)
+ (vremya-prikljucheniy-nastupilo)
  (spinner-krutit-spinner-04)
  (spinner-ya-vhozhu-vo-vkus)
  (interface-dominatrix-01)
@@ -49,6 +49,9 @@
 
  )
 
+
+(define (slurp-outsorsing-paradise)
+  (slurp-json-outsoursing-paradise-parasite-timeline ".."))
 
 ;;;
 ;;;
