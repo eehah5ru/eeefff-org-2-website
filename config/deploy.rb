@@ -64,8 +64,20 @@ namespace :hakyll do
   after 'deploy:started', 'hakyll:build'
 end
 
+#
+#
+# OUTSOURCING PARADISE tasks
+#
+#
 namespace :outsourcing_paradise do
-  task :force_upload do
+  #
+  # timeline tasks
+  #
+
+  #
+  # upload json and css only
+  #
+  task :force_upload_timeline do
     on roles(:all) do
       #
       # JSON
@@ -95,6 +107,17 @@ namespace :outsourcing_paradise do
   end
 
   after "deploy:updated", "outsourcing_paradise:setup_timeline"
+
+  #
+  # assets tasks
+  #
+
+  task :force_upload_images do
+    on roles(:all) do
+      upload! "data/outsourcing-paradise-parasite/images", "#{release_path}/data/outsourcing-paradise-parasite", recursive: true
+    end
+  end
+
 end
 
 # Override default tasks which are not relevant to a non-rails app.
