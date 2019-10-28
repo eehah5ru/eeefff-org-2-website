@@ -1,0 +1,38 @@
+//
+//
+// assemblage kot-odin
+//
+//
+
+//
+//
+// video kot-odin-video
+//
+//
+.erosion.kot-odin-video {
+  box-shadow: 0 2px 60px #FF00DA;
+}
+
+
+
+//
+//
+// text kot-odin-text
+// Together let\'s find a gesture that will be algorithmized well
+//
+//
+.erosion.kot-odin-text {
+  // border: 1px solid #000000;
+  // font-family: InputMono-Regular;
+  font-size: 6vh;
+  width: 100vw;
+  color: #FFFFFF;
+  text-align: left;
+  text-shadow: 0 2px 12px #FF00DA;
+
+
+  @include medium {
+    font-size: 10vh;
+    width: 50vw;
+  }
+}

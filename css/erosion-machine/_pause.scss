@@ -1,0 +1,36 @@
+//
+//
+// assemblage pause-assemblage
+//
+//
+
+
+//
+//
+// video pause-video
+//
+//
+.erosion.pause-video {
+
+}
+
+
+
+//
+//
+// text pause-text
+// 4-MINUTES PAUSE
+//
+//
+.erosion.pause-text {
+  font-family: BlackoakStd;
+  font-size: 4vh;
+  color: whitesmoke;
+  text-align: left;
+  width: 100vw;
+
+  @include medium {
+    font-size: 12vh;
+
+  }
+}
