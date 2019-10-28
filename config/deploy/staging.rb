@@ -68,3 +68,4 @@ server "deploy.do.myfutures.trade",
 #
 #
 set :outsourcing_paradise_host_name, "https://dev.eeefff.org"
+set :outsourcing_paradise_erosion_delay, 5

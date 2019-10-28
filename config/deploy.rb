@@ -150,7 +150,7 @@ namespace :outsourcing_paradise do
   # upload json to the server
   #
   def upload_json! base_path
-    json = File.read("data/outsourcing-paradise-parasite/erosion-machine-timeline.json").gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name))
+    json = File.read("data/outsourcing-paradise-parasite/erosion-machine-timeline.json").gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name)).gsub(/"EROSION_DELAY"/, fetch(:outsourcing_paradise_erosion_delay).to_s)
 
     upload! StringIO.new(json), "#{base_path}/data/outsourcing-paradise-parasite/erosion-machine-timeline.json"
   end
