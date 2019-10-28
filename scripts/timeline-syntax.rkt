@@ -36,7 +36,7 @@
 ;;
 
 ;; erosion delay
-(define settings-delay (make-parameter 5))
+(define settings-delay (make-parameter "EROSION_DELAY"))
 
 (define settings-disabled (make-parameter false))
 
