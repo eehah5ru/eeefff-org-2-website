@@ -40,7 +40,11 @@
 
 (define settings-disabled (make-parameter false))
 
-(define settings-video-base-url
+(define assets-basedir (make-parameter "data/outsourcing-paradise-parasite/"))
+
+;; (define videos-website-basedir (make-parameter "data/outsourcing-paradise-parasite/videos/"))
+
+(define settings-base-url
   "HOST_NAME/")
 
 
@@ -68,6 +72,39 @@
 (define (attr->hasheq k v)
   (hasheq k (normalize-attr v)))
 
+
+;;;
+;;;
+;;; path utils
+;;;
+;;;
+
+(define (videos-website-basedir)
+  (string-append (assets-basedir)
+                 "videos/"))
+
+(define (images-website-basedir)
+  (string-append (assets-basedir)
+                 "images/"))
+
+
+(define (video-website-path path)
+  (string-append (videos-website-basedir)
+                 path))
+
+;;
+;; image filename -> url
+;; IMPORTANT! includes basedir
+;;
+(define (image-website-url filename)
+  (let ([image-local-path (string-append (images-website-basedir)
+                                         filename)])
+    (unless (file-exists? image-local-path)
+      (error "file does not exist: " image-local-path))
+
+    (string-append settings-base-url
+                   image-local-path)))
+
 ;;;
 ;;;
 ;;; video utils
@@ -85,7 +122,7 @@
   (cond
    ;; MP4 URL
    [(eq? kind 'mp4)
-    (string-append settings-video-base-url path)]
+    (string-append settings-base-url path)]
    ;; WEBM URL
    [(eq? kind 'webm)
     (error "webm url is unimplemented")]
@@ -120,7 +157,7 @@
     (error "unknown lang:" lang))
 
   (let* ([subtitels-path (string-append path "_" (symbol->string lang) ".vtt")]
-        [subtitels-url (string-append settings-video-base-url subtitels-path)])
+        [subtitels-url (string-append settings-base-url subtitels-path)])
 
     (check-subtitels-exists? subtitels-path)
 
@@ -242,7 +279,6 @@
     [(_ durexpr:expr)
      #'(delayed-impl (delay durexpr))]))
 
-
 ;;;
 ;;; video syntax
 ;;;
@@ -253,7 +289,7 @@
              #:attr sym #''vl))
 
   (define-syntax-class video-path
-    (pattern vp:string))
+    (pattern vp:expr))
 
   (syntax-parse
    stx
@@ -278,6 +314,7 @@
          (css-id 'vl)
          attrs1 ...
          attrs2 ... )))]))
+
 
 ;;;
 ;;; text syntax
@@ -309,7 +346,7 @@
 (define-syntax (image stx)
   (syntax-parse stx
     #:datum-literals (duration)
-    [(_ il:event-label s:string attrs1:expr ... (duration durexpr:expr) attrs2:expr ...)
+    [(_ il:event-label s:expr attrs1:expr ... (duration durexpr:expr) attrs2:expr ...)
      #'(hash-union
         (hasheq 'type "showImage"
                 'label (normalize-attr il.sym)
@@ -405,3 +442,31 @@
 
           (define (#,slurp-json-func-name base-dir)
             (timeline->json->clipboard (#,timeline-func-name base-dir)))))]))
+
+;;;
+;;;
+;;; HELPERS
+;;;
+;;;
+
+;;;
+;;; simple video
+;;;
+(define-syntax (bootstrap-video stx)
+  (syntax-parse
+      stx
+    [(_ vl:event-label vp:string)
+     (let ([test-timeline-name (format-id #'vl "test-~a" #'vl)]
+           [video-element-name (format-id #'vl "~a-video" #'vl)])
+       #`(begin
+           (define (vl)
+             (video #,video-element-name
+                    (video-website-path vp)
+                    (duration (identity))
+                    (looped false)
+                    (position 'absolute)))
+
+           (mk-timeline #,test-timeline-name
+                        (vl))
+
+           (current-directory "..")))]))
