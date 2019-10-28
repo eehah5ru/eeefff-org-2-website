@@ -398,11 +398,9 @@
 
   (syntax-parse
    stx
-   #:datum-literals (duration)
-   [(_ al:assemblage-label  evs1:expr ... (duration durexpr:expr) evs2:expr ...)
+   [(_ al:assemblage-label  evs1:expr ... evs2:expr ...)
     #'(hasheq 'type "assemblage"
               'label (normalize-attr al.sym)
-              'duration (delay durexpr)
               'events (list evs1 ...
                             evs2 ...))]))
 

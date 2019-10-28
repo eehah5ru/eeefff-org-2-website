@@ -5,14 +5,50 @@
          "timeline-syntax.rkt")
 
 (require "assemblage-watchdog.rkt"
-         "video-spinner-spi.rkt")
+         "video-spinner-spi.rkt"
+         "assemblage-kot-odin.rkt"
+         "screen-is-blinking.rkt"
+         "outsourcing-orgy.rkt"
+         "water-in-office.rkt"
+         "pause.rkt"
+         "images.rkt"
+         "bare-videos.rkt")
 
 
 (mk-timeline
  test-minimal
 
- video-spinner-spi
- assemblage-watchdog)
+ ;; (outsourcing-orgy)
+ ;; (general-intellect-care)
+ ;; (water-in-office)
+ ;; (pause)
+ ;; assemblage-watchdog
+ ;; (assemblage-kot-odin)
+
+
+ ;; video-spinner-spi
+ ;; (screen-is-blinking)
+ ;; (cradle-song-03-blur)
+ ;; (dominatrix-volgograd-01)
+ ;; (perezagruzka)
+ ;; (scroll-rab)
+ ;; (sleep-vertical)
+ ;; (spinner-dorogoi-posetitel-kluba)
+ ;; (spinner-konec)
+ ;; (stop-word-vertical)
+ ;; (taxi-driver)
+ ;; (user-experience-vertical)
+ ;; (vremya-prikljucheniy-nastupilo)
+ (spinner-krutit-spinner-04)
+ (spinner-ya-vhozhu-vo-vkus)
+ (interface-dominatrix-01)
+ (panic-attack-new-01)
+ (panic-attack-new-02)
+ (panic-attack-new-04)
+ (panic-attack-new-05)
+
+ )
+
 
 ;;;
 ;;;
