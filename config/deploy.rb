@@ -82,14 +82,12 @@ namespace :outsourcing_paradise do
       #
       # JSON
       #
-      json = File.read("data/outsourcing-paradise-parasite/erosion-machine-timeline.json").gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name))
-
-      upload! StringIO.new(json), "#{current_path}/data/outsourcing-paradise-parasite/erosion-machine-timeline.json"
+      upload_json! current_path
 
       #
       # CSS
       #
-      upload! "_site/css/erosion-machine-timeline.css", "#{current_path}/css/erosion-machine-timeline.css"
+      upload_css! current_path
     end
   end
 
@@ -98,9 +96,12 @@ namespace :outsourcing_paradise do
     on roles(:all) do
       execute :mkdir, "-p",  "#{release_path}/data/outsourcing-paradise-parasite"
 
-      json = File.read("data/outsourcing-paradise-parasite/erosion-machine-timeline.json").gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name))
 
-      upload! StringIO.new(json), "#{release_path}/data/outsourcing-paradise-parasite/erosion-machine-timeline.json"
+      # JSON
+      upload_json! release_path
+
+      # CSS
+      upload_css! release_path
 
       puts "OUTSOURCING PARADISE: HOST is #{fetch(:outsourcing_paradise_host_name)}"
     end
@@ -112,12 +113,52 @@ namespace :outsourcing_paradise do
   # assets tasks
   #
 
+  # upload images
   task :force_upload_images do
     on roles(:all) do
-      upload! "data/outsourcing-paradise-parasite/images", "#{release_path}/data/outsourcing-paradise-parasite", recursive: true
+      force_upload_dir! "images", current_path
     end
   end
 
+
+  task :force_upload_fonts do
+    on roles(:all) do
+      force_upload_dir! "fonts", current_path
+    end
+  end
+
+  task :force_upload_videos do
+    on roles(:all) do
+      force_upload_dir! "videos", current_path
+    end
+  end
+
+  #
+  #
+  # utils
+  #
+  #
+
+  #
+  # force upload dir
+  #
+  def force_upload_dir! dir_name, base_path
+    upload! "data/outsourcing-paradise-parasite/#{dir_name}", "#{base_path}/data/outsourcing-paradise-parasite", recursive: true
+  end
+
+  #
+  # upload json to the server
+  #
+  def upload_json! base_path
+    json = File.read("data/outsourcing-paradise-parasite/erosion-machine-timeline.json").gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name))
+
+    upload! StringIO.new(json), "#{base_path}/data/outsourcing-paradise-parasite/erosion-machine-timeline.json"
+  end
+
+  def upload_css! base_path
+    css = File.read("_site/css/erosion-machine-timeline.css").gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name))
+    upload! StringIO.new(css), "#{base_path}/css/erosion-machine-timeline.css"
+  end
 end
 
 # Override default tasks which are not relevant to a non-rails app.
