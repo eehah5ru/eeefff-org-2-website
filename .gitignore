@@ -2,7 +2,6 @@
 /_site
 /dist
 /.stack-work
-.DS_Store
 /css/_cache
 /bower_components
 /.nrepl-port
@@ -13,3 +12,4 @@
 .vagrant
 .sass-cache
 /node_modules/
+.DS_Store
