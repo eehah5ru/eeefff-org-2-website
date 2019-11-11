@@ -3,7 +3,17 @@ title: "👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
 template: templates/mystery-covered-with-the-darkness.slim
 ---
 
-![Keepers of the dark curtains invite you one by one to the dark room!](/pictures/projects/mystery-covered-with-the-darkness/mystery-covered-with-the-darkness-01.jpg){class="first"}
+![Recreational compound room that was transformed into dark room by us. Exterior view](/pictures/projects/mystery-covered-with-the-darkness/mystery-covered-with-the-darkness-01.jpg){class="first"}
+
+During [CAMP AS ONE](https://www.facebook.com/campasone/){target="_blank"} – the international self-organised grassroot residency curated by Masha Kotlyachkova – that took place at the recreational compound in Vityazevo in Southern Russia, we made a dark room or "Mystery covered with the darkness".
+
+Its rules were that even we don't know exactly what was happening inside of the room. Below you will find an instruction and some leftovers of shady affairs that were documented after those "dark sessions". And also an anonymous map of the room visits.
+
+<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/711148777&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+
+👀
+
+*Keepers of the dark curtains invite you one by one to the dark room.*
 
 # *👀 Protocol for dark-comers 👀*
 
@@ -13,7 +23,7 @@ template: templates/mystery-covered-with-the-darkness.slim
 
 *👀 don't tell anyone what has happened to you there*
 
-*👀 when you are inside, do not try to find out who is with you in it*
+*👀 when you are inside of the room, do not try to find out who is with you in it*
 
 *👀 you cannot make video or take pictures*
 
@@ -31,7 +41,7 @@ template: templates/mystery-covered-with-the-darkness.slim
 
 # *👀 And here is the protocol for the dark-initiator 👀*
 
-*If you would like to make a dark session, then you write to the keepers of the dark curtains on eeefff.org@gmail.com saying that you invite someone into the dark room at a certain time 👀 The room will function from the 20th to the end of our camp.*
+*If you would like to make a dark session, then you write to the keepers of the dark curtains on eeefff.org@gmail.com or talk privately saying that you invite someone into the dark room at a certain time 👀 The room will function from the 20th to the end of our camp.*
 
 *The props and scenography of the dark session is limited by your imagination and the above rules.*
 
@@ -56,6 +66,8 @@ template: templates/mystery-covered-with-the-darkness.slim
 *They choose a proxy-whisper to whisper.*
 
 *They make sure that no one gets into anything.*
+
+![Anonymous map of room visits](/images/mystery-covered-with-the-darkness/diagram.svg)
 
 # *👀 Conceptual basement 👀*
 
@@ -84,5 +96,5 @@ template: templates/mystery-covered-with-the-darkness.slim
 # *👀 👀 👀 👀 👀 👀 👀 👀*
 
 *With expectation and dreams,*  
-*waiting for your dark messages on eeefff.org@gmail.com*  
-*your keepers of the dark curtains (Nicolay and Dzina)*
+*waiting for your dark messages privately or on eeefff.org@gmail.com*  
+*your keepers of the dark curtains*

@@ -3,7 +3,17 @@ title: "👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
 template: templates/mystery-covered-with-the-darkness.slim
 ---
 
-![Хранители темных штор приглашают вас по одному в темную комнату!](/pictures/projects/mystery-covered-with-the-darkness/mystery-covered-with-the-darkness-01.jpg){class="first"}
+![Номер пансионата, который был переделан нами в тёмную комнату. Вид снаружи](/pictures/projects/mystery-covered-with-the-darkness/mystery-covered-with-the-darkness-01.jpg){class="first"}
+
+В международной самоорганизованной резиденция [КАК ОДИН. БАЗА](https://www.facebook.com/campasone/){target="_blank"} – курируемой Машей Котлячковой и проходящей в пансионате Витязево в Краснодарском крае – мы сделали тёмную комнату или «Тайну, прикрытую мраком».
+
+Её правила были таковы, что даже мы не знаем, что там в точности происходило. Ниже вы найдете инструкцию и некоторые остатки тёмных дел, которые были запечатлены после "тёмно-сеансов". А также анонимную схему посещения комнаты.
+
+<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/711148777&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+
+👀
+
+*Хранители темных штор приглашают вас по одному в темную комнату.*
 
 # 👀 Протокол для темно-приходилы 👀
 
@@ -13,7 +23,7 @@ template: templates/mystery-covered-with-the-darkness.slim
 
 *👀 никому не рассказывайте, что с вами там происходило*
 
-*👀 когда вы внутри, не пытайтесь выяснить, кто с вами в ней находится*
+*👀 когда вы внутри комнаты, не пытайтесь выяснить, кто с вами в ней находится*
 
 *👀 фотографировать или снимать видео нельзя*
 
@@ -32,7 +42,7 @@ template: templates/mystery-covered-with-the-darkness.slim
 # 👀 А вот протокол для темно-заводилы 👀
 
 
-*Если вам захотелось провести темно-сеанс, то вы пишете хранителям темных штор на почту eeefff.org@gmail.com о том, что во столько-то приглашаете того-то в темную комнату*
+*Если вам захотелось провести темно-сеанс, то вы пишете хранителям темных штор на почту eeefff.org@gmail.com или сообщите лично о том, что во столько-то приглашаете того-то в темную комнату*
 
 *👀 Комната будет функционировать, начиная с 20го и до конца нашего лагеря.*
 
@@ -60,6 +70,8 @@ template: templates/mystery-covered-with-the-darkness.slim
 
 *Следят, чтобы никто ни во что не вляпался.*
 
+![Анонимная схема посещения комнаты](/images/mystery-covered-with-the-darkness/diagram.svg)
+
 # 👀 Концептуальный подвал 👀
 
 *аффективный даркрум*
@@ -85,5 +97,5 @@ template: templates/mystery-covered-with-the-darkness.slim
 # 👀 👀 👀 👀 👀 👀 👀 👀
 
 *С ожиданием и мечтами,*  
-*ждём ваших тёмных сообщений на eeefff.org@gmail.com*  
-*ваши хранители темных штор (Коля и Дина)*
+*ждём ваших тёмных сообщений лично или на eeefff.org@gmail.com*  
+*ваши хранители темных штор*
