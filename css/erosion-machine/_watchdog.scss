@@ -1,0 +1,67 @@
+//
+//
+// assemblage watchdog-assemblage
+//
+//
+
+@mixin watchdog-text {
+  // border: 2px solid #000000;
+  // font-family: Desdemona;
+  // font-size: 80px;
+  // color: #FFFFFF;
+  // text-align: left;
+  // text-shadow: 0 0 12px #00FFAD;  
+}
+
+//
+//
+// video watchdog-video
+//
+//
+.erosion.watchdog-video {
+  box-shadow: 0 2px 60px 0 #FF00DA;
+}
+
+
+
+//
+//
+// text watchdog-text-01
+// Watchdog position
+//
+//
+.erosion.watchdog-text-01 {
+  font-family: Desdemona;
+  font-size: 10vh;
+  width: 100vw;
+  color: #7ED321;
+  text-shadow: 0 0px 5px black;
+
+  @include medium {
+    font-size: 30vh;
+  }
+}
+
+
+
+//
+//
+// text watchdog-text-02
+// allows algorithms to make sure that you are neither a script nor a bot, but a human
+//
+//
+.erosion.watchdog-text-02 {
+  @include watchdog-text;
+
+  font-family: BlackoakStd;
+  font-size: 3vh;
+  width: 100vw;
+  color: black;
+  text-shadow: 0 0px 5px #7ED321;
+
+  @include medium {
+    font-size: 5vh;
+    width: 50vw;
+  }
+}
+

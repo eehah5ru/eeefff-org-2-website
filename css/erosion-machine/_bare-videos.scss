@@ -1,0 +1,20 @@
+//
+//
+// styles for bare videos (without assemblages)
+// remove styles from here if video becomes an assemblage!
+//
+//
+
+//
+// correct styles for vertical videos
+//
+.sleep-vertical-video,
+.stop-word-vertical-video,
+.user-experience-vertical-video,
+.user-experience-video,
+.panic-attack-new-01-video,
+.panic-attack-new-02-video,
+.panic-attack-new-04-video,
+.panic-attack-new-05-video {
+  @extend .erosion-vertical-video;
+}

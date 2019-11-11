@@ -9,11 +9,17 @@ $endif$
 
 <title>EEEFFF.ORG - $title$</title>
 
+$if(customHead)$
+$includeFile(customHead)$
+$endif$
+
 <link href="/css/app.css?$revision$" rel="stylesheet" type="text/css"  />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.1.1/motion-ui.min.css" />
 
 <script type="text/javascript" src="/js/vendor/jquery.js"></script>
 <script type="text/javascript" src="/js/vendor/jquery.mobile.custom.min.js"></script>
+<script type="text/javascript" src="/js/vendor/jquery.visible.min.js"></script>
+<script type="text/javascript" src="/js/vendor/jquery-deepest.js"></script>
 <script type="text/javascript" src="/js/vendor/modernizr.js"></script>
 <script type="text/javascript" src="/js/vendor/mobile-detect.min.js"></script>
 <script type="text/javascript" src="/js/vendor/mobile-detect-modernizr.js"></script>
@@ -24,4 +30,4 @@ $endif$
 <script type="text/javascript" src="/js/vendor/lodash.min.js"></script>
 <script type="text/javascript" src="/js/vendor/d3-queue.js"></script>
 <script type="text/javascript" src="/js/app.js?$revision$"></script>
-<!-- <script type="text/javascript" src="/js/compiled/out/main.js?$revision$"></script> -->
+<script type="text/javascript" src="/js/compiled/out/main.js?$revision$"></script>

@@ -1,0 +1,95 @@
+//
+//
+// outsourcing paradise erosion machine styles
+//
+// version progress bar: xx
+//
+@import "erosion-machine/_mixins.scss";
+
+//
+// fonts
+//
+@include font-face(Desdemona, HOST_NAME/data/outsourcing-paradise-parasite/fonts/Desdemona);
+@include font-face(BlackoakStd, HOST_NAME/data/outsourcing-paradise-parasite/fonts/BlackoakStd);
+@include font-face(BodoniOrnaments, HOST_NAME/data/outsourcing-paradise-parasite/fonts/BodoniOrnamentsITCTT);
+
+//
+// disable all video subtitles inside of video frame
+//
+video::cue {
+  background: none;
+  visibility: hidden;
+}
+
+video::cue-region {
+  background: none;
+  visibility: hidden;
+}
+
+//
+// timeline container overrides
+//
+.erosion-machine-container {
+  z-index: 16777281 !important;
+}
+
+//
+// SUBTITLES
+//
+.subtitle-box {
+  z-index: 16777281;
+
+  font-size: 8vh;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: gold;
+  text-shadow: darkblue 1px 0 10px;
+
+  @include medium {
+    font-size: 10vh;
+  }
+}
+
+
+//
+//
+// DEFAULTS
+//
+//
+
+.erosion {
+  &-vertical-video {
+    width: 160px !important;
+    height: auto;
+
+    @include medium {
+      width: 280px !important;
+    }
+  }
+
+  &.erosion-video {
+    width: 640px;
+    height: auto;
+  }
+
+  &.erosion-text {
+    width: 70vw;
+    height: auto;
+  }
+}
+
+//
+//
+// components
+//
+//
+
+@import "erosion-machine/_watchdog.scss";
+@import "erosion-machine/_kot-odin.scss";
+@import "erosion-machine/_outsourcing-orgy.scss";
+@import "erosion-machine/_water-in-office.scss";
+@import "erosion-machine/_pause.scss";
+@import "erosion-machine/_bare-videos.scss";

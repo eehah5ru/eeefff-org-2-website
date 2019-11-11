@@ -61,14 +61,22 @@ set :deploy_to, "/var/www/eeefff-org-production"
 #     # password: "please use keys"
 #   }
 server "deploy.do.myfutures.trade",
-       user: "deploy",
-       roles: %w{web app},
-       ssh_options: {
-         config: true,
-         # verbose: :debug,
-         # user: "user_name", # overrides user setting above
-         keys: %w(~/.ssh/id_rsa),
-         forward_agent: true,
-         auth_methods: %w(publickey password)
-         # password: "please use keys"
-       }
+  user: "deploy",
+  roles: %w{web app},
+  ssh_options: {
+    config: true,
+    # verbose: :debug,
+    # user: "user_name", # overrides user setting above
+    keys: %w(~/.ssh/id_rsa),
+    forward_agent: true,
+    auth_methods: %w(publickey password)
+    # password: "please use keys"
+  }
+
+#
+#
+# OUTSOURCING_PARADISE
+#
+#
+set :outsourcing_paradise_host_name, "https://eeefff.org"
+set :outsourcing_paradise_erosion_delay, 30

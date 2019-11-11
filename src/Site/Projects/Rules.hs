@@ -11,7 +11,7 @@ import Site.Projects.Context
 import qualified W7W.Cache as Cache
 
 projectsDeps :: Pattern
-projectsDeps = ("ru/**/_*.slim" .||. "en/**/_*.slim" .||. "ru/**/_*.md" .||. "en/**/_*.md")
+projectsDeps = ("ru/**/_*.slim" .||. "en/**/_*.slim" .||. "ru/**/_*.md" .||. "en/**/_*.md" .||. "ru/**/_*.html" .||. "en/**/_*.html" .||. "ru/**/_*.raw" .||. "en/**/_*.raw")
 
 
 projectsRules caches = do

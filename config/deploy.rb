@@ -64,6 +64,103 @@ namespace :hakyll do
   after 'deploy:started', 'hakyll:build'
 end
 
+#
+#
+# OUTSOURCING PARADISE tasks
+#
+#
+namespace :outsourcing_paradise do
+  #
+  # timeline tasks
+  #
+
+  #
+  # upload json and css only
+  #
+  task :force_upload_timeline do
+    on roles(:all) do
+      #
+      # JSON
+      #
+      upload_json! current_path
+
+      #
+      # CSS
+      #
+      upload_css! current_path
+    end
+  end
+
+
+  task :setup_timeline do
+    on roles(:all) do
+      execute :mkdir, "-p",  "#{release_path}/data/outsourcing-paradise-parasite"
+
+
+      # JSON
+      upload_json! release_path
+
+      # CSS
+      upload_css! release_path
+
+      puts "OUTSOURCING PARADISE: HOST is #{fetch(:outsourcing_paradise_host_name)}"
+    end
+  end
+
+  after "deploy:updated", "outsourcing_paradise:setup_timeline"
+
+  #
+  # assets tasks
+  #
+
+  # upload images
+  task :force_upload_images do
+    on roles(:all) do
+      force_upload_dir! "images", current_path
+    end
+  end
+
+
+  task :force_upload_fonts do
+    on roles(:all) do
+      force_upload_dir! "fonts", current_path
+    end
+  end
+
+  task :force_upload_videos do
+    on roles(:all) do
+      force_upload_dir! "videos", current_path
+    end
+  end
+
+  #
+  #
+  # utils
+  #
+  #
+
+  #
+  # force upload dir
+  #
+  def force_upload_dir! dir_name, base_path
+    upload! "data/outsourcing-paradise-parasite/#{dir_name}", "#{base_path}/data/outsourcing-paradise-parasite", recursive: true
+  end
+
+  #
+  # upload json to the server
+  #
+  def upload_json! base_path
+    json = File.read("data/outsourcing-paradise-parasite/erosion-machine-timeline.json").gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name)).gsub(/"EROSION_DELAY"/, fetch(:outsourcing_paradise_erosion_delay).to_s)
+
+    upload! StringIO.new(json), "#{base_path}/data/outsourcing-paradise-parasite/erosion-machine-timeline.json"
+  end
+
+  def upload_css! base_path
+    css = File.read("_site/css/erosion-machine-timeline.css").gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name))
+    upload! StringIO.new(css), "#{base_path}/css/erosion-machine-timeline.css"
+  end
+end
+
 # Override default tasks which are not relevant to a non-rails app.
 namespace :deploy do
   task :migrate do

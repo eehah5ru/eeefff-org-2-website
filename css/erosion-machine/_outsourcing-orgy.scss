@@ -1,0 +1,32 @@
+//
+//
+// assemblage outsourcing-orgy-assemblage
+//
+//
+
+
+//
+//
+// image outsourcing-orgy-image
+// HOST_NAME/data/outsourcing-paradise-parasite/images/outsourcing-orgy.svg
+//
+//
+.erosion.outsourcing-orgy-image {
+  height: auto;
+  width: 100vw;
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+
+
+//
+//
+// add-class outsourcing-orgy-image-growing
+// outsourcing-orgy-image-growing -> #outsourcing-orgy-image
+//
+//
+#outsourcing-orgy-image.erosion.outsourcing-orgy-image-growing {
+  transform: scaleY(10);
+  transition: all 4s ease-in;
+}

@@ -10,6 +10,7 @@ import W7W.MultiLang
 import W7W.Utils
 import W7W.Context
 
+import W7W.Cache
 
 fieldRootUrl =
   field "root_url" getRootUrl
@@ -36,9 +37,9 @@ fieldHideMenu =
         Just "true" -> return True
         _ -> return False
 
--- mkSiteCtx :: Compiler (Context String)
+mkSiteCtx :: Caches -> Compiler (Context String)
 mkSiteCtx caches = do
-    r <- mkFieldRevision
+    r <- mkFieldRevision caches
     return $ fieldEnUrl
              <> fieldRuUrl
              <> fieldLang
