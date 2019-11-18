@@ -2,37 +2,37 @@
 title: flow
 template: "templates/flow.slim"
 ---
-:::: {.block .big}
+:::: {.mystery-covered-with-the-darkness}
 ::: {.text}
 # Тайнa, прикрытая мраком @ camp as one
-##  [-> Documentation <-](/en/projects/mystery-covered-with-the-darkness.html)
+[аффективный даркрум]{.v1} [темное раскрепощение]{.v2} [гляди в оба, если сможешь]{.v3} [guilty pleasure]{.v1} [чувственная депривация]{.v2} [о чем не спрашивают, о том не говори]{.v3} [иногда молчание в комнате — как гром]{.v1} [один — тайна, два — полтайны, три — нет тайны]{.v2} [не споткнись об остов желаний]{.v3} [заманчиво и опасно]{.v1}
+
+###  [-> more <-](/en/projects/mystery-covered-with-the-darkness.html)
 :::
-![dark room](/pictures/projects/flow/dark-room-01.jpg)
+![dark room](/pictures/projects/flow/dark-room-01.jpg){data-interchange="[/pictures/projects/flow/dark-room-01.jpg, small], [/pictures/projects/flow/dark-room-01-square.jpg, medium]"}
 ::::
 
 :::: {.block .auto-heigh .perplexed-scpecies-manifesto}
-мы – аутсорсеры, когнитивные работницы, фрилансеры,  
+мы – аутсорсеры, когнитивные работницы, фрилансеры,
 те, кто продает свои аффективные часы.  
-мы – пролетарии, привязанные через интимные интерфейсы  
-к машинам, которые производят случайности,  
-от которых зависит наша жизнь.  
+мы – пролетарии, привязанные через интимные интерфейсы
+к машинам, которые производят случайности,
+от которых зависит наша жизнь.
 мы коммунализируем нашу отчужденную распределенную интимность.
 ::::
 
 
-:::: {.block .huge}
+:::: {.dzina-zhuk-norbergfestival}
 ::: {.text}
-# Dzina @ Norgergfestival
+# Dzina Zhuk @ Norgergfestival
 
-## A performance that touches issues of body modifications, interlacing of (extra)science-fiction with affects, emanating from interfaces that are concealing potential jeopardy.
-
-## [MORE INFO ->>](https://norbergfestival.com/artist/dzina-zhuk/){target="_blank"}
+A performance that touches issues of body modifications, interlacing of (extra)science-fiction with affects, emanating from interfaces that are concealing potential jeopardy. [MORE ->>](https://norbergfestival.com/artist/dzina-zhuk/){target="_blank"}
 :::
 
-![Dzina @ Norgergfestival](/pictures/projects/flow/bitchcoin-norber-01.JPG)
+![Dzina Zhuk @ Norgergfestival](/pictures/projects/flow/bitchcoin-norber-01.JPG){data-interchange="[/pictures/projects/flow/bitchcoin-norber-01.JPG, small], [/pictures/projects/flow/bitchcoin-norber-01-square.JPG, medium]"}
 ::::
 
-:::: {.block .big}
+:::: {.obey-ne-robey-at-better-than-dior}
 ::: {.text}
 # Obey Ne Robey @ Better than Dior
 
