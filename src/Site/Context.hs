@@ -38,7 +38,7 @@ fieldHideMenu =
 
 -- mkSiteCtx :: Compiler (Context String)
 mkSiteCtx caches = do
-    r <- mkFieldRevision
+    r <- mkFieldRevision caches
     return $ fieldEnUrl
              <> fieldRuUrl
              <> fieldLang
