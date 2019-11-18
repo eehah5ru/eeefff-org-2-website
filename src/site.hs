@@ -65,6 +65,7 @@ main = do
        fontsRules
        dataRules
        cssAndSassRules "css/**/_*.scss" [ "css/app.scss"]       
+  
        jsRules
 
        --
