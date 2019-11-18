@@ -64,7 +64,7 @@ main = do
        picturesRules (1280, 1280) "pictures/**/*"
        fontsRules
        dataRules
-       cssAndSassRules
+       cssAndSassRules "css/**/_*.scss" [ "css/app.scss"]       
        jsRules
 
        --
