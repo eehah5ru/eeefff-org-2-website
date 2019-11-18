@@ -380,14 +380,20 @@
   //
   //
   var initFlowColors = function(self) {
-    var currentColor = "#000000";
+    // var currentColor = "#000000";
 
-    $("section.flow .block").each(function(i, v) {
-      var hexArray = ['red','black','gold', 'blue', 'violet'];
-      var randomColor = hexArray[Math.floor(Math.random() * hexArray.length)];
+    // $("section.flow .block").each(function(i, v) {
+    //   var hexArray = ['white'
+    //                   ,'red'
+    //                   ,'black'
+    //                   ,'limegreen'
+    //                   ,'blue'
+    //                   ,'silver'
+    //                   ,'white'];
+    //   var randomColor = hexArray[Math.floor(Math.random() * hexArray.length)];
 
-      $(v).css("background-color",randomColor); //A class selector would work too      
-    });
+    //   $(v).css("background-color",randomColor); //A class selector would work too      
+    // });
   };
   
   //

@@ -1,10 +1,20 @@
 @mixin flow-block-figure($width, $height) {
   figure {
     img {
-      width: $width;
-      height: $height;
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(large) {
+        width: $width;
+        height: $height;        
+      }
     }
   }
+}
+
+@mixin text-xx-large {
+  font-size: xx-large;
+  line-height: 1.4;
 }
 
 section.flow {
@@ -23,6 +33,38 @@ section.flow {
     padding-top: 1rem;
     padding-bottom: 1rem;
 
+    &.black {
+      background-color: black;
+    }
+
+    &.red {
+      background-color: limegreen;
+    }
+
+    &.white {
+      background-color: white;
+      color: black;
+    }
+
+    &.blue {
+      background-color: blue;
+    }
+
+    &.silver {
+      background-color: silver;
+      color: black;
+    }
+
+    &.red {
+      background-color: red;
+    }
+
+
+    h1 {
+      @include breakpoint(medium) {
+        font-size: 2rem;        
+      }
+    }    
   }
 
   .normal {
@@ -34,11 +76,11 @@ section.flow {
   }
 
   .big {
-    @include flow-block-figure(60vh, auto);
+    @include flow-block-figure(100%, auto);
   }
 
   .huge {
-    @include flow-block-figure(100vh, auto);
+    @include flow-block-figure(100%, auto);
   }
 
   .auto-heigh {
@@ -48,7 +90,7 @@ section.flow {
   .text {
     @extend .cell;
     @extend .small-12;
-    @extend .large-auto;
+    @extend .medium-6;
 
     @extend .small-order-2;
     @extend .large-order-1;
@@ -66,7 +108,7 @@ section.flow {
   figure {
     @extend .cell;
     @extend .small-12;
-    @extend .large-shrink;
+    @extend .medium-6;
 
 
     @extend .small-order-1;
@@ -92,7 +134,107 @@ section.flow {
   }
 
   .perplexed-scpecies-manifesto {
-    font-size: 8vh;
-    text-align: center;
+    @extend .blue;
+
+    font-family: "AsimovIt";
+    font-size: x-large;
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @include breakpoint(medium) {
+      font-size: xxx-large;
+    }
+    
+    p {
+      line-height: 1;
+    }
+  }
+
+  .dzina-zhuk-norbergfestival {
+    @extend .block;
+    @extend .huge;
+    @extend .silver;
+
+    .text {
+      order: 2;
+    }
+
+    figure {
+      order: 1;
+    }    
+
+    p {
+      font-size: large;
+      line-height: 1.3;
+      
+      @include breakpoint(medium) {
+        @include text-xx-large;        
+      }
+
+      font-family: serif;
+      font-style: italic;
+      font-weight: bold;      
+    }
+
+    a {
+      color: red;
+      font-family: sans-serif;
+      font-style: normal;
+      font-weight: bold;      
+    }
+  }
+  
+  .mystery-covered-with-the-darkness {
+    @extend .block;
+    @extend .big;
+    @extend .black;
+
+    h1 {
+      font-family: serif;
+      font-weight: bold;
+    }
+    
+    p {
+      font-family: arial;
+      font-weight: bold;
+      font-size: x-large;
+      line-height: 1.4;
+    }
+
+    a {  
+      color: lime;
+    }
+
+    .v1 {
+      font-family: "InputMonoBlackItalic";
+      font-size: xx-large;
+    }
+
+    .v2 {
+      font-family: sans-serif;
+    }
+
+    .v3 {
+      font-family: "PhosphateInline";
+    }
+  }
+
+  .obey-ne-robey-at-better-than-dior {
+    @extend .block;
+    @extend .big;
+    @extend .red;
+
+    h1 {
+      font-family: serif;
+      font-weight: bold;
+      font-style: initial;
+      font-size: xxx-large;      
+    }
+
+    p {
+      font-size: xx-large;
+      font-style: italic;
+    }
   }
 }
