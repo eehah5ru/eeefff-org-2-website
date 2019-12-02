@@ -37,7 +37,7 @@ section.flow {
       background-color: black;
     }
 
-    &.red {
+    &.lime {
       background-color: limegreen;
     }
 
@@ -235,6 +235,70 @@ section.flow {
     p {
       font-size: xx-large;
       font-style: italic;
+    }
+  }
+
+  .kiev-holed-futurism {
+    @extend .block;
+    @extend .big;
+    @extend .silver;
+
+    display: flex;
+    width: 100vw;
+    max-width: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    
+    .text {
+      width: 75vw;
+      
+      @include breakpoint(medium) {
+        width: 50vw;        
+      }
+
+
+      order: 1;
+
+      h1 {
+        text-transform: none;
+
+        @include breakpoint(large) {
+          font-size: 3rem;
+        }
+      }
+      
+      a {
+        font-family: "AsimovOu";
+        color: currentColor;
+        text-decoration: underline;
+
+        &.symposium-link {
+          font-family: serif;
+          text-transform: lowercase;
+          font-style: italic;
+          font-weight: bold;
+        }
+      }
+    }
+
+    figure {
+      width: auto;
+      
+      @include breakpoint(medium) {
+        width: 50vw;        
+      }
+
+      &:last-of-type {
+        padding-right: 0.625rem;
+      }
+
+      img {
+        width: 100vw;
+        heigth: auto;
+      }
+
+      order: 2;
     }
   }
 }
