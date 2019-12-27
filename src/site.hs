@@ -64,8 +64,11 @@ main = do
        picturesRules (1280, 1280) "pictures/**/*"
        fontsRules
        dataRules
-       cssAndSassRules "css/**/_*.scss" [ "css/app.scss"
-                                        , "css/erosion-machine-timeline.scss"]
+       cssAndSassRules
+         ("css/_*.scss" .||. "css/**/_*.scss")
+         [ "css/app.scss"
+         , "css/erosion-machine-timeline.scss"]
+
        jsRules
 
        --

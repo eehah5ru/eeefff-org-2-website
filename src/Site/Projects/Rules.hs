@@ -21,6 +21,7 @@ projectsRules caches = do
   withProjectsDeps $ do
     staticPandocPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.md"
     staticSlimPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.slim"
+    staticHtmlPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.html"
 
 withProjectsDeps rules = do
   deps <- makePatternDependency projectsDeps
