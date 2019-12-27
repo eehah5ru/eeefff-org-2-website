@@ -1,0 +1,291 @@
+//
+//
+// configs
+//
+//
+$oppp-base-font-size: 1rem;
+
+//
+//
+// mixins
+//
+//
+@mixin oppp-absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin oppp-rotate-and-skew($degs) {
+  -webkit-transform: rotate($degs) skew($degs, $degs);
+  -moz-transform: rotate($degs) skew($degs, $degs);
+  -ms-transform: rotate($degs) skew($degs, $degs);
+  -o-transform: rotate($degs) skew($degs, $degs);
+  transform: rotate($degs) skew($degs, $degs);
+
+}
+
+@mixin oppp-emoji-image($font-size) {
+  img.emoji {
+    display: inline;
+    width: auto;
+    height: $font-size;
+    vertical-align: middle;
+  }
+}
+
+@mixin oppp-time-header($font-size) {
+  h3.time {
+    font-size: $font-size*0.7;
+  }
+}
+
+@mixin oppp-text {
+  color: black;
+  line-height: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+
+  word-wrap: anywhere;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+
+  @include breakpoint(medium) {
+    word-break: keep-all;
+  }
+
+  @include breakpoint(large) {
+    // word-break: keep-all;
+    // word-wrap: normal;
+  }
+}
+
+@mixin oppp-third-person-text {
+  font-family: "Times New Roman", Times, serif;
+  font-style: oblique;
+}
+
+//
+//
+// parallax
+//
+//
+
+$oppp-perspective: 1px;
+
+.oppp-parallax {
+  perspective: $oppp-perspective;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective-origin-x: 100%;
+}
+
+.oppp-parallax-group {
+  position: relative;
+  height: 100vh;
+  transform-style: preserve-3d;
+}
+.oppp-parallax-layer {
+
+}
+
+@mixin oppp-parallax-layer($distance) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  perspective-origin-x: 100%;
+
+  transform: translateZ($distance) scale(1 + ($distance * -1) / $oppp-perspective);
+
+}
+
+section.outsourcing-paradise-post-pub {
+  font-family: arial;
+  font-size: $oppp-base-font-size;
+
+  @extend .oppp-parallax;
+
+  padding-top: 200vh;
+
+  @include oppp-text;
+  //
+  // title
+  //
+  > header {
+    @include oppp-parallax-layer(0px);
+    background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(255, 0, 0), rgba(255,0,0,0));
+
+    > div {
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    h1 {
+      @include oppp-absolute-center;
+
+      font-size: 150%;
+
+      text-align: center;
+      text-decoration: line-through;
+      text-decoration-color: red;
+      text-transform: uppercase;
+      text-decoration-thickness: 0.4rem;
+
+      word-break: keep-all;
+      word-wrap: normal;
+
+      @include breakpoint(medium) {
+        font-size: 300%;
+        text-decoration-thickness: 0.7rem;
+      }
+
+      @include breakpoint(large) {
+        font-size: 600%;
+        text-decoration-thickness: 1rem;
+      }
+
+
+
+    }
+  }
+
+  article.post-pub-2 {
+
+    p,
+    h3,
+    li {
+      @include oppp-text;
+    }
+
+    height: 100vh;
+
+    h3.time {
+      text-align: right;
+      font-family: "Courier New", Courier, monospace;
+    }
+
+    em,
+    blockquote p {
+      @include oppp-third-person-text;
+    }
+
+    p,
+    ul {
+      border: 0.2rem solid;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      padding-left: 0.3rem;
+      padding-right: 0.3rem;
+
+    }
+
+    ul {
+      list-style: none;
+
+      margin-left: 0;
+
+      li {
+        margin-bottom: 1rem;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    blockquote {
+      border: none;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    &.master-of-paradise {
+      $font-size: 1rem;
+      font-size: $font-size;
+      @include oppp-emoji-image($font-size);
+      @include oppp-time-header($font-size);
+
+      @include oppp-parallax-layer(-12px);
+
+
+      @include breakpoint(medium) {
+        $font-size: 2rem;
+        font-size: $font-size;
+        @include oppp-emoji-image($font-size);
+        @include oppp-time-header($font-size);
+
+        @include oppp-parallax-layer(-10px);
+      }
+
+
+      padding-left: 50%;
+
+      p,
+      ul {
+        border-color: turquoise;
+      }
+
+      section,
+      h3,
+      > p,
+      ul,
+      blockquote {
+        @include oppp-rotate-and-skew(10deg);
+      }
+    }
+
+    &.deformator {
+
+      $font-size: 1.2rem;
+      font-size: $font-size;
+      @include oppp-emoji-image($font-size);
+      @include oppp-time-header($font-size);
+
+      @include oppp-parallax-layer(-10px);
+
+      @include breakpoint(medium) {
+        $font-size: 1.6rem;
+        font-size: $font-size;
+
+        @include oppp-emoji-image($font-size);
+        @include oppp-time-header($font-size);
+
+        @include oppp-parallax-layer(-20px);
+      }
+
+      @include breakpoint(large) {
+        $font-size: 3.22rem;
+        font-size: $font-size;
+
+        @include oppp-emoji-image($font-size);
+        @include oppp-time-header($font-size);
+
+        @include oppp-parallax-layer(-5px);
+      }
+
+
+      padding-right: 50%;
+
+      p,
+      ul {
+        border-color: adjust-hue(turquoise, 180);
+      }
+
+
+      section,
+      h3,
+      > p,
+      ul {
+        @include oppp-rotate-and-skew(-10deg);
+      }
+    }
+  }
+
+}
