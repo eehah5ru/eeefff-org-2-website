@@ -78,19 +78,19 @@ $oppp-perspective: 1px;
 
 .oppp-parallax {
   perspective: $oppp-perspective;
+  -webkit-perspective: $oppp-perspective;
+  -moz-perspective: $oppp-perspective;
+
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  perspective-origin-x: 100%;
+  perspective-origin: 0 0;
 }
 
 .oppp-parallax-group {
   position: relative;
   height: 100vh;
   transform-style: preserve-3d;
-}
-.oppp-parallax-layer {
-
 }
 
 @mixin oppp-parallax-layer($distance) {
@@ -99,7 +99,8 @@ $oppp-perspective: 1px;
   right: 0;
   bottom: 0;
   left: 0;
-  perspective-origin-x: 100%;
+
+  transform-origin: 0 0;
 
   transform: translateZ($distance) scale(1 + ($distance * -1) / $oppp-perspective);
 
