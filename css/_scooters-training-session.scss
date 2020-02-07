@@ -16,6 +16,7 @@ section.scooters-walk {
     // font-weight: bold;
     // font-family: sans-serif;
     font-style: italic;
+    font-family: serif;
 
     width: calc(100vw - (#{$scooters-walk-inactive-sections-count} * #{map-get($scooters-walk-section-colapsed-width, small)}));
 
@@ -143,7 +144,7 @@ section.scooters-walk {
     }
 
 
-    a {
+    a.link {
       text-align: center;
       text-decoration: none;
       line-height: 1;
@@ -153,61 +154,41 @@ section.scooters-walk {
       font-size: 1.2rem;
       margin-right: 1rem;
       margin-bottom: 0.5rem;
-      width: 3rem;
       border-radius: 2rem;
       padding: 0.5rem;
 
+      border: thick dotted maroon;
+
+      svg {
+        pointer-events: none;
+        width: 1.2rem;
+        height: 1.2rem;        
+      }
+      
       @media (min-width: 640px) {
         font-size: 2rem;
         margin-right: 2rem;
         margin-bottom: 1rem;
-        width: 4rem;
         border-radius: 2rem;
         padding: 0.5rem;
-      }
 
-      &.link {
-        color: black;
-        border: thick dotted maroon;
-
-        &.active {
-          color: red;
-
+        svg {        
+          pointer-events: none;
+          width: 2rem;
+          height: 2rem;
         }
-      }
-    }
-
-    &.scheme {
-      a.link {
-
-      }
-    }
-
-    &.info {
-      a.link {
-        color: white;
-        border-color: white;
-
-        &.active {
-          color: blue;
-        }
-      }
-    }
-
-    &.questions {
-      a.link {
-        color: gold;
-        border-color: black;
-
-        &.active {
-          color: red;
-        }
+        
       }
 
-    }
+      svg path,
+      svg polygon {
+        fill: black;
+      }
 
-    &.video {
-      
+      &.active svg path,
+      &.active svg polygon {
+        fill: red;
+      }
     }
   }
 }
