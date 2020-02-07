@@ -1,0 +1,216 @@
+$scooters-walk-inactive-sections-count: 3;
+$scooters-walk-section-colapsed-width: (
+  small: 0.5rem,
+  medium: 4rem
+);
+
+section.scooters-walk {
+  display: flex;
+  flex-direction: row;
+
+  p {
+    color: black;
+    
+    font-size: 2rem;
+    line-height: 2;
+    // font-weight: bold;
+    // font-family: sans-serif;
+    font-style: italic;
+
+    width: calc(100vw - (#{$scooters-walk-inactive-sections-count} * #{map-get($scooters-walk-section-colapsed-width, small)}));
+
+    @media (min-width: 640px) {
+      font-size: 4rem;
+      line-height: 3;
+
+      width: calc(100vw - (#{$scooters-walk-inactive-sections-count} * #{map-get($scooters-walk-section-colapsed-width, medium)}));
+    }
+  }
+
+  article {
+    flex-shrink: 0;
+    flex-basis: map-get($scooters-walk-section-colapsed-width, small);
+    overflow: hidden;
+
+    @media (min-width: 640px) {
+      flex-basis: map-get($scooters-walk-section-colapsed-width, medium);
+    }
+
+    &.active {
+      flex-basis: calc(100vw - (#{$scooters-walk-inactive-sections-count} * #{map-get($scooters-walk-section-colapsed-width, small)}));
+
+    @media (min-width: 640px) {
+        flex-basis: calc(100vw - (#{$scooters-walk-inactive-sections-count} * #{map-get($scooters-walk-section-colapsed-width, medium)}));
+      }
+    }
+
+    &.questions {
+      background-color: cyan;
+    }
+
+    &.info {
+      background-color: magenta;
+
+
+      &.active {
+        background-image: url("/pictures/projects/scooters-training-session/eeefff-scooters-training-session-bkg.jpg");
+        background-attachment: scroll;
+        background-size: contain;
+
+        p {
+          color: lightgoldenrodyellow;          
+        }
+      }
+      
+      p {
+        line-height: normal;
+        font-weight: normal;
+        font-family: sans-serif;
+        font-style: normal;
+
+        margin-bottom: 2rem;
+      }
+
+      em {
+        font-family: serif;
+        font-style: italic;
+      }
+
+      a {
+        font-family: serif;
+        font-style: italic;
+        text-transform: none;
+        text-decoration: underline;
+        color: gold;
+        
+      }
+    }
+
+    &.video {
+      background-color: gold;
+
+      .videoWrapper {
+        display: none;
+      }
+
+      &.active {
+        .videoWrapper {
+          display: block;
+          
+          position: relative;
+          padding-bottom: 56.25%; /* 16:9 */
+          padding-top: 25px;
+          height: 0;
+        }
+
+        .videoWrapper iframe {
+          position: absolute;
+          top: 10vh;
+          left: 0;
+          width: 100%;
+          height: 100%;
+
+        }        
+      }
+    }
+  }
+  
+  .symbol-image {
+    display: inline-block;
+    width: auto;
+    height: 5rem;
+    vertical-align: middle;
+
+    @media (min-width: 640px) {
+      height: 10rem;
+    }
+  }
+  
+  nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: auto;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+
+    @media (min-width: 640px) {
+      justify-content: flex-end;
+    }
+
+
+    a {
+      text-align: center;
+      text-decoration: none;
+      line-height: 1;
+      font-weight: bold;
+
+
+      font-size: 1.2rem;
+      margin-right: 1rem;
+      margin-bottom: 0.5rem;
+      width: 3rem;
+      border-radius: 2rem;
+      padding: 0.5rem;
+
+      @media (min-width: 640px) {
+        font-size: 2rem;
+        margin-right: 2rem;
+        margin-bottom: 1rem;
+        width: 4rem;
+        border-radius: 2rem;
+        padding: 0.5rem;
+      }
+
+      &.link {
+        color: black;
+        border: thick dotted maroon;
+
+        &.active {
+          color: red;
+
+        }
+      }
+    }
+
+    &.scheme {
+      a.link {
+
+      }
+    }
+
+    &.info {
+      a.link {
+        color: white;
+        border-color: white;
+
+        &.active {
+          color: blue;
+        }
+      }
+    }
+
+    &.questions {
+      a.link {
+        color: gold;
+        border-color: black;
+
+        &.active {
+          color: red;
+        }
+      }
+
+    }
+
+    &.video {
+      
+    }
+  }
+}
+
+
+

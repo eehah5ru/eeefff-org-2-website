@@ -376,6 +376,35 @@
 
   //
   //
+  // SCOOTERS WALK
+  //
+  // 
+
+  var initScootersWalk = function(self) {
+    $("section.scooters-walk nav a.link").click(function(e) {
+      $("section.scooters-walk article.active").removeClass("active");
+      $("section.scooters-walk article." + e.target.dataset.target).addClass("active");
+
+      $("section.scooters-walk nav a.active").removeClass("active");
+      $(e.target).addClass("active");
+
+      $("section.scooters-walk nav").removeClass();
+      $("section.scooters-walk nav").addClass(e.target.dataset.target);
+      
+      $(window).scrollTop(0);
+
+      return false;
+    });    
+  };
+  
+  //
+  //
+  // END OF SCOOTERS WALK
+  //
+  // 
+  
+  //
+  //
   // FLOW
   //
   //
@@ -405,7 +434,7 @@
     $(document).foundation();
     initTrafficLoop();
     initFlowColors();
-
+    initScootersWalk();
     //
     // dynamic light
     //
