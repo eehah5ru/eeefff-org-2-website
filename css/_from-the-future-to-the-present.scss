@@ -1,0 +1,63 @@
+@mixin from-the-future-to-the-present-block {
+  margin-left: 1rem;
+  margin-right: 1rem;
+
+  @include breakpoint(medium) {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+}
+
+header.from-the-future-to-the-present {
+  @include from-the-future-to-the-present-block;
+
+  h1 {
+    font-family: serif;
+    font-style: italic;
+    font-size: 6vh;
+    font-weight: bold;
+
+    color: blue;
+
+    @include breakpoint(medium) {
+      font-size: 7vh;
+    }
+  }
+
+}
+
+article.from-the-future-to-the-present {
+  @include from-the-future-to-the-present-block;
+
+  h2 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: serif;
+    font-weight: bold;
+    font-style: italic;
+
+    color: blue;
+  }
+
+  li {
+    list-style: disclosure-open
+  }
+
+  em {
+    font-family: serif;
+    font-weight: bold;
+    font-size: large;
+  }
+
+  figure {
+    margin-bottom: 1rem;
+  }
+
+  figcaption {
+    font-family: serif;
+    font-style: italic;
+  }
+
+}

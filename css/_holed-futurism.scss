@@ -1,0 +1,69 @@
+section.holed-futurism {
+  @extend .grid-y;
+  min-height: 100%;
+  max-width: 100%;
+
+  z-index: 0;
+
+  background-color: gold;
+
+  header,
+  article,
+  iframe,
+  figure {
+    @extend .cell;
+    @extend .small-12;
+    @extend .medium-8;
+
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+    @include breakpoint(medium) {
+      margin-left: 20%;
+      margin-right: 20%;
+    }
+  }
+
+  header {
+    h1 {
+      font-family: serif;
+      font-style: italic;
+      font-size: 10vh;
+
+      color: red;
+
+      text-decoration: underline;
+
+      @include breakpoint(medium) {
+        font-size: 16vh;
+      }
+    }
+  }
+
+  figure {
+    margin-bottom: 1rem;
+
+    figcaption {
+      font-family: serif;
+      font-size: large;
+      font-style: italic;
+
+      padding-left: 0.2rem;
+    }
+  }
+
+  iframe {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    border: none;
+    box-shadow: 0px 0px 10px 0px black;
+
+    height: 100vh;
+
+    // @include breakpoint(small only) {
+    //   margin-left: 0;
+    //   margin-right: 0;
+    // }
+  }
+}
