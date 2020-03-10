@@ -7,11 +7,11 @@ executable site
   main-is:          site.hs
   HS-Source-Dirs:   src
   build-depends:    base == 4.*
-                  , hakyll == 4.12.*
+                  , hakyll == 4.13.*
                   , hakyll-sass == 0.2.*
                   , data-default
                   -- , hsass  == 0.4.2
-                  , hsass  == 0.7.0
+                  , hsass  == 0.8.0
                   , aeson
                   , bytestring
                   , string-conversions

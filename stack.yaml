@@ -3,6 +3,7 @@
 # Specifies the GHC version and set of packages available (e.g., lts-3.5, nightly-2015-09-21, ghc-7.10.2)
 # resolver: lts-9.11
 resolver: lts-12.24
+resolver: lts-13.29
 
 # Local packages, usually specified by relative directory name
 packages:
@@ -10,6 +11,11 @@ packages:
 
 # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
 extra-deps:
+  # temporary fix while waiting for new version of hakyll in stack
+  - hakyll-4.13.0.1
+  - lrucache-1.2.0.1
+  #
+  # sass stuff
   - hlibsass-0.1.8.0
   - hakyll-sass-0.2.4
   # - pandoc-2.1.1
