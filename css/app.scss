@@ -4,6 +4,7 @@
 @import "foundation";
 // @import "motion-ui";
 
+
 // custom foundation;
 // Dependencies
 // @import '../_vendor/normalize-scss/normalize';
@@ -19,8 +20,19 @@
 @import 'global';
 @import 'typography/typography';
 // Components
+
+//
+// grids
+//
 @import 'grid/grid';
+
+
+// USE XY GRID
 @import 'xy-grid/xy-grid';
+
+@include foundation-flex-classes;
+// и@include foundation-flex-grid;
+
 @import 'typography/typography';
 // @import 'forms/forms';
 @import 'components/visibility';
@@ -78,6 +90,12 @@
 @include foundation-orbit;
 @include foundation-responsive-embed;
 
+
+//
+//
+// SETUP XY GRID
+//
+//
 @include foundation-xy-grid-classes(
   $base-grid: true,
   $margin-grid: true,
@@ -163,7 +181,7 @@
 @import "automated-recreation-zone";
 
 @import "kapital-perplexed-species-manifesto";
-
+     
 @import "flow";
 
 @import "subtitles-test";
@@ -243,6 +261,15 @@
 }
 
 @font-face {
+  font-family: "AsimovIt";
+  src: url("../fonts/AsimovIt.otf");
+  /* src: local("☺"), */
+  /*   url("type/filename.woff") format("woff"), */
+  /*   url("type/filename.otf") format("opentype"), */
+  /*   url("type/filename.svg#filename") format("svg"); */
+}
+
+@font-face {
   font-family: "AsimovOu";
   src: url("../fonts/AsimovOu.otf");
   /* src: local("☺"), */
@@ -259,6 +286,34 @@
   /*   url("type/filename.otf") format("opentype"), */
   /*   url("type/filename.svg#filename") format("svg"); */
 }
+
+@font-face {
+  font-family: "InputMonoBlack";
+  src: url("../fonts/InputMono-Black.ttf");
+  /* src: local("☺"), */
+  /*   url("type/filename.woff") format("woff"), */
+  /*   url("type/filename.otf") format("opentype"), */
+  /*   url("type/filename.svg#filename") format("svg"); */
+}
+
+@font-face {
+  font-family: "InputMonoBlackItalic";
+  src: url("../fonts/InputMono-BlackItalic.ttf");
+  /* src: local("☺"), */
+  /*   url("type/filename.woff") format("woff"), */
+  /*   url("type/filename.otf") format("opentype"), */
+  /*   url("type/filename.svg#filename") format("svg"); */
+}
+
+@font-face {
+  font-family: "PhosphateInline";
+  src: url("../fonts/Phosphate-Inline.eot");
+  /* src: local("☺"), */
+  /*   url("type/filename.woff") format("woff"), */
+  /*   url("type/filename.otf") format("opentype"), */
+  /*   url("type/filename.svg#filename") format("svg"); */
+}
+
 
 
 

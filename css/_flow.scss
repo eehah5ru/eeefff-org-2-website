@@ -1,68 +1,129 @@
+@mixin flow-block-figure($width, $height) {
+  figure {
+    img {
+      width: 100%;
+      height: auto;
+
+      @include breakpoint(large) {
+        width: $width;
+        height: $height;        
+      }
+    }
+  }
+}
+
+@mixin text-xx-large {
+  font-size: xx-large;
+  line-height: 1.4;
+}
+
 section.flow {
+  @extend .grid-container;
+  @extend .fluid;
+  @text-align: center;
+
   .block {
-    width: 100%;
 
     color: white;
 
-    @extend .row;
+    // USE XY GRID
+    @extend .grid-x;
+    @extend .grid-margin-x;
 
-    min-width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 
+    &.black {
+      background-color: black;
+    }
+
+    &.lime {
+      background-color: limegreen;
+    }
+
+    &.white {
+      background-color: white;
+      color: black;
+    }
+
+    &.blue {
+      background-color: blue;
+    }
+
+    &.silver {
+      background-color: silver;
+      color: black;
+    }
+
+    &.red {
+      background-color: red;
+    }
+
+
+    h1 {
+      @include breakpoint(medium) {
+        font-size: 2rem;        
+      }
+    }    
   }
 
   .normal {
-    height: 30vh;
-    min-height: 30vh;
-
     img {
+      width: auto;
+      height: 30vh;
       max-height: 30vh;
     }
   }
 
   .big {
-    height: 60vh;
-    min-height: 60vh;
-
-    img {
-      max-height: 60vh;
-    }
+    @include flow-block-figure(100%, auto);
   }
 
   .huge {
-    height: 100vh;
-    min-height: 100vh;
-
-    img {
-      max-height: 100vh;
-    }
+    @include flow-block-figure(100%, auto);
   }
 
-  .auto {
+  .auto-heigh {
     height: auto;
   }
 
   .text {
-    @extend .small-6;
-    @extend .columns;
+    @extend .cell;
+    @extend .small-12;
+    @extend .medium-6;
+
+    @extend .small-order-2;
+    @extend .large-order-1;
+
+
   }
 
 
   p {
-    @extend .small-6;
-    @extend .columns;
-
     &:last-of-type {
       margin-bottom: 0;
     }
   }
 
   figure {
-    @extend .small-6;
-    @extend .columns;
+    @extend .cell;
+    @extend .small-12;
+    @extend .medium-6;
+
+
+    @extend .small-order-1;
+    @extend .large-order-2;
+
+    figcaption {
+      display: none;
+    }
   }
 }
 
 
+//
+// custom styles per block
+//
 section.flow {
   .whph-side-affects {
     font-family: "AsimovOu";
@@ -70,5 +131,174 @@ section.flow {
     text-align: center;
     padding-left: 10%;
     padding-right: 10%;
+  }
+
+  .perplexed-scpecies-manifesto {
+    @extend .blue;
+
+    font-family: "AsimovIt";
+    font-size: x-large;
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @include breakpoint(medium) {
+      font-size: xxx-large;
+    }
+    
+    p {
+      line-height: 1;
+    }
+  }
+
+  .dzina-zhuk-norbergfestival {
+    @extend .block;
+    @extend .huge;
+    @extend .silver;
+
+    .text {
+      order: 2;
+    }
+
+    figure {
+      order: 1;
+    }    
+
+    p {
+      font-size: large;
+      line-height: 1.3;
+      
+      @include breakpoint(medium) {
+        @include text-xx-large;        
+      }
+
+      font-family: serif;
+      font-style: italic;
+      font-weight: bold;      
+    }
+
+    a {
+      color: red;
+      font-family: sans-serif;
+      font-style: normal;
+      font-weight: bold;      
+    }
+  }
+  
+  .mystery-covered-with-the-darkness {
+    @extend .block;
+    @extend .big;
+    @extend .black;
+
+    h1 {
+      font-family: serif;
+      font-weight: bold;
+    }
+    
+    p {
+      font-family: arial;
+      font-weight: bold;
+      font-size: x-large;
+      line-height: 1.4;
+    }
+
+    a {  
+      color: lime;
+    }
+
+    .v1 {
+      font-family: "InputMonoBlackItalic";
+      font-size: xx-large;
+    }
+
+    .v2 {
+      font-family: sans-serif;
+    }
+
+    .v3 {
+      font-family: "PhosphateInline";
+    }
+  }
+
+  .obey-ne-robey-at-better-than-dior {
+    @extend .block;
+    @extend .big;
+    @extend .red;
+
+    h1 {
+      font-family: serif;
+      font-weight: bold;
+      font-style: initial;
+      font-size: xxx-large;      
+    }
+
+    p {
+      font-size: xx-large;
+      font-style: italic;
+    }
+  }
+
+  .kiev-holed-futurism {
+    @extend .block;
+    @extend .big;
+    @extend .silver;
+
+    display: flex;
+    width: 100vw;
+    max-width: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    
+    .text {
+      width: 75vw;
+      
+      @include breakpoint(medium) {
+        width: 50vw;        
+      }
+
+
+      order: 1;
+
+      h1 {
+        text-transform: none;
+
+        @include breakpoint(large) {
+          font-size: 3rem;
+        }
+      }
+      
+      a {
+        font-family: "AsimovOu";
+        color: currentColor;
+        text-decoration: underline;
+
+        &.symposium-link {
+          font-family: serif;
+          text-transform: lowercase;
+          font-style: italic;
+          font-weight: bold;
+        }
+      }
+    }
+
+    figure {
+      width: auto;
+      
+      @include breakpoint(medium) {
+        width: 50vw;        
+      }
+
+      &:last-of-type {
+        padding-right: 0.625rem;
+      }
+
+      img {
+        width: 100vw;
+        heigth: auto;
+      }
+
+      order: 2;
+    }
   }
 }
