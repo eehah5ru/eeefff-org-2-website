@@ -27,6 +27,8 @@ import Site.Projects.Rules
 
 import Site.Documenta
 
+import Site.Flow.Rules
+
 import Site.Projects.Context -- for platform perplex
 --------------------------------------------------------------------------------
 
@@ -45,6 +47,13 @@ config = W7WConfig.config { previewPort = 8111
                           , ignoreFile = ignoredFiles}
 
 
+blah :: IO ()
+blah = do
+  putStrLn "aaa"
+  s <- getLine
+  putStrLn . show $ s
+
+
 main :: IO ()
 main = do
   caches <- Cache.newCaches
@@ -61,7 +70,7 @@ main = do
        -- assets
        --
        imagesRules
-       picturesRules (1280, 1280) "pictures/**/*"
+       resizePicturesRules (1280, 1280) "pictures/**/*"
        fontsRules
        dataRules
 
@@ -95,6 +104,11 @@ main = do
        --
        staticPagesRules caches
 
+       --
+       -- flow pages
+       --
+       flowBlockRules caches
+       flowIndexRules caches
 
 --------------------------------------------------------------------------------
 
@@ -112,48 +126,3 @@ platformPerplexRules caches = do
         >>= applyAsTemplate c
         >>= loadAndApplyTemplate "templates/default.html" c
         >>= relativizeUrls
-
-
--- projectsRules =
---   do match "projects/*.md" $
---        do route $ setExtension "html"
---           compile $ pandocCompiler
---             >>= loadAndApplyTemplate "templates/project.html" projectCtx
---             >>= loadAndApplyTemplate "templates/default.html" projectCtx
---             >>= relativizeUrls
-
---      match "projects/*.slim" $
---            do route $ setExtension "html"
---               compile $ slimCompiler
---                 >>= loadAndApplyTemplate "templates/project.html" projectCtx
---                 >>= loadAndApplyTemplate "templates/default.html" projectCtx
-                -- >>= relativizeUrls
-
--- compilers
-
--- coffee :: Compiler (Item String)
--- coffee = getResourceString >>= withItemBody processCoffee
---   where
---     processCoffee = unixFilter "coffee" ["-c", "-s"] >=>
---                     unixFilter "yuicompressor" ["--type", "js"]
-
---
---
--- contexts
---
---
-
--- projectCtx = defaultContext
-
--- indexCtx = projectsListCtx `mappend` defaultContext
-
--- projectsInfo = [ ("Paranoiapp", "https://paranoiapp.net")
---                ,("OBJ", "http://ooooobj.org")
---                ,("Cat-scout", "/projects/cat-scout.html")
---                ,("Psychodata", "/projects/psychodata.html")]
-
-
--- projectsListCtx = listField "projects"
---                             ((field "project-name" (return . fst . itemBody))
---                              <> (field "project-link" (return . snd . itemBody)))
---                             (sequence . map makeItem $ projectsInfo)
