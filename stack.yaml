@@ -2,8 +2,20 @@
 
 # Specifies the GHC version and set of packages available (e.g., lts-3.5, nightly-2015-09-21, ghc-7.10.2)
 # resolver: lts-9.11
-resolver: lts-12.24
+# resolver: lts-12.24
 resolver: lts-13.29
+
+# nix:
+#   enable: true
+#   # shell-file: shell.nix
+#   pure: true
+#   packages:
+#     - cacert
+#     - pkgs.darwin.apple_sdk.frameworks.CoreServices
+#     - pkgs.darwin.apple_sdk.frameworks.Cocoa
+#     - pkg-config
+#     - zlib
+
 
 # Local packages, usually specified by relative directory name
 packages:
