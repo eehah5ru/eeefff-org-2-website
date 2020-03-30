@@ -1,4 +1,9 @@
-:::: {.dzina-zhuk-norbergfestival}
+---
+title: "Dzina Zhuk @ Norgergfestival"
+color: "silver"
+blockStyle: "text-and-pic text-large medium-text-xx-large"
+---
+
 ::: {.text}
 # Dzina Zhuk @ Norgergfestival
 
@@ -6,4 +11,3 @@ A performance that touches issues of body modifications, interlacing of (extra)s
 :::
 
 ![Dzina Zhuk @ Norgergfestival](/pictures/projects/flow/bitchcoin-norber-01.JPG){data-interchange="[/pictures/projects/flow/bitchcoin-norber-01.JPG, small], [/pictures/projects/flow/bitchcoin-norber-01-square.JPG, medium]"}
-::::
