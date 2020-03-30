@@ -12,6 +12,68 @@
   }
 }
 
+
+@mixin flow-block() {
+  color: white;
+
+
+  // @extend .grid-x;
+  // @extend .grid-margin-x;
+
+  // padding-top: 1rem;
+  // padding-bottom: 1rem;
+
+  &.black {
+    background-color: black;
+
+    a {
+      color: lime;
+    }
+  }
+
+  &.lime {
+    background-color: limegreen;
+  }
+
+  &.white {
+    background-color: white;
+    color: black;
+  }
+
+  &.blue {
+    background-color: blue;
+  }
+
+  &.silver {
+    background-color: silver;
+    color: black;
+
+    a {
+      color: red;      
+    }
+  }
+
+  &.red {
+    background-color: red;
+  }
+  
+  h1 {
+    @include breakpoint(medium) {
+      font-size: 2rem;        
+    }
+  }      
+}
+
+@mixin text-large {
+  font-size: large;
+  line-height: 1.3;  
+}
+
+@mixin text-x-large {
+  font-size: x-large;
+  line-height: 1.4;
+}
+
 @mixin text-xx-large {
   font-size: xx-large;
   line-height: 1.4;
@@ -19,55 +81,39 @@
 
 section.flow {
   @extend .grid-container;
-  @extend .fluid;
+  @extend .full;
   @text-align: center;
 
-  .block {
+  
+}
 
-    color: white;
+section.flow article {
+  @include flow-block;
 
-    // USE XY GRID
-    @extend .grid-x;
-    @extend .grid-margin-x;
+  padding: 1rem;
 
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-
-    &.black {
-      background-color: black;
-    }
-
-    &.lime {
-      background-color: limegreen;
-    }
-
-    &.white {
-      background-color: white;
-      color: black;
-    }
-
-    &.blue {
-      background-color: blue;
-    }
-
-    &.silver {
-      background-color: silver;
-      color: black;
-    }
-
-    &.red {
-      background-color: red;
-    }
-
-
-    h1 {
-      @include breakpoint(medium) {
-        font-size: 2rem;        
-      }
-    }    
+  a {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;      
   }
 
-  .normal {
+  figure {
+    figcaption {
+      display: none;
+    }
+  }
+
+  figure,
+  .text {
+    margin-right: 1rem;
+
+    &:last{
+      margin-right: 0;
+    }
+  }
+  
+  &.normal {
     img {
       width: auto;
       height: 30vh;
@@ -75,47 +121,193 @@ section.flow {
     }
   }
 
-  .big {
+  &.big {
     @include flow-block-figure(100%, auto);
   }
 
-  .huge {
+  &.huge {
     @include flow-block-figure(100%, auto);
   }
 
-  .auto-heigh {
+  &.auto-heigh {
     height: auto;
   }
 
-  .text {
-    @extend .cell;
-    @extend .small-12;
-    @extend .medium-6;
+  &.text-and-pic {
+    @extend .grid-x;
+    flex-wrap: wrap;
 
-    @extend .small-order-2;
-    @extend .large-order-1;
+    @include breakpoint(medium) {
+      flex-wrap: nowrap;      
+    }
+    
+    .text {
+      @extend .cell;
+      @extend .small-12;
+      @extend .medium-6;
+
+      @extend .small-order-2;
+      @extend .large-order-1;
+    }
+
+    figure {
+      @extend .cell;
+      @extend .small-12;
+      @extend .medium-6;
 
 
+      @extend .small-order-1;
+      @extend .large-order-2;
+    }
+
+    &.large-reverse-order {
+      .text {
+        @extend .large-order-2;        
+      }
+
+      figure {
+        @extend .large-order-1;
+      }
+    }
+
+    &.medium-reverse-order {
+      .text {
+        @extend .medium-order-2;        
+      }
+
+      figure {
+        @extend .medium-order-1;
+      }
+    }    
+    
+    &.reverse-order {
+      .text {
+        @extend .small-order-1;
+        @extend .large-order-2;        
+      }
+
+      figure {
+        @extend .small-order-2;
+        @extend .large-order-1;        
+      }
+    }
   }
 
+  //
+  // text with many pics
+  //
+  &.text-with-many-pics {
+    display: flex;
+    width: 100vw;
+    max-width: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+
+    position: relative;
+
+    .text {
+      flex: 0 0 75vw;
+      order: 1;
+
+      @include breakpoint(medium) {
+        flex: 0 0 50vw;
+      }
+    }
+
+    figure {
+      order: 2;
+      
+      flex: 0 0 auto;
+
+      @include breakpoint(medium) {
+        flex: 0 0 50vw;
+      }
+
+      &:last-of-type {
+        padding-right: 0.625rem;
+      }
+
+      img {
+        width: 100vw;
+        heigth: auto;
+      }
+    }
+
+    &:after {
+      content: "🡽🡺🡾";
+      position: absolute;
+      right: 0;
+      opacity: 0.5;
+      color: white;
+      text-shadow: 5px 5px 10px red, -5px -5px 10px red;      
+
+      top: 50%;
+      transform: translateY(-50%);
+
+      font-size: xx-large;
+      width: 2rem;
+      line-height: 1;
+      word-wrap: anywhere;
+
+      margin-right: 0.5rem;        
+
+      @include breakpoint(medium) {
+        margin-right: 1rem;        
+      }
+    }
+    
+  }
+
+
+  
+  &.text-large {
+    @include text-large;
+  }
+
+  &.medium-text-large {
+    @include breakpoint(medium) {
+      @include text-large;
+    }
+  }
+
+  &.text-x-large {
+    @include text-x-large;
+  }
+
+  &.text-xx-large {
+    @include text-xx-large;            
+  }
+
+  &.medium-text-xx-large {
+    @include breakpoint(medium) {
+      @include text-xx-large;            
+    }
+  }
+
+  &.font-serif {
+    font-family: serif;
+  }
+
+  &.font-bold {
+    font-weight: bold;
+  }
+
+  &.font-italic {
+    font-style: italic;
+  }
+
+  &.figure-width-100 {
+    figure {
+      @include breakpoint(medium) {
+        flex: 0 0 100vw;
+      }              
+    }
+  }
 
   p {
     &:last-of-type {
       margin-bottom: 0;
-    }
-  }
-
-  figure {
-    @extend .cell;
-    @extend .small-12;
-    @extend .medium-6;
-
-
-    @extend .small-order-1;
-    @extend .large-order-2;
-
-    figcaption {
-      display: none;
     }
   }
 }
@@ -124,8 +316,8 @@ section.flow {
 //
 // custom styles per block
 //
-section.flow {
-  .whph-side-affects {
+section.flow article {
+  &.whph-side-affects {
     font-family: "AsimovOu";
     font-size: 8vh;
     text-align: center;
@@ -133,8 +325,7 @@ section.flow {
     padding-right: 10%;
   }
 
-  .perplexed-scpecies-manifesto {
-    @extend .blue;
+  &.perplexed-scpecies-manifesto {
 
     font-family: "AsimovIt";
     font-size: x-large;
@@ -151,45 +342,16 @@ section.flow {
     }
   }
 
-  .dzina-zhuk-norbergfestival {
-    @extend .block;
-    @extend .huge;
-    @extend .silver;
-
-    .text {
-      order: 2;
-    }
-
-    figure {
-      order: 1;
-    }    
-
+  &.dzina-zhuk-norbergfestival {
     p {
-      font-size: large;
-      line-height: 1.3;
-      
-      @include breakpoint(medium) {
-        @include text-xx-large;        
-      }
-
       font-family: serif;
       font-style: italic;
       font-weight: bold;      
     }
 
-    a {
-      color: red;
-      font-family: sans-serif;
-      font-style: normal;
-      font-weight: bold;      
-    }
   }
   
-  .mystery-covered-with-the-darkness {
-    @extend .block;
-    @extend .big;
-    @extend .black;
-
+  &.mystery-covered-with-the-darkness {
     h1 {
       font-family: serif;
       font-weight: bold;
@@ -198,12 +360,6 @@ section.flow {
     p {
       font-family: arial;
       font-weight: bold;
-      font-size: x-large;
-      line-height: 1.4;
-    }
-
-    a {  
-      color: lime;
     }
 
     .v1 {
@@ -220,11 +376,7 @@ section.flow {
     }
   }
 
-  .obey-ne-robey-at-better-than-dior {
-    @extend .block;
-    @extend .big;
-    @extend .red;
-
+  &.obey-ne-robey-at-better-than-dior {
     h1 {
       font-family: serif;
       font-weight: bold;
@@ -238,28 +390,8 @@ section.flow {
     }
   }
 
-  .kiev-holed-futurism {
-    @extend .block;
-    @extend .big;
-    @extend .silver;
-
-    display: flex;
-    width: 100vw;
-    max-width: none;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
-    
+  &.kiev-holed-futurism {
     .text {
-      width: 75vw;
-      
-      @include breakpoint(medium) {
-        width: 50vw;        
-      }
-
-
-      order: 1;
-
       h1 {
         text-transform: none;
 
@@ -280,25 +412,6 @@ section.flow {
           font-weight: bold;
         }
       }
-    }
-
-    figure {
-      width: auto;
-      
-      @include breakpoint(medium) {
-        width: 50vw;        
-      }
-
-      &:last-of-type {
-        padding-right: 0.625rem;
-      }
-
-      img {
-        width: 100vw;
-        heigth: auto;
-      }
-
-      order: 2;
     }
   }
 }
