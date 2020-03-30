@@ -12,6 +12,7 @@ import qualified W7W.Cache as Cache
 import Site.Flow.Compiler
 
 import Site.Context
+import qualified W7W.Pictures.Context as PC
 
 flowBlockPattern :: Locale -> Pattern
 flowBlockPattern l = (fromGlob . localizePath l $ "flow/*.md") .&&. (complement (fromGlob . localizePath l $ "flow/index.md"))
@@ -56,4 +57,4 @@ mkFlowIndexCtx c = do
 mkFlowItemCtx :: Cache.Caches -> Compiler (Context String)
 mkFlowItemCtx c = do
   ctx <- mkSiteCtx c
-  return ctx
+  return $ PC.fieldBasePicturesUrl <> ctx
