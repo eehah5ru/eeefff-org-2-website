@@ -1,6 +1,6 @@
 ---
 title: flow
-template: "templates/flow.slim"
+template: "templates/flow-old.slim"
 ---
 :::: {.mystery-covered-with-the-darkness}
 ::: {.text}
