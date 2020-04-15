@@ -47,12 +47,8 @@ config = W7WConfig.config { previewPort = 8111
                           , ignoreFile = ignoredFiles}
 
 
-blah :: IO ()
-blah = do
-  putStrLn "aaa"
-  s <- getLine
-  putStrLn . show $ s
-
+picturesConfig =
+  copyAllPicturesRulesConfig {othersStrategy = PicResizeStrategy (1280, 1280)}
 
 main :: IO ()
 main = do
@@ -70,7 +66,7 @@ main = do
        -- assets
        --
        imagesRules
-       resizePicturesRules (1280, 1280) "pictures/**/*"
+       picturesRules picturesConfig "pictures"
        fontsRules
        dataRules
 
