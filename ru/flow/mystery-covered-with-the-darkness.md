@@ -11,5 +11,5 @@ blockStyle: "text-and-pic large-reverse-order text-x-large"
 ###  [-> more <-](/en/projects/mystery-covered-with-the-darkness.html)
 :::
 
-![dark room](/pictures/projects/flow/dark-room-01.jpg){data-interchange="[/pictures/projects/flow/dark-room-01.jpg, small], [/pictures/projects/flow/dark-room-01-square.jpg, medium]"}
+![dark room]($basePicturesUrl$/dark-room-01.jpg){data-interchange="[$basePicturesUrl$/dark-room-01.jpg, small], [$basePicturesUrl$/dark-room-01-square.jpg, medium]"}
 
