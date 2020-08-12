@@ -90,6 +90,8 @@ section.flow {
 section.flow article {
   @include flow-block;
 
+  // max-height: 50vh;
+  
   padding: 1rem;
 
   a {
@@ -99,6 +101,9 @@ section.flow article {
   }
 
   figure {
+    // img {
+    //   max-height: 30vh;
+    // }
     figcaption {
       display: none;
     }
@@ -259,6 +264,20 @@ section.flow article {
     
   }
 
+  &.single-pic {
+    @extend .grid-x;
+    align-items: center;
+    justify-content: center;
+    
+    figure {
+      @extend .cell;
+      @extend .small-12;
+      @extend .medium-8;
+      @extend .large-6;
+
+      margin: 0;
+    }
+  }
 
   
   &.text-large {
