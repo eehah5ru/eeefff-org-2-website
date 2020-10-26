@@ -91,11 +91,10 @@ namespace :outsourcing_paradise do
     end
   end
 
-
+  # TODO: implement scoped
   task :setup_timeline do
     on roles(:all) do
-      execute :mkdir, "-p",  "#{release_path}/data/outsourcing-paradise-parasite"
-
+      mk_base_dir release_path
 
       # JSON
       upload_json! release_path
@@ -115,21 +114,31 @@ namespace :outsourcing_paradise do
 
   # upload images
   task :force_upload_images do
+    scope = ENV.fetch('SCOPE', false)
+
     on roles(:all) do
-      force_upload_dir! "images", current_path
+      mk_base_dir current_path, scope: scope
+
+      force_upload_dir! "images", current_path, scope: scope
     end
   end
 
-
+  # TODO: add scope
   task :force_upload_fonts do
     on roles(:all) do
+      mk_base_dir current_path
+
       force_upload_dir! "fonts", current_path
     end
   end
 
   task :force_upload_videos do
+    scope = ENV.fetch('SCOPE', false)
+
     on roles(:all) do
-      force_upload_dir! "videos", current_path
+      mk_base_dir current_path, scope: scope
+
+      force_upload_dir! "videos", current_path, scope: scope
     end
   end
 
@@ -142,24 +151,52 @@ namespace :outsourcing_paradise do
   #
   # force upload dir
   #
-  def force_upload_dir! dir_name, base_path
-    upload! "data/outsourcing-paradise-parasite/#{dir_name}", "#{base_path}/data/outsourcing-paradise-parasite", recursive: true
+  def force_upload_dir! dir_name, base_path, scope: false
+    s = "data/outsourcing-paradise-parasite/"
+    s << scope << "/" if scope
+    s << dir_name
+
+    d = "#{base_path}/data/outsourcing-paradise-parasite"
+    d << "/" << scope if scope
+
+    upload! s, d, recursive: true
   end
 
   #
   # upload json to the server
   #
-  def upload_json! base_path
-    json = File.read("data/outsourcing-paradise-parasite/erosion-machine-timeline.json").gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name)).gsub(/"EROSION_DELAY"/, fetch(:outsourcing_paradise_erosion_delay).to_s)
+  def upload_json! base_path, scope: false
+    s = "data/outsourcing-paradise-parasite/"
+    s << scope << "/" if scope
+    s << "erosion-machine-timeline.json"
 
-    upload! StringIO.new(json), "#{base_path}/data/outsourcing-paradise-parasite/erosion-machine-timeline.json"
+    json = File.read(s).gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name)).gsub(/"EROSION_DELAY"/, fetch(:outsourcing_paradise_erosion_delay).to_s)
+
+    d = "#{base_path}/data/outsourcing-paradise-parasite/"
+    d << scope << "/" if scope
+    d << "erosion-machine-timeline.json"
+
+    upload! StringIO.new(json), d
   end
 
-  def upload_css! base_path
+  # TODO: implement scoped
+  def upload_css! base_path, scope: false
+
     css = File.read("_site/css/erosion-machine-timeline.css").gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name))
     upload! StringIO.new(css), "#{base_path}/css/erosion-machine-timeline.css"
   end
+
+  #
+  # create base dir
+  #
+  def mk_base_dir base_path, scope: false
+    path = "#{base_path}/data/outsourcing-paradise-parasite"
+    path << "/" << scope if scope
+
+    execute :mkdir, "-p", path
+  end
 end
+
 
 # Override default tasks which are not relevant to a non-rails app.
 namespace :deploy do
