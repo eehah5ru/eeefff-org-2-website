@@ -78,11 +78,13 @@ namespace :outsourcing_paradise do
   # upload json and css only
   #
   task :force_upload_timeline do
+    scope = ENV.fetch('SCOPE', false)
+
     on roles(:all) do
       #
       # JSON
       #
-      upload_json! current_path
+      upload_json! current_path, scope: scope
 
       #
       # CSS
@@ -142,6 +144,54 @@ namespace :outsourcing_paradise do
     end
   end
 
+  namespace :v2020 do
+    #
+    # create v2 symlinks in *current* directory
+    #
+    task :force_mk_v2_files do
+      scope = ENV.fetch('SCOPE', false)
+
+      on roles(:all) do
+        # https://dev.eeefff.org/css/erosion-machine-timeline-v2.css
+        # https://dev.eeefff.org/js/erosion-machine-timeline-v2.js
+
+        #
+        # JS
+        # TODO: implement file joining!
+        #
+        js = ""
+        js << "\n\n// js/op-erosion-machine-runtime-main.js\n\n"
+        js << File.read('js/op-erosion-machine-runtime-main.js')
+
+        js << "\n\n\n// js/op-erosion-machine-vendors-main.js\n\n"
+        js << File.read('js/op-erosion-machine-vendors-main.js')
+
+        js << "\n\n\n// js/op-erosion-machine-prelude.js\n\n"
+        js << File.read('js/op-erosion-machine-prelude.js').gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name))
+
+        js << "\n\n\n// js/op-erosion-machine-main-chunk.js\n\n"
+        js << File.read('js/op-erosion-machine-main-chunk.js');
+
+        js_path = File.join(current_path, 'js/erosion-machine-timeline-v2.js')
+
+        upload! StringIO.new(js), js_path
+        execute :chmod, '644', js_path
+
+        #
+        # JSON
+        #
+        upload_json! current_path, scope: scope
+
+        #
+        # css
+        #
+        target_css = current_path.join('css/erosion-machine-timeline-v2.css')
+        source_css = current_path.join('css/erosion-machine-timeline.css')
+        execute :ln, '-sf', source_css, target_css
+      end
+    end
+  end
+
   #
   #
   # utils
@@ -177,6 +227,8 @@ namespace :outsourcing_paradise do
     d << "erosion-machine-timeline.json"
 
     upload! StringIO.new(json), d
+
+    execute :chmod, '644', d
   end
 
   # TODO: implement scoped
