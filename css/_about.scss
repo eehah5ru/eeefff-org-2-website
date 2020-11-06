@@ -4,15 +4,38 @@
 }
 section.about {
   @extend .row;
+  @extend .expanded;
 
   article {
+    @extend .row;
+
     @extend .small-12;
     @extend .medium-8;
     @extend .large-6;
     @extend .columns;
-    // @extend .medium-offset-2;
-    // @extend .large-offset-3;
+
+    @extend .medium-offset-2;
+    @extend .large-offset-3;
 
     margin-top: 1rem;
+
+    p {
+      @extend .small-12;
+
+      font-size: 120%;
+    }
+
+    a {
+      text-transform: none;
+      text-decoration: underline;
+      text-decoration-style: wavy;
+      text-decoration-color: blue;
+      color: inherit;
+      letter-spacing: inherit;
+
+      &:hover {
+        color: blue;
+      }
+    }
   }
 }
