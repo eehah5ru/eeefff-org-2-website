@@ -155,27 +155,28 @@ namespace :outsourcing_paradise do
         # https://dev.eeefff.org/css/erosion-machine-timeline-v2.css
         # https://dev.eeefff.org/js/erosion-machine-timeline-v2.js
 
+
         #
-        # JS
-        # TODO: implement file joining!
         #
-        js = ""
-        js << "\n\n// js/op-erosion-machine-runtime-main.js\n\n"
-        js << File.read('js/op-erosion-machine-runtime-main.js')
+        # js
+        #
+        #
 
-        js << "\n\n\n// js/op-erosion-machine-vendors-main.js\n\n"
-        js << File.read('js/op-erosion-machine-vendors-main.js')
-
-        js << "\n\n\n// js/op-erosion-machine-prelude.js\n\n"
-        js << File.read('js/op-erosion-machine-prelude.js').gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name))
-
-        js << "\n\n\n// js/op-erosion-machine-main-chunk.js\n\n"
-        js << File.read('js/op-erosion-machine-main-chunk.js');
-
+        #
+        # upload prelude
+        #
+        js = File.read('js/op-erosion-machine-prelude.js').gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name))
         js_path = File.join(current_path, 'js/erosion-machine-timeline-v2.js')
-
         upload! StringIO.new(js), js_path
         execute :chmod, '644', js_path
+
+        # rest of engine's js files
+        [ 'js/op-erosion-machine-runtime-main.js',
+         'js/op-erosion-machine-vendors-main.js',
+         'js/op-erosion-machine-main-chunk.js'].each do |src_path|
+          target_path = current_path.join(src_path)
+          upload! src_path, target_path
+        end
 
         #
         # JSON
