@@ -1,11 +1,27 @@
+@mixin transition-all($duration) {
+  -webkit-transition: all $duration linear;
+  -moz-transition: all $duration linear;
+  -o-transition: all $duration linear;
+  -ms-transition: all $duration linear;
+  transition: all $duration linear;
+}
+
 #op-erosion-splash-screen {
   position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
+  width: 10vw;
+  height: 10vh;
+  top: 0%;
+  left: 100%;
 
-  background-image: radial-gradient(67% 99%, rgba(0,230,255,0.43) 30%, rgba(207,36,37,0.40) 99%, #D32121 100%);
+  // background-image: radial-gradient(67% 99%, rgba(0,230,255,0.43) 30%, rgba(207,36,37,0.40) 99%, #D32121 100%);
+
+  // box-shadow: 0 0 1rem 1rem rgba(0, 191, 255, 0.6);
+
+  border-radius: 50% 10%;
+  background-color: rgba(0, 191, 255, 0.6);
+  background-image: none;
+  box-shadow: 0 0 4rem 4rem rgba(0, 191, 255, 0.6);
+  border: none;
 
   z-index: 100000000;
 
@@ -13,12 +29,41 @@
   justify-content: center;
   align-items: center;
 
+  @include transition-all(8s);
+
+  .text-container {
+    flex-shrink: 0;
+    position: relative;
+    width: inherit;
+    height: inherit;
+  }
+
   h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+
+    margin: 0;
+
     text-transform: uppercase;
     text-decoration: underline;
     cursor: zoom-in;
 
     text-decoration-line: underline;
     text-decoration-style: wavy;
+
+    text-align: center;
+    line-height: 140%;
+
+    opacity: 0;
+
+    @include transition-all(4s);
+
+    &.active {
+      opacity: 1;
+    }
   }
 }
