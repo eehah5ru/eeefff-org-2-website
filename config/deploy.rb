@@ -4,6 +4,11 @@ lock "3.11.0"
 set :application, "eeefff-org"
 set :repo_url, "./_site"
 
+#
+# OP subdir for 2020's edition
+#
+set :op_2020_scope, "v2/test"
+
 # set :scm, :none_scm
 # set :repository, '.'
 
@@ -93,16 +98,35 @@ namespace :outsourcing_paradise do
     end
   end
 
-  # TODO: implement scoped
+
   task :setup_timeline do
     on roles(:all) do
       mk_base_dir release_path
 
+      #
       # JSON
-      upload_json! release_path
+      #
 
+      # 2019 - liquid fiction edition
+      upload_json! release_path
+      # 2020 - garage.digital and eeefff.org
+      upload_json! release_path, scope: fetch(:op_2020_scope)
+
+      #
       # CSS
+      #
+
+      # 2019 - liquid fiction edition
       upload_css! release_path
+      # 2020 - garage.digital and eeefff.org
+      do_upload_css_2020! release_path, scope: fetch(:op_2020_scope)
+
+      #
+      # JS
+      #
+
+      # 2020 - garage.digital and eeefff.org
+      do_upload_js_2020! release_path, scope: fetch(:op_2020_scope)
 
       puts "OUTSOURCING PARADISE: HOST is #{fetch(:outsourcing_paradise_host_name)}"
     end
@@ -161,22 +185,7 @@ namespace :outsourcing_paradise do
         # js
         #
         #
-
-        #
-        # upload prelude
-        #
-        js = File.read('js/op-erosion-machine-prelude.js').gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name))
-        js_path = File.join(current_path, 'js/erosion-machine-timeline-v2.js')
-        upload! StringIO.new(js), js_path
-        execute :chmod, '644', js_path
-
-        # rest of engine's js files
-        [ 'js/op-erosion-machine-runtime-main.js',
-         'js/op-erosion-machine-vendors-main.js',
-         'js/op-erosion-machine-main-chunk.js'].each do |src_path|
-          target_path = current_path.join(src_path)
-          upload! src_path, target_path
-        end
+        do_upload_js_2020! current_path, scope: scope
 
         #
         # JSON
@@ -186,9 +195,7 @@ namespace :outsourcing_paradise do
         #
         # css
         #
-        target_css = current_path.join('css/erosion-machine-timeline-v2.css')
-        source_css = current_path.join('css/erosion-machine-timeline.css')
-        execute :ln, '-sf', source_css, target_css
+        do_upload_css_2020! current_path, scope: scope
       end
     end
   end
@@ -248,6 +255,43 @@ namespace :outsourcing_paradise do
 
     execute :mkdir, "-p", path
   end
+
+  #
+  #
+  # 2020's utils
+  #
+  #
+
+  #
+  # upload modified js files
+  #
+  def do_upload_js_2020! base_path, scope: false
+    #
+    # upload prelude
+    #
+    js = File.read('js/op-erosion-machine-prelude.js').gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name))
+    js_path = File.join(base_path, 'js/erosion-machine-timeline-v2.js')
+    upload! StringIO.new(js), js_path
+    execute :chmod, '644', js_path
+
+    # rest of engine's js files
+    [ 'js/op-erosion-machine-runtime-main.js',
+     'js/op-erosion-machine-vendors-main.js',
+     'js/op-erosion-machine-main-chunk.js'].each do |src_path|
+      target_path = base_path.join(src_path)
+      upload! src_path, target_path
+    end
+  end
+
+  #
+  # upload css
+  #
+  def do_upload_css_2020! base_path, scope: false
+    target_css = base_path.join('css/erosion-machine-timeline-v2.css')
+    source_css = base_path.join('css/erosion-machine-timeline.css')
+    execute :ln, '-sf', source_css, target_css
+  end
+
 end
 
 
