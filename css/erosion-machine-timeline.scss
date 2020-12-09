@@ -37,7 +37,7 @@ video::cue-region {
 // SUBTITLES
 //
 .subtitle-box {
-  z-index: 16777281;
+  z-index: 167772810;
 
   font-size: 8vh;
   position: fixed;
@@ -106,3 +106,5 @@ video::cue-region {
 @import "erosion-machine/_splash-screen.scss";
 @import "erosion-machine/_overlay.scss";
 @import "erosion-machine/_test-timeline.scss";
+@import "erosion-machine/_interface-deformations.scss";
+@import "erosion-machine/_final-event.scss";

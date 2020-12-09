@@ -1,11 +1,3 @@
-@mixin transition-all($duration) {
-  -webkit-transition: all $duration linear;
-  -moz-transition: all $duration linear;
-  -o-transition: all $duration linear;
-  -ms-transition: all $duration linear;
-  transition: all $duration linear;
-}
-
 #op-erosion-splash-screen {
   position: fixed;
   width: 10vw;
