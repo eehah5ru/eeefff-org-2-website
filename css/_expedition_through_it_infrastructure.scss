@@ -7,7 +7,6 @@ article.project.expedtion-trough-it-infrastructure {
     @extend .row;
     @extend .expanded;
     @extend .small-12;
-    @extend .columns;
 
     position: relative;
     background-image: url("/images/expedition-trough-it-infrastructure/bkg-01.jpg");
@@ -18,8 +17,6 @@ article.project.expedtion-trough-it-infrastructure {
     h1 {
       @extend .small-12;
       @extend .large-6;
-      @extend .columns;
-      @extend .end;
 
       font-size: 8vw;
       hyphens: auto;
@@ -50,8 +47,6 @@ article.project.expedtion-trough-it-infrastructure {
     @extend .row;
     @extend .small-12;
     @extend .large-6;
-    @extend .columns;
-    @extend .end;
 
     padding-left: rem-calc(15px);
     padding-right: rem-calc(15px);

@@ -206,7 +206,6 @@ section.error-friendly-networks-teaser header {
     @extend .large-6;
     @extend .medium-8;
     @extend .small-12;
-    @extend .columns;
     // @extend .end;
 
 }
@@ -223,7 +222,6 @@ section.error-friendly-networks-teaser article {
     @extend .medium-12;
     @extend .large-6;
     // @extend .large-offset-6;
-    @extend .columns;
 
     color: darkslategray;
     // padding-top: 1rem;

@@ -174,7 +174,6 @@ header.platform-perplex {
       // @extend .medium-offset-2;
       @extend .large-offset-2;
       @extend .large-8;
-      @extend .columns;
       @include vertical-center;
 
       // margin-top: 4rem;
@@ -205,8 +204,6 @@ header.platform-perplex {
         @extend .small-12;
         @extend .medium-7;
         @extend .large-4;
-        @extend .columns;
-        @extend .end;
 
         margin-top: 1rem;
 
@@ -302,7 +299,6 @@ section.platform-perplex {
     @extend .large-offset-3;
     @extend .large-6;
     // @extend .large-expand;
-    @extend .columns;
 
     padding-top: 2rem;
 

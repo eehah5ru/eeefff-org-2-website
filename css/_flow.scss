@@ -151,8 +151,11 @@ section.flow article {
       @extend .small-12;
       @extend .medium-6;
 
-      @extend .small-order-2;
-      @extend .large-order-1;
+      order: 1;
+
+      @include breakpoint(large) {
+        order: 1;
+      }
     }
 
     figure {
@@ -160,40 +163,55 @@ section.flow article {
       @extend .small-12;
       @extend .medium-6;
 
+      order: 1;
 
-      @extend .small-order-1;
-      @extend .large-order-2;
+      @include breakpoint(large) {
+        order: 2;
+      }
     }
 
     &.large-reverse-order {
       .text {
-        @extend .large-order-2;        
+        @include breakpoint(large) {
+          order: 2;
+        }
       }
 
       figure {
-        @extend .large-order-1;
+        @include breakpoint(large) {
+          order: 1;
+        }
       }
     }
 
     &.medium-reverse-order {
       .text {
-        @extend .medium-order-2;        
+        @include breakpoint(medium) {
+          order: 2;
+        }
       }
 
       figure {
-        @extend .medium-order-1;
+        @include breakpoint(medium) {
+          order: 1;
+        }
       }
     }    
     
     &.reverse-order {
       .text {
-        @extend .small-order-1;
-        @extend .large-order-2;        
+        order: 1;
+        @include breakpoint(large) {
+          order: 2;
+        }
       }
 
       figure {
-        @extend .small-order-2;
-        @extend .large-order-1;        
+        order: 2;
+
+        @include breakpoint(large) {
+          order: 1;
+        }
       }
     }
   }

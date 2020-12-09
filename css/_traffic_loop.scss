@@ -26,8 +26,6 @@
   
   p, ol, h1 {
     @extend .small-12;
-    @extend .columns;
-    @extend .end;
 
     color: white;
   }
@@ -319,8 +317,6 @@ section.traffic-loop {
       @extend .small-12;
       @extend .medium-10;
       @extend .large-6;
-      @extend .columns;
-      @extend .end;
       @extend .medium-offset-1;
       @extend .large-offset-3;
 
@@ -343,8 +339,6 @@ section.traffic-loop {
     figure {
       @extend .small-12;
       @extend .medium-9;
-      @extend .columns;
-      @extend .end;
 
       position: relative;
       margin-bottom: 2rem;
