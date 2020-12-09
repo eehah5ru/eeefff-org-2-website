@@ -11,22 +11,13 @@ GEM
     capistrano-scm-copy (0.7.0)
       capistrano (~> 3.0)
     concurrent-ruby (1.1.5)
-    ffi (1.10.0)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (5.2.0)
     rake (12.3.2)
-    rb-fsevent (0.10.3)
-    rb-inotify (0.10.0)
-      ffi (~> 1.0)
     redcarpet (3.4.0)
-    sass (3.7.3)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
     slim (4.0.1)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
@@ -43,7 +34,6 @@ DEPENDENCIES
   capistrano
   capistrano-scm-copy
   redcarpet
-  sass
   slim
   sshkit
 

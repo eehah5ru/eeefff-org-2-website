@@ -1,7 +1,7 @@
 # A sample Gemfile
 source "https://rubygems.org"
 
-gem 'sass'
+# gem 'sass'
 gem 'redcarpet'
 gem 'slim'
 gem 'capistrano'
