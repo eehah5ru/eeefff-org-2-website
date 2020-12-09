@@ -1,0 +1,59 @@
+//
+// videos
+//
+
+.inga-mesto-kuda-vy-popali-vertical,
+.inga-opasity-nol-vertical,
+.inga-povorot-elementov-vertical,
+.inga-ramki-vertical {
+  @extend .erosion-vertical-video;
+}
+
+
+.op-zero-opacity {
+  @include transition-all(1s);
+
+  opacity: 0;
+}
+
+.op-artificial-tears-border-01 {
+  border: 5vh ridge rgba(170, 50, 220, 0);
+  @include transition-all(1s);
+
+}
+
+.op-artificial-tears-border-02 {
+  border-color: rgba(116,204,244, 0.6);
+  @include transition-all(1s);
+
+}
+
+//
+//
+// ALL TO ALL
+//
+//
+
+.op-all-to-all-shadows {
+  box-shadow: 0 0 1rem 1rem rgba(170, 50, 220, 0.8);
+  @include transition-all(1s);
+}
+
+.op-all-to-all-distance {
+  margin: 2vw;
+}
+.op-all-to-all-border-between {
+  border: thick double gold;
+  @include transition-all(1s);
+}
+
+.op-all-to-all-set-perspective {
+  perspective: 200px;
+}
+
+.op-all-to-all-rotate {
+  @include transition-all(1s);
+
+  transform: rotate3d(0, 1, 0, 1deg);
+  transform-style: preserve-3d;
+}
