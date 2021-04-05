@@ -457,6 +457,25 @@
 
   //
   //
+  // ECONOMIC ORANGERY
+  //
+  //
+
+  var initBlocksLayout = function () {
+    $(".block").each(function(i, e) {
+      $(e).addClass("skew-" + _.random(0, 4));
+      $(e).addClass("bkg-" + _.random(0, 4));
+    });
+  };
+
+  //
+  //
+  // END OF ECONOMIC ORANGERY
+  //
+  // 
+  
+  //
+  //
   // init
   //
   //
@@ -465,6 +484,7 @@
     initTrafficLoop();
     initFlowColors();
     initScootersWalk();
+    initBlocksLayout();    
     //
     // dynamic light
     //

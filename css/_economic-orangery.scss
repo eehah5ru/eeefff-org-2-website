@@ -1,0 +1,228 @@
+@mixin economic-orangery-block-skew($base) {
+  $v1: 0deg + random($base);
+  $v2: 0deg + random($base);
+
+  transform: skew($v1, $v2);
+}
+
+@mixin economic-orangery-block-background() {
+  $posX: 0% + random(100);
+  $posY: 0% + random(100);
+  background-image: radial-gradient(farthest-corner at $posX $posY,#fff 32%,#C86DD7 100%);
+}
+
+@mixin economic-orangery-block-skew-classes($n, $base) {
+  @for $i from 0 to $n {
+    &.skew-#{$i} {
+      @include economic-orangery-block-skew($base);
+    }
+  }
+}
+
+@mixin economic-orangery-block-background-classes($n) {
+  @for $i from 0 to $n {
+    &.bkg-#{$i} {
+      @include economic-orangery-block-background();
+    }
+  }
+}
+
+.economic-orangery.lang-switch {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  text-align: right;
+  color: blue;
+  text-decoration: underline;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-family: monospace;
+
+  border-color: blue;
+  border-width: 2px;
+  border-style: double;
+  padding: 0.3rem;
+  transform: skew(-10deg, -10deg);
+}
+
+section.economic-orangery article {
+  @extend .grid-y;
+  @extend .grid-margin-y;
+  flex-direction: column;
+
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  > h1,
+  > h2,
+  > h3,
+  > h4 {
+    @extend .cell;
+    @extend .small-6;
+  }
+
+  > p {
+    @extend .cell;
+    @extend .small-6;
+
+    &:first-of-type {
+      margin-top: 2rem;
+    }
+  }
+
+  > ul {
+    @extend .cell;
+    @extend .small-6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-shadow: 0px 0px 20px #BD9117;
+    color: white;
+  }
+
+  ul {
+    margin-top: 0;
+    list-style-type: circle;
+  }
+
+  code {
+    color: inherit;
+    border: none;
+    background-color: inherit;
+    text-shadow: 0px 0px 10px #5005F0;
+    font-family: inherit;
+    font-weight: normal;
+  }
+
+  a {
+    color: blue;
+    text-transform: none;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: red;
+    letter-spacing: inherit;
+
+    &:hover {
+      color: red;
+      text-decoration-color: blue;
+    }
+  }
+
+  &.blocks {
+    align-items: center;
+
+    > div.block {
+      @extend .small-10;
+      @extend .medium-6;
+      @extend .large-6;
+      @extend .cell;
+
+      border: 2px solid #5005F0;
+      padding: 0.5rem;
+
+
+      // background-image: radial-gradient(35% 88%, #FFFFFF 32%, #C86DD7 100%);
+
+      box-shadow: 0 2px 40px 10px #62A31C, 0 2px 27px 25px #C86DD7;
+
+      // mask-image: radial-gradient(black 34%,rgba(0, 0, 0, 0.3) 100%);
+
+      border-style: outset;
+      border-width: 0.2rem;
+      transform-origin: center;
+
+      // transform: skew(2deg, 2deg);
+
+      @include breakpoint (small only) {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      // @include breakpoint(medium) {
+      //   transform: skew(15deg, 15deg);
+      // }
+      // &.skew-0 {
+      //   @include economic-orangery-block-skew(15deg);
+      // }
+
+      // &.skew-1 {
+      //   @include economic-orangery-block-skew(15deg);
+      // }
+
+      // &.skew-2 {
+      //   @include economic-orangery-block-skew(15deg);
+      // }
+
+      // &.skew-3 {
+      //   @include economic-orangery-block-skew(15deg);
+      // }
+
+      // &.skew-4 {
+      //   @include economic-orangery-block-skew(15deg);
+      // }
+
+      @include economic-orangery-block-skew-classes(5, 5deg);
+      @include economic-orangery-block-background-classes(5);
+
+
+      &.wide {
+        // @extend .medium-8;
+        // @extend .large-;
+      }
+
+      &.reader {
+        p {
+          border-color: red;
+          font-family: sans-serif;
+          text-shadow: 0px 0px 5px gold;
+        }
+      }
+    }
+  }
+
+}
+
+section.economic-orangery {
+  z-index: 1;
+  position: inherit;
+
+  color: #5005F0;
+}
+section.economic-orangery article.index {
+  // @include breakpoint(medium) {
+  //   margin-top: 0;
+  //   width: 50%;
+  // }
+}
+
+section.economic-orangery .blocks {
+  // padding-top: 2rem;
+
+  @extend .grid-container;
+  @extend .fluid;
+
+  @include breakpoint(medium) {
+    padding: 5vw;
+  }
+}
+
+body > .economic-orangery.bkg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-image: url(/images/economic-orangery/index-02.png);
+  background-size: cover;
+  z-index: 0;
+}
+
+section.economic-orangery-gm-panel {
+  div.block.in-game {
+     border: 8px solid gold !important;
+  }
+}
