@@ -28,5 +28,7 @@ executable site
                   , pandoc
                   , cache
                   , hashable
+                  , yaml
+                  , containers
   ghc-options:      -threaded
   default-language: Haskell2010
