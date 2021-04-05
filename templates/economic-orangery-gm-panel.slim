@@ -1,0 +1,20 @@
+.bkg.economic-orangery
+
+section.economic-orangery.economic-orangery-gm-panel
+  article.blocks
+    = _for("flowItems")
+      div.block class="$if(inGame)$in-game$endif$"
+        h3
+          | $if(inGame)$$inGameName$ / $endif$$name$ / $obsession$
+        p
+          a href="$url$"
+            | link to page
+        p
+          a href="mailto:$email$"
+            | compose mail to $name$
+        = _if("inGame")
+          p
+            a href="https://t.me/$telegram$"
+              | tg message to $inGameName$ / $name$
+        = _endif
+    = _endfor
