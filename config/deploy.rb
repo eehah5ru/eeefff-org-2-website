@@ -270,9 +270,13 @@ namespace :outsourcing_paradise do
     # upload prelude
     #
     js = File.read('js/op-erosion-machine-prelude.js').gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name))
-    js_path = File.join(base_path, 'js/erosion-machine-timeline-v2.js')
+
+    js_path = File.join(base_path, 'js/op-erosion-machine-prelude.js')
     upload! StringIO.new(js), js_path
     execute :chmod, '644', js_path
+
+    # make a link for garage digital
+    execute :ln, '-sf', base_path.join('js/op-erosion-machine-prelude.js'), base_path.join('js/erosion-machine-timeline-v2.js')
 
     # rest of engine's js files
     [ 'js/op-erosion-machine-runtime-main.js',
