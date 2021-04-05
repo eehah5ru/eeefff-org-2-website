@@ -10,6 +10,8 @@ import Site.Templates
 import Site.Projects.Context
 import qualified W7W.Cache as Cache
 
+import Site.Projects.EconomicOrangery
+
 projectsDeps :: Pattern
 projectsDeps = ("ru/**/_*.slim" .||. "en/**/_*.slim" .||. "ru/**/_*.md" .||. "en/**/_*.md" .||. "ru/**/_*.html" .||. "en/**/_*.html" .||. "ru/**/_*.raw" .||. "en/**/_*.raw")
 
@@ -22,6 +24,19 @@ projectsRules caches = do
     staticPandocPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.md"
     staticSlimPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.slim"
     staticHtmlPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.html"
+
+  --
+  -- economic orangery 2021 rules
+  --
+
+  -- characters pages
+  withProjectsDeps $ do
+    staticPandocPageRulesM rootTpl (Just projectPageTpl) (Just "templates/economic-orangery-character.slim") (mkProjectCtx caches) "projects/economic-orangery/*.md"
+
+  -- game master page
+  withProjectsDeps $ do
+    staticPandocPageRulesM rootTpl (Just projectPageTpl) (Just "templates/economic-orangery-gm-panel.slim") (mkEconomyOrangeryCtx caches) "projects/economic-orangery-gm-panel/index.md"
+
 
 withProjectsDeps rules = do
   deps <- makePatternDependency projectsDeps
