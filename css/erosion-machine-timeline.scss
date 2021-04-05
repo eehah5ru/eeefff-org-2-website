@@ -71,8 +71,14 @@ video::cue-region {
   }
 
   &.erosion-video {
-    width: 640px;
+    width: 50vw;
     height: auto;
+    max-height: 80vh;
+    max-width: 80vw;
+
+    @include medium {
+      width: 640px;
+    }
   }
 
   &.erosion-text {
