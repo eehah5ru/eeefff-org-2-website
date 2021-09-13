@@ -1,0 +1,203 @@
+$op-bkg-color: #E2E2E2;
+$op-text-color: #FB1200;
+$op-text-color-2: #bb8d00;
+$op-primary-color: #001Bdb;
+$op-header-color: #d0FF36;
+
+section.outsourcing-paradise {
+  background-color: $op-bkg-color;
+  @extend .grid-container;
+  @extend .fluid;
+
+  .bubbles {
+    @extend .grid-x;
+    align-content: stretch;
+  }
+
+  h1,
+  h2 {
+    font-family: AsimovNarOuIt;
+    letter-spacing: 0;
+    text-align: center;
+
+    text-transform: uppercase;
+
+
+    margin-bottom: 0;
+  }
+
+  .bubble {
+    background: $op-bkg-color;
+    box-shadow: inset 0 0 30px 22px #FFFFFF;
+    border-radius: 58px 30px 100px 35.5px;
+
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 10vmin;
+    padding-bottom: 10vmin;
+
+    @extend .cell;
+    @extend .auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    line-height: 140%;
+    height: -moz-fit-content;
+    height: fit-content;
+
+    // font-size: calc(100vw / 20 - 20%);
+
+    font-size: 5vmin;
+
+    a {
+      font-family: Asimov;
+      color: $op-primary-color;
+      letter-spacing: 0;
+      text-align: center;
+      overflow-wrap: break-word;
+
+      &:hover {
+        text-decoration: underline;
+        text-decoration-color: $op-text-color;
+        text-decoration-thickness: 15%;
+      }
+
+
+    }
+
+    &.bubble-header {
+
+      color: $op-header-color;
+
+      background: $op-primary-color;
+
+      @extend .cell;
+      @extend .small-12;
+
+      // box-shadow: inset 0 0 5vmin 4vmin #FFFFFF;
+      box-shadow: inset 0 0 5vmin 5vmin #FFF, inset 0 0 3vmin 3vmin $op-header-color;
+      border-radius: 58px 30px 100px 35.5px;
+
+      font-size: 8vmin;
+
+      @include breakpoint(medium) {
+        font-size: 9vmin;
+      }
+
+      @include breakpoint(large) {
+        font-size: 10vmin;
+      }
+
+
+    }
+
+    &.external-link {
+      a {
+        font-family: AsimovIt;
+
+        text-decoration: underline;
+        text-decoration-thickness: 15%;
+        text-decoration-color: $op-header-color;
+
+        &:hover {
+          text-decoration-color: $op-text-color;
+        }
+      }
+    }
+
+  }
+
+
+  .content {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+      width: 100%;
+      margin-top: 36px;
+      margin-bottom: 36px;
+
+      padding-top: 10vh;
+      padding-bottom: 10vh;
+
+      color: $op-header-color;
+
+      background: $op-primary-color;
+
+      // box-shadow: inset 0 0 5vmin 4vmin #FFFFFF;
+      box-shadow: inset 0 0 5vmin 5vmin #FFF, inset 0 0 3vmin 3vmin $op-header-color;
+
+      border-radius: 58px 30px 100px 35.5px;
+
+      font-size: 8vmin;
+
+      @include breakpoint(medium) {
+        font-size: 9vmin;
+      }
+
+      @include breakpoint(large) {
+        font-size: 10vmin;
+      }
+
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+
+
+    }
+
+    p,
+    figure {
+
+      color: $op-text-color;
+      width: 100%;
+
+      margin-bottom: 18px;
+
+      @include breakpoint(medium) {
+        width: 66%;
+      }
+
+      @include breakpoint(large) {
+        width: 50%;
+      }
+
+      video {
+        width: 100%;
+      }
+    }
+
+    figcaption {
+      font-family: InputMonoMedium;
+      font-size: 14px;
+      line-height: 120%;
+      color: $op-text-color-2;
+    }
+
+    p {
+      line-height: 140%;
+      font-size: 18px;
+
+    }
+
+    a {
+      letter-spacing: inherit;
+      text-transform: none;
+      color: inherit;
+      text-decoration: underline;
+
+      text-decoration-color: $op-primary-color;
+      text-decoration-thickness: 15%;
+
+      &:hover {
+        color: $op-primary-color;
+      }
+    }
+  }
+}

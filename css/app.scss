@@ -245,6 +245,8 @@
 
 @import "economic-orangery";
 
+@import "outsourcing-paradise";
+
 /* @import "slick"; */
 /* @import "slick-theme"; */
 
@@ -323,6 +325,15 @@
 @font-face {
   font-family: "AsimovOu";
   src: url("../fonts/AsimovOu.otf");
+  /* src: local("☺"), */
+  /*   url("type/filename.woff") format("woff"), */
+  /*   url("type/filename.otf") format("opentype"), */
+  /*   url("type/filename.svg#filename") format("svg"); */
+}
+
+@font-face {
+  font-family: "AsimovNarOuIt";
+  src: url("../fonts/AsimovNarOuIt.otf");
   /* src: local("☺"), */
   /*   url("type/filename.woff") format("woff"), */
   /*   url("type/filename.otf") format("opentype"), */

@@ -472,6 +472,51 @@
   //
   // END OF ECONOMIC ORANGERY
   //
+  //
+
+  //
+  //
+  // OUTSOURCING PARADISE
+  //
+  // 
+
+  var initOutsourcingParadiseLayout = function () {
+    //set equal heights for buble's rows
+    $("section.outsourcing-paradise .bubbles").each(function(i, bubbles) {
+      const heights = [];
+
+      $(bubbles).find(".bubble").each(function(i, bubble) {
+        heights.push($(bubble).height());
+      });
+
+      const h = _.max(heights);
+
+      $(bubbles).find(".bubble").css("height", h + "px");
+      
+    });
+
+    // set different corner radiuses
+    $("section.outsourcing-paradise .bubble").each(function(i, bubble) {
+      const randomRadius = () => _.random(1, 20);
+      const radiusCss = _.chain([])
+        .push(randomRadius())
+        .push(randomRadius())
+        .push(randomRadius())
+        .push(randomRadius())
+        .join("vmin ")
+        .thru((s) => s + "vmin")
+            .value();
+
+      console.log(radiusCss);
+      
+      $(bubble).css("border-radius", radiusCss);
+    });
+  };
+
+  //
+  //
+  // END OF OUTSOURCING PARADISE
+  //
   // 
   
   //
@@ -484,7 +529,8 @@
     initTrafficLoop();
     initFlowColors();
     initScootersWalk();
-    initBlocksLayout();    
+    initBlocksLayout();
+    initOutsourcingParadiseLayout();
     //
     // dynamic light
     //
