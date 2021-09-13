@@ -1,6 +1,7 @@
 ---
 title: "about"
 template: "templates/about.slim"
+erosionEnabled: true
 ---
 
 Группировка eeefff &mdash; коллаборация двух человек, [Дины Жук](https://bitchcoin.in/) и [Николая Спесивцева](http://obeynerobey.today/). Действует с 2013 года. Базируется в Минске и Москве.
