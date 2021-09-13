@@ -1,6 +1,7 @@
 ---
 title: "about"
 template: "templates/about.slim"
+erosionEnabled: true
 ---
 
 eeefff is a collaboration of two people, [Nicolay Spesivtsev](http://obeynerobey.today/) and [Dzina Zhuk](https://bitchcoin.in/). Active from 2013. Based in Minsk and Moscow.
