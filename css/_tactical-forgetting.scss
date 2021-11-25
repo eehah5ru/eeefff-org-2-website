@@ -1,0 +1,60 @@
+a.back-to-home.tactical-forgetting,
+a.back-to-home.tactical-forgetting svg #back-to-home {
+  color: blue;
+  fill: blue;
+}
+
+section.tactical-forgetting {
+  @extend .row;
+  @extend .expanded;
+
+  background-color: lightcoral;
+
+  @include breakpoint (small only) {
+    padding-top: 20vw;
+  }
+
+  article,
+  header {
+    @extend .row;
+
+    @extend .small-12;
+    @extend .medium-8;
+    @extend .large-6;
+
+    @extend .medium-offset-2;
+    @extend .large-offset-3;
+
+    color: blue;
+
+    h1 {
+      font-family: sans-serif;
+      font-size: 25vw;
+      word-break: break-all;
+      text-decoration: line-through;
+      text-decoration-thickness: 4vw;
+
+      @include breakpoint(medium) {
+        font-size: 10vw;
+        text-decoration-thickness: 2vw;
+      }
+    }
+
+    p {
+      font-size: xx-large;
+    }
+    figure {
+      margin-bottom: 1rem;
+
+      figcaption {
+        background-color: blue;
+        color: white;
+        font-weight: bold;
+        padding-left: 3px;
+        padding-right: 3px;
+        font-family: monospace;
+        text-align: right;
+      }
+    }
+  }
+}
