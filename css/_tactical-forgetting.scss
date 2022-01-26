@@ -43,8 +43,14 @@ section.tactical-forgetting {
     p {
       font-size: xx-large;
     }
+
     figure {
+      width: 100%;
       margin-bottom: 1rem;
+
+      img {
+        width: 100%;
+      }
 
       figcaption {
         background-color: blue;
@@ -54,6 +60,20 @@ section.tactical-forgetting {
         padding-right: 3px;
         font-family: monospace;
         text-align: right;
+
+        a {
+          color: red;
+          letter-spacing: inherit;
+          text-transform: none;
+          text-decoration: underline;
+          text-decoration-thickness: auto;
+          text-decoration-thickness: 0.1em;
+
+          &:hover {
+            text-decoration-color: pink;
+          }
+        }
+
       }
     }
   }
