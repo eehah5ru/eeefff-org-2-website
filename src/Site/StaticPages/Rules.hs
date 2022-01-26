@@ -16,10 +16,19 @@ staticPagesRules caches = do
 
 
 htmlPageRules caches = do
-  staticHtmlPageRulesM rootTpl Nothing Nothing (mkStaticPageCtx caches) "*.html"
+  rules "*.html" (Just ["index.html"])
+  rules "index.html" Nothing
+  where
+    rules = staticHtmlPageRulesM rootTpl Nothing Nothing (mkStaticPageCtx caches)
 
 mdPageRules caches = do
-  staticPandocPageRulesM rootTpl Nothing Nothing (mkStaticPageCtx caches) "*.md"
+  rules "*.md" (Just ["index.md"])
+  rules "index.md" Nothing
+  where
+    rules = staticPandocPageRulesM rootTpl Nothing Nothing (mkStaticPageCtx caches)
 
 slimPageRules caches = do
-  staticSlimPageRulesM rootTpl Nothing Nothing (mkStaticPageCtx caches) "*.slim"
+  rules "*.slim" (Just ["index.slim"])
+  rules "index.slim" Nothing
+  where
+    rules = staticSlimPageRulesM rootTpl Nothing Nothing (mkStaticPageCtx caches)
