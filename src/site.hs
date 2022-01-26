@@ -32,7 +32,8 @@ import Site.Flow.Rules
 import Site.Projects.Context -- for platform perplex
 --------------------------------------------------------------------------------
 
-ignoredFiles :: FilePath -> Bool
+ignoredFiles :: FilePath -- ^
+  -> Bool
 ignoredFiles f =
   any (\x -> x f)
       [ (ignoreFile defaultConfiguration)

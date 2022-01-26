@@ -21,9 +21,9 @@ projectsRules caches = do
   match projectsDeps $ compile getResourceBody
 
   withProjectsDeps $ do
-    staticPandocPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.md"
-    staticSlimPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.slim"
-    staticHtmlPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.html"
+    staticPandocPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.md" Nothing
+    staticSlimPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.slim" Nothing
+    staticHtmlPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.html" Nothing
 
   --
   -- economic orangery 2021 rules
@@ -31,11 +31,11 @@ projectsRules caches = do
 
   -- characters pages
   withProjectsDeps $ do
-    staticPandocPageRulesM rootTpl (Just projectPageTpl) (Just "templates/economic-orangery-character.slim") (mkProjectCtx caches) "projects/economic-orangery/*.md"
+    staticPandocPageRulesM rootTpl (Just projectPageTpl) (Just "templates/economic-orangery-character.slim") (mkProjectCtx caches) "projects/economic-orangery/*.md" Nothing
 
   -- game master page
   withProjectsDeps $ do
-    staticPandocPageRulesM rootTpl (Just projectPageTpl) (Just "templates/economic-orangery-gm-panel.slim") (mkEconomyOrangeryCtx caches) "projects/economic-orangery-gm-panel/index.md"
+    staticPandocPageRulesM rootTpl (Just projectPageTpl) (Just "templates/economic-orangery-gm-panel.slim") (mkEconomyOrangeryCtx caches) "projects/economic-orangery-gm-panel/index.md" Nothing
 
 
 withProjectsDeps rules = do
