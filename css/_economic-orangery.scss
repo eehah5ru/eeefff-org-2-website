@@ -226,3 +226,259 @@ section.economic-orangery-gm-panel {
      border: 8px solid gold !important;
   }
 }
+
+
+//
+//
+// NEW version of economic orangery story
+//
+//
+
+@mixin block-ng($font-size) {
+  padding-left: $font-size / 2;
+  padding-right: $font-size / 2;
+  padding-top: $font-size / 2;
+  padding-bottom: $font-size / 2;
+
+  // padding-bottom: $font-size * 0.3;
+  // padding-top: $font-size * 0.7;
+  border-radius: 1rem;
+  line-height: $font-size * 2.5;
+
+  @include breakpoint(medium) {
+    line-height: $font-size * 2;
+  }
+}
+
+@mixin block-ng-aspect($aspect-name, $color) {
+
+  &.#{$aspect-name} {
+    background-image: url(/images/economic-orangery/aspects/#{$aspect-name}.png);
+    background-color: $color;
+  }
+}
+
+section.economic-orangery-ng {
+
+  color: black;
+
+  .blocks {
+    // display: flex;
+    // flex-direction: row;
+
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    text-align: justify;
+
+    @include breakpoint(medium) {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    //
+    // make everything inline
+    //
+
+    .block,
+    p,
+    h1,
+    h2,
+    h3,
+    h4 {
+      display: inline;
+      margin: 0;
+
+    }
+
+    //
+    // wrap words
+    //
+    p,
+    h1,
+    h2,
+    h3,
+    h4 {
+      word-wrap: anywhere;
+      word-break: break-all;
+
+      @include breakpoint(medium) {
+        word-break: break-word;
+        word-wrap: break-word;
+        line-break: auto;
+      }
+    }
+
+    hr {
+      border: 0;
+    }
+
+    a {
+      color: blue;
+      text-decoration: underline;
+
+      &:hover {
+        color: red;
+        text-decoration: line-through;
+      }
+    }
+
+
+
+    > figure {
+      display: block;
+      border: 6px solid red;
+      border-radius: 1rem;
+      margin-bottom: 0.5rem;
+      float: left;
+
+      @include breakpoint(medium) {
+        width: 50%;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      img.padded {
+        padding: 6px;
+      }
+
+      figcaption {
+        text-align: center;
+        font-size: 1rem;
+        color: blue;
+      }
+    }
+
+
+    .block {
+      border: 6px solid red;
+      margin-right: 1rem;
+
+      // make aspect specific
+      background-image: url(/images/economic-orangery/slides/we-are-refugees.png);
+      background-size: cover;
+      background-position: center;
+      background-color: lightpink;
+      background-blend-mode: color-burn;
+
+      line-break: anywhere;
+      text-align: justify;
+
+      // normal font size
+      @include block-ng(2rem);
+
+      @include breakpoint(medium) {
+        @include block-ng(3rem);
+      }
+
+      // aspect specific bkgs
+      @include block-ng-aspect(transaction, darkmagenta);
+      @include block-ng-aspect(addition, lightgreen);
+      @include block-ng-aspect(sustainability, antiquewhite);
+      @include block-ng-aspect(power, azure);
+      @include block-ng-aspect(multitude, blueviolet);
+      @include block-ng-aspect(value, cadetblue);
+      @include block-ng-aspect(risk, coral);
+      @include block-ng-aspect(ritual, cornsilk);
+      @include block-ng-aspect(opacity, tomato);
+      @include block-ng-aspect(equality, teal);
+      @include block-ng-aspect(automation, snow);
+      @include block-ng-aspect(proxy, deepskyblue);
+
+
+
+      // for h1
+      &.large {
+        @include block-ng(3rem);
+
+        @include breakpoint(small only) {
+          width: 100%;
+        }
+
+        @include breakpoint(medium) {
+          @include block-ng(5rem);
+          margin-right: 1rem;
+          margin-bottom: 1rem;
+        }
+
+        float: left;
+        margin-right: 0;
+      }
+
+      &.large.full-width {
+        margin-right: 0 !important;
+      }
+
+      &.reader {
+        &:before,
+        &:after {
+          content: "📖";
+          font-size: 3rem;
+          vertical-align: middle;
+          display: inline;
+          line-height: 1;
+          text-shadow: blue 0 0 20px;
+          padding-top: 1rem;
+
+          @include breakpoint(medium) {
+            font-size: 4rem;
+            padding-top: 1rem;
+          }
+        }
+      }
+
+      > * {
+        vertical-align: middle;
+      }
+
+      br {
+        float: left;
+      }
+
+      h1,
+      h2 {
+        font-size: 3rem;
+        color: blue;
+
+        @include breakpoint(medium) {
+          font-size: 5rem;
+        }
+
+      }
+
+      p {
+        font-size: 2rem;
+        mix-blend-mode: exclusion;
+        text-shadow: white 0 0 10px;
+
+        @include breakpoint(medium) {
+          font-size: 3rem;
+          word-break: break-word;
+        }
+      }
+
+    }
+  }
+
+  .button {
+    border: 6px solid blue;
+    border-radius: 3rem;
+    width: 6rem;
+    display: inline-block;
+    height: 6rem;
+    vertical-align: middle;
+
+    font-size: 5rem;
+    text-align: center;
+    line-height: 1;
+    color: blue;
+    background-origin: border-box;
+    background-position: center;
+    background-size: cover;
+
+    &.opacity {
+      background-image: url(/images/economic-orangery/opacity.png);
+
+    }
+  }
+
+}
