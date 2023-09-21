@@ -1,0 +1,87 @@
+section.sensory-room-with-42-cooling-fans {
+  margin-top: 2rem !important;
+
+  width: 60%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: flex;
+  flex-direction: column;
+
+  color: white;
+
+  a {
+    letter-spacing: normal;
+    color: blue;
+    text-decoration: underline;
+    text-decoration-color: red;
+    text-decoration-thickness: 4px;
+
+    &:hover {
+      color: red;
+      text-decoration-color: blue;
+    }
+
+  }
+
+  ul {
+    list-style: none;
+
+    li:before {
+      content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+      color: red; /* Change the color */
+      font-weight: bold; /* If you want it to be bold */
+      display: inline-block; /* Needed to add space between the bullet and the text */
+      width: 1em; /* Also needed for space (tweak if needed) */
+      margin-left: -1em; /* Also needed for space (tweak if needed) */
+    }
+  }
+
+  .video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background-color: black;
+  }
+
+
+  // bkg video
+  video {
+    // border: 1px solid red;
+    position: absolute;
+    left: 50%; /* % of surrounding element */
+    top: 50%;
+    transform: translate(-50%, -50%); /* % of current element */
+
+    width: auto;
+    height: 100%;
+
+
+    @media (min-aspect-ratio: 16/9) {
+      height: auto;
+      width: 100%;
+
+    }
+  }
+
+  button.enable-sound {
+    position: fixed;
+    z-index: 99999;
+    right: 0;
+    bottom: 0;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+    font-size: 8vw;
+    border: 0.5rem solid red;
+    border-radius: 50%;
+    padding: 0.5rem;
+    color: red;
+
+    &:hover {
+      border-color: blue;
+    }
+  }
+}

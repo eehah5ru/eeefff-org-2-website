@@ -576,9 +576,16 @@
       showTOC();
       adjustToc(0, 100);
     }, ITERATION_DELAY);
+
+    // 42 cooling fans
+    $("button").click(function() {
+      $("video").prop("muted", false);
+      
+      $(this).hide();
+    });
+
   });
 
   $(window).on("orientationchange", onOrientationChanged);
   $(window).resize(onWindowSizeChanged);
-
 })(this);
