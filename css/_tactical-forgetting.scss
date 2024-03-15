@@ -16,7 +16,7 @@ section.tactical-forgetting {
 
   article,
   header {
-    @extend .row;
+    // @extend .row;
 
     @extend .small-12;
     @extend .medium-8;
@@ -27,7 +27,7 @@ section.tactical-forgetting {
 
     color: blue;
 
-    h1 {
+    h1, h2 {
       font-family: sans-serif;
       font-size: 25vw;
       word-break: break-all;
@@ -38,6 +38,12 @@ section.tactical-forgetting {
         font-size: 10vw;
         text-decoration-thickness: 2vw;
       }
+    }
+
+    h2 {
+      font-size: 600%;
+      text-decoration-thickness: 0.2em;
+      text-transform: uppercase;
     }
 
     p {
@@ -74,6 +80,23 @@ section.tactical-forgetting {
           }
         }
 
+      }
+    }
+  }
+
+  article {
+    flex-direction: column;
+
+    a {
+      text-decoration-thickness: 0.1em;
+      text-decoration-color: blue;
+      color: floralwhite;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration-color: black;
       }
     }
   }
