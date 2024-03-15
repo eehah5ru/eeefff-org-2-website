@@ -4,7 +4,7 @@
 # resolver: lts-9.11
 # resolver: lts-12.24
 #resolver: lts-13.29
-resolver: lts-20.17
+resolver: lts-22.13
 
 # nix:
 #   enable: true
@@ -43,10 +43,10 @@ extra-deps:
   # - ansi-terminal-0.8.0.1
 
 # Override default flag values for local packages and extra-deps
-flags:
-  hlibsass:
+#flags:
+#  hlibsass:
     #sharedlibsass: true
-    externallibsass: true
+    #externallibsass: true
 
 # Extra package databases containing global packages
 extra-package-dbs: []
