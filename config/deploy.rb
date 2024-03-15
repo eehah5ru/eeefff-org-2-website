@@ -9,8 +9,18 @@ set :repo_url, "./_site"
 #
 set :op_2020_scope, "v2/test"
 
+# deploy OP assets separately to shared
+set :none_scm_archive_exclude, ["data/outsourcing-paradise-parasite"]
+
+append :linked_dirs,
+       "data/outsourcing-paradise-parasite/fonts",
+        "data/outsourcing-paradise-parasite/videos",
+        "data/outsourcing-paradise-parasite/images",
+        "data/outsourcing-paradise-parasite/#{fetch(:op_2020_scope)}/videos",
+        "data/outsourcing-paradise-parasite/#{fetch(:op_2020_scope)}/images"
 # set :scm, :none_scm
 # set :repository, '.'
+
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -132,40 +142,43 @@ namespace :outsourcing_paradise do
     end
   end
 
+  # after "deploy:updated", "outsourcing_paradise:create_assets_symlinks"
   after "deploy:updated", "outsourcing_paradise:setup_timeline"
 
   #
-  # assets tasks
+  # assets tasks. all live in shared dir!!!
   #
 
+  # upload all assets
+  task :upload_assets => [:force_upload_images, :force_upload_fonts, :force_upload_videos]
+
+  # task :create_assets_symlinks do
+
+  # end
+  
+  
   # upload images
-  task :force_upload_images do
-    scope = ENV.fetch('SCOPE', false)
-
-    on roles(:all) do
-      mk_base_dir current_path, scope: scope
-
-      force_upload_dir! "images", current_path, scope: scope
-    end
+  task :force_upload_images do    
+    # scope = ENV.fetch('SCOPE', false)
+    
+    force_upload_images(false)
+    force_upload_images(fetch(:op_2020_scope))
   end
 
   # TODO: add scope
   task :force_upload_fonts do
     on roles(:all) do
-      mk_base_dir current_path
+      mk_base_dir shared_path
 
-      force_upload_dir! "fonts", current_path
+      force_upload_dir! "fonts", shared_path
     end
   end
 
   task :force_upload_videos do
-    scope = ENV.fetch('SCOPE', false)
+    # scope = ENV.fetch('SCOPE', false)
 
-    on roles(:all) do
-      mk_base_dir current_path, scope: scope
-
-      force_upload_dir! "videos", current_path, scope: scope
-    end
+    force_upload_videos(false)
+    force_upload_videos(fetch(:op_2020_scope))    
   end
 
   namespace :v2020 do
@@ -207,6 +220,28 @@ namespace :outsourcing_paradise do
   #
 
   #
+  # scoped upload images
+  #
+  def force_upload_images scope
+    on roles(:all) do
+      mk_base_dir shared_path, scope: scope
+
+      force_upload_dir! "images", shared_path, scope: scope
+    end
+  end
+
+  #
+  # scoped upload videos
+  #
+  def force_upload_videos scope
+    on roles(:all) do
+      mk_base_dir shared_path, scope: scope
+
+      force_upload_dir! "videos", shared_path, scope: scope
+    end
+  end
+  
+  #
   # force upload dir
   #
   def force_upload_dir! dir_name, base_path, scope: false
@@ -229,10 +264,13 @@ namespace :outsourcing_paradise do
     s << "erosion-machine-timeline.json"
 
     json = File.read(s).gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name)).gsub(/"EROSION_DELAY"/, fetch(:outsourcing_paradise_erosion_delay).to_s)
-
+    
     d = "#{base_path}/data/outsourcing-paradise-parasite/"
     d << scope << "/" if scope
-    d << "erosion-machine-timeline.json"
+
+    execute :mkdir, "-p", d
+    
+    d  << "erosion-machine-timeline.json"
 
     upload! StringIO.new(json), d
 
@@ -242,6 +280,8 @@ namespace :outsourcing_paradise do
   # TODO: implement scoped
   def upload_css! base_path, scope: false
 
+    execute :mkdir, "-p", "#{base_path}/css/"
+    
     css = File.read("_site/css/erosion-machine-timeline.css").gsub("HOST_NAME", fetch(:outsourcing_paradise_host_name))
     upload! StringIO.new(css), "#{base_path}/css/erosion-machine-timeline.css"
   end
