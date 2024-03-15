@@ -87,7 +87,7 @@ module Capistrano
 
         task :clean do |t|
           # Delete the local archive
-          File.delete fetch(:archive_name) if File.exists? fetch(:archive_name)
+          File.delete fetch(:archive_name) if File.exist? fetch(:archive_name)
         end
 
         # task :add_revision_file do
