@@ -13,7 +13,11 @@ $if(customHead)$
 $includeFile(customHead)$
 $endif$
 
+$if(css)$
+<link href="/css/$css$?$revision$" rel="stylesheet" type="text/css"/>
+$else$
 <link href="/css/app.css?$revision$" rel="stylesheet" type="text/css"/>
+$endif$
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.1.1/motion-ui.min.css" />
 <link href="/css/erosion-machine-timeline.css?$revision$" rel="stylesheet" type="text/css"  />
 
