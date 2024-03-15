@@ -9,6 +9,8 @@ module Capistrano
       # set_if_empty :myvar, "my-default-value"
       set_if_empty :archive_name, "archive.tar.gz"
       set_if_empty :none_scm_verbose, ""
+      # what shoule be excluded from tarball
+      set_if_empty :none_scm_archive_exclude, []
     end
 
     def define_tasks
@@ -59,8 +61,15 @@ module Capistrano
         end
 
         task :make_archive do
-          files = Rake::FileList[File.join(repo_url, "*")].exclude(fetch :archive_name).map { |f| File.basename(f) }
-          cmd = ["tar -C #{repo_url} -c#{fetch :none_scm_verbose}zf  #{fetch :archive_name}", *files]
+          exclude = ""
+          unless fetch(:none_scm_archive_exclude).empty?
+            exclude = "--exclude='" << fetch(:none_scm_archive_exclude).join("' --exclude='") << "'"
+          end
+          
+          files = Rake::FileList[File.join(repo_url, "*")]
+                    .exclude(fetch :archive_name)
+                    .map { |f| File.basename(f) }
+          cmd = ["tar -C #{repo_url} #{exclude} -c#{fetch :none_scm_verbose}zf  #{fetch :archive_name}", *files]
           sh cmd.join(' ')
         end
 
