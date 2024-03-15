@@ -43,3 +43,13 @@ end
 def _participantName p_id
   return "$participantName(\"#{p_id}\")$"
 end
+
+
+#
+#
+# url helpers
+#
+#
+def picture_url(file_name)
+  return "/pictures/projects/$canonicalName$/" + file_name
+end
