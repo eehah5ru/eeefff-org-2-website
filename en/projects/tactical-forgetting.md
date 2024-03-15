@@ -4,6 +4,38 @@ template: "templates/tactical-forgetting.slim"
 og_image_url: "/pictures/projects/tactical-forgetting/tactical-forgetting-04.png"
 erosionDisabled: true
 ---
+Tactical Forgetting is a computer-supported exercise that tackles the issue of digital memory and distributed events that need to be forgotten either because of their sensitive content, or because of community safety. Narratives unfold within different temporalities and spaces: documentary footage of the labor inspection in a large company in Minsk that develops military computer games, disappeared content from servers of internet portals, the distributed memory of bodies participating in the revolution, and fictional desired economic strikes. 
+
+Exercises exist in two forms: [video](#video) and [training machine](#training-machine)
+
+[Video](#video) screening was part of the [e-flux film](https://www.e-flux.com/film/){target=_blank} program [Mental Ecologies of War](https://www.e-flux.com/video/series/517391/mental-ecologies-of-war/){target=_blank}​.
+
+[Training machine](#training-machine) was installed in Vilnius during [If disrupted, It becomes tangible](https://www.if-disrupted.lt/){target=_blank} exhibition and in Hamburg during [Antibodies](https://www.westwerk.org/antikoerper.html){target=_blank} exhibition.
+
+## video
+
+![This video is a training machine for memorising. This office is a memory stimulant. In thyme with it you will see images and hear sounds that we invite you to remember.](/pictures/projects/$canonicalName$/video-stills/eeefff-tactical-forgetting-01.jpg)
+
+![The office that you see on your screen was shut down.](/pictures/projects/$canonicalName$/video-stills/eeefff-tactical-forgetting-02.jpg)
+
+![Separation within military virtual activity due to real war](/pictures/projects/$canonicalName$/video-stills/eeefff-tactical-forgetting-03.jpg)
+
+![Emotions of employees](/pictures/projects/$canonicalName$/video-stills/eeefff-tactical-forgetting-04.jpg)
+
+![What taste do you have in your mouth right now?](/pictures/projects/$canonicalName$/video-stills/eeefff-tactical-forgetting-05.jpg)
+
+![Small details are forgotten after a couple of minutes](eeefff-tactical-forgetting-06.jpg)
+
+![The player through whose eyes you look at this forest is in a difficult life situation](/pictures/projects/$canonicalName$/video-stills/eeefff-tactical-forgetting-07.jpg)
+
+![The choice with whom to fight on this battlefield, the player can do only once](/pictures/projects/$canonicalName$/video-stills/eeefff-tactical-forgetting-08.jpg)
+
+![Leisure which cannot be accessed](/pictures/projects/$canonicalName$/video-stills/eeefff-tactical-forgetting-11.jpg)
+
+## training machine
+
+![Training machine installed in Vilnius during [If disrupted, It becomes tangible](https://www.if-disrupted.lt/){target=_blank} exhibition](/pictures/projects/$canonicalName$/ndg/ndg-view-01.png)
+
 ![Here, the information is temporary — this is not a place of archiving — if you do not make it in time, you will not see it. The temporality that emerges from neighbouring chats continually re-actualizes the present, offering participation in the here-and-now. ](/pictures/projects/tactical-forgetting/tactical-forgetting-00.gif)
 
 Computer-supported exercises are unrolled around digital memory and distributed events that need to be forgotten rather because of their sensitive content, or rather because of community safety. 
