@@ -5,7 +5,7 @@ template: "templates/algorithmic-solidarity.slim"
 erosionDisabled: true
 ---
 
-# Algorithmic solidarity / The school of algorithmic solidarity
+# School of algorithmic solidarity
 
 the series of collective experiments and situated experiences that seek to answer the questions:
 
@@ -41,4 +41,17 @@ Please draw here the relation between algorithms and solidarity.
 <br/>
 <br/>
 <br/>
-Your question here: ________________
+Your question here: _________________________
+
+## WHAT IS IT
+_Algorithmic Solidarity_ focuses on the infrastructures of coloniality and the infrastructures of solidarity opposed to them. Specifically looking into infrastructural time, algorithmic abstractions and bodies. By form, it can be a collective experience / radical pedagogy practice / walk to the specific location / LARP protocol / digital togetherness / open-ended situation / affective temporary training zone. Each time one of the ??????????????ions is raised that forms the logic and poetics of a session.
+
+## WHAT SESSIONS HAVE PASSED
+At one session, we learned how to short the wires on the railroad tracks, at another we did a collective reading of programming code that relates to the extraction of profits from workers' bodies, to the rise of colonialism by the Russian Federation towards neighbouring territories, at a third session we had a training session on occupying the public media infrastructures. All these sessions try to relate to the intersection of oppressions: digital extraction, colonialism, media surfaces that do not belong to us.
+
+## PICTURES FROM SESSIONS
+
+![Training session on the infrastructural time](/pictures/projects/$canonicalName$/infrastructural-time.gif)
+
+
+Do you want to join next session? Subscribe **here**
