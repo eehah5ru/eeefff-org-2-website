@@ -67,7 +67,7 @@ server "deploy.do.myfutures.trade",
     config: true,
     # verbose: :debug,
     # user: "user_name", # overrides user setting above
-    keys: %w(~/.ssh/id_rsa),
+    keys: %w(~/.ssh/ssh-eehah5ru-wogdoh4/id_rsa),
     forward_agent: true,
     auth_methods: %w(publickey password)
     # password: "please use keys"
