@@ -74,7 +74,8 @@ main = do
        cssAndSassRules
          ("css/_*.scss" .||. "css/**/_*.scss")
          [ "css/app.scss"
-         , "css/erosion-machine-timeline.scss"]
+         , "css/erosion-machine-timeline.scss"
+         , "css/simple-page.scss"]
 
        jsRules
 

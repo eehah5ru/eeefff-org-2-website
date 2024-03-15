@@ -25,6 +25,10 @@ projectsRules caches = do
     staticSlimPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.slim" Nothing
     staticHtmlPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.html" Nothing
 
+    staticPandocPageRulesM rootTpl (Just simplePagePageTpl) Nothing (mkProjectCtx caches) "pages/*.md" Nothing
+    staticHtmlPageRulesM rootTpl (Just simplePagePageTpl) Nothing (mkProjectCtx caches) "pages/*.html" Nothing
+
+
   --
   -- economic orangery 2021 rules
   --

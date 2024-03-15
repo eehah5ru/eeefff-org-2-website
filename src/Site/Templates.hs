@@ -15,3 +15,7 @@ aboutPageTpl = "templates/about.slim"
 
 projectPageTpl :: Identifier
 projectPageTpl = "templates/project.html"
+
+simplePagePageTpl :: Identifier
+simplePagePageTpl = "templates/simple-page.html"
+
