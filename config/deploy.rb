@@ -80,6 +80,28 @@ namespace :hakyll do
 end
 
 #
+# fast updates in current dir
+#
+desc "fast updates"
+namespace :fast do
+  
+  desc "fast updates all texts in current dir"
+  task :update_texts do
+    on roles(:all) do |s|
+      STDERR.puts "updating text only"
+
+      cmd = "rsync -avz '_site/en' '#{s.user}@#{s.hostname}:#{current_path}'"
+      STDERR.puts cmd
+      
+      `rsync -avz "_site/en" "#{s.user}@#{s.hostname}:#{current_path}"`
+    end
+  end
+
+  before 'fast:update_texts', 'hakyll:build'
+
+end
+
+#
 #
 # OUTSOURCING PARADISE tasks
 #
