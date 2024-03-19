@@ -75,7 +75,7 @@ main = do
          ("css/_*.scss" .||. "css/**/_*.scss")
          [ "css/app.scss"
          , "css/erosion-machine-timeline.scss"
-         , "css/simple-page.scss"]
+         , "css/pages/*.scss"]
 
        jsRules
 
