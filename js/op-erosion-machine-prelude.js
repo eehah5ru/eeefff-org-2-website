@@ -42,12 +42,15 @@ function op_erosion_machine_setup() {
 
   // injectScript(jsBaseUrl + 'op-erosion-machine-runtime-main.js');
   console.log("[setup-erosion] injecting js");
-  injectScript(jsBaseUrl + 'op-erosion-machine-vendors-main.js')
+  injectScript(jsBaseUrl + 'op-erosion-machine-runtime-main.js')
     .then(() => {
-      return injectScript(jsBaseUrl + 'op-erosion-machine-main-chunk.js');
-    })
-    .then(() => {
-      console.log("[setup-erosion] js injected");
+      injectScript(jsBaseUrl + 'op-erosion-machine-vendors-main.js')
+        .then(() => {
+          return injectScript(jsBaseUrl + 'op-erosion-machine-main-chunk.js');
+        })
+        .then(() => {
+          console.log("[setup-erosion] js injected");
+        });
     });
 
   // document.body.insertAdjacentHTML('beforeend', '<script src="' + jsBaseUrl + 'op-erosion-machine-runtime-main.js' + '" async=""></script>');
