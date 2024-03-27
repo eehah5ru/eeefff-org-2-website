@@ -90,10 +90,13 @@ namespace :fast do
     on roles(:all) do |s|
       STDERR.puts "updating text only"
 
-      cmd = "rsync -avz '_site/en' '#{s.user}@#{s.hostname}:#{current_path}'"
-      STDERR.puts cmd
+      # cmd = "rsync -avz '_site/en' '#{s.user}@#{s.hostname}:#{current_path}'"
+      # STDERR.puts cmd
       
       `rsync -avz "_site/en" "#{s.user}@#{s.hostname}:#{current_path}"`
+      `rsync -avz "_site/ru" "#{s.user}@#{s.hostname}:#{current_path}"`      
+      `rsync -avz "_site/css" "#{s.user}@#{s.hostname}:#{current_path}"`
+      
     end
   end
 
