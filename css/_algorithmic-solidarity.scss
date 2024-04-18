@@ -1,13 +1,48 @@
-section.algorithmic-solidarity {
+article.algorithmic-solidarity {
   margin-top: 2rem !important;
 
-  width: 60%;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  display: flex;
-  flex-direction: column;
+  // width: 60%;
+  // margin-left: auto !important;
+  // margin-right: auto !important;
+
+  font-size: 18px;
 
   color: black;
+
+  &,
+  section {
+    display: flex;
+    flex-direction: column;
+
+    
+  }
+  
+  &,
+  section.level1 {
+    align-items: center;
+  }
+
+  section.level1 > h1,
+  section.level1 > section.level2,
+  section.level1 > p,
+  section.level1 > div {
+    width: 100%;
+
+    @include breakpoint(large) {
+      width: 60%;
+    }
+  }
+  
+  h1 {
+    font-size: 300%;
+    color: blue;
+    text-align: center;
+  }
+
+  .description {
+    font-size: large;
+
+  }
 
   a {
     letter-spacing: normal;
@@ -15,6 +50,7 @@ section.algorithmic-solidarity {
     text-decoration: underline;
     text-decoration-color: red;
     text-decoration-thickness: 4px;
+    text-transform: none;
 
     &:hover {
       color: red;
@@ -23,9 +59,19 @@ section.algorithmic-solidarity {
 
   }
 
+  p,
+  ul,
+  figure {
+    margin-bottom: 1rem;
+  }
+
   ul {
     list-style: none;
 
+    // li {
+    //   display: inline-block;
+    // }
+    
     li:before {
       content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
       color: red; /* Change the color */
@@ -34,10 +80,83 @@ section.algorithmic-solidarity {
       width: 1em; /* Also needed for space (tweak if needed) */
       margin-left: -1em; /* Also needed for space (tweak if needed) */
     }
+
+    p, pre {
+      display: inline;
+    }
+
   }
 
   figure img {
     width: 100%;
+
+    border: 0.5em solid blue;
   }
 
+  figure figcaption {
+    background: blue;
+    color: white;
+    font-family: monospace;
+    font-size: smaller;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-bottom: 0.5em;
+    text-align: right;
+  }
+
+  iframe.video {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+
+  hr {
+    width: 100%;
+    border-bottom: 0.2em blue solid;
+  }
+
+
+  code {
+    border: 0.1em solid blue;
+    background-color: red;
+  }
+
+  //
+  // levels folding
+  //
+  section.level2 {
+    margin-top: 2em;
+    
+    &.unfolded {
+      margin-top: 0;
+      border-top: 1em solid blue;
+      border-bottom: 1em solid blue;
+
+      align-items: center;
+      
+      width: 100% !important;
+
+      h2,
+      > .answer {
+        width: 100%;
+
+        @include breakpoint(large) {
+          width: 60%;
+        }
+      }
+
+      h2 a {
+        text-decoration-style: wavy;
+        text-decoration-thickness: 0.2em;
+      }
+    }
+    
+    > .answer {
+      // hide by default
+      display: none;
+
+      margin-top: 2rem;
+    }
+  }
+
+  
 }

@@ -1,26 +1,39 @@
-section.sensory-room-with-42-cooling-fans {
-  margin-top: 2rem !important;
+article.sensory-room-with-42-cooling-fans {
 
-  width: 60%;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  display: flex;
-  flex-direction: column;
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  color: white;
+    margin-top: 0;
+    margin-bottom: 0;
 
-  a {
-    letter-spacing: normal;
-    color: blue;
-    text-decoration: underline;
-    text-decoration-color: red;
-    text-decoration-thickness: 4px;
+    &.level2 {
+      width: 100%;
 
-    &:hover {
-      color: red;
-      text-decoration-color: blue;
+      h2, p, ul, figure {
+        width: 100%;
+      }
     }
+  }
+  
+  h1, h2, p, ul, section.level2 {
+    width: 100%;
+    
+    @include breakpoint(large) {
+      width: 60%;
+    }
+    
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
 
+  p, ul, figure {
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    text-align: center;
   }
 
   ul {
@@ -36,8 +49,72 @@ section.sensory-room-with-42-cooling-fans {
     }
   }
 
+  a {
+    letter-spacing: normal;
+    color: blue;
+    text-decoration: underline;
+    text-decoration-color: red;
+    text-decoration-thickness: 4px;
+
+    &:hover {
+      color: red;
+      text-decoration-color: blue;
+    }
+    
+  }
+
+  figure {
+    line-height: 0;
+
+    figcaption {
+      line-height: 1.65;
+    }
+  }
+
+
+  //
+  // table of content
+  //
+  section#beginning {
+    min-height: 80vh;
+    color: blue;
+
+    padding-top: 20vh;
+
+    h1 {
+      text-align: center;
+      font-size: 300%;
+    }
+    
+    ul {
+      text-align: center;
+      font-size: 200%;
+      
+      li:before {
+        content: none !important; 
+      }
+    }
+  }
+}
+
+article.sensory-room-with-42-cooling-fans > section#sensory-room-in-darkness {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  
+  margin-top: 2rem !important;
+
+  // width: 60%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  display: flex;
+  flex-direction: column;
+
+  color: white;
+
   .video-container {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -72,16 +149,187 @@ section.sensory-room-with-42-cooling-fans {
     z-index: 99999;
     right: 0;
     bottom: 0;
-    margin-right: 2rem;
-    margin-bottom: 2rem;
-    font-size: 8vw;
-    border: 0.5rem solid red;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    font-size: 3vw;
+    border: 0.25rem solid red;
     border-radius: 50%;
-    padding: 0.5rem;
+    padding: 0.25rem;
     color: red;
 
+    filter: blur(0.1em);
+
+    @include breakpoint(large) {
+      margin-right: 2rem;
+      margin-bottom: 2rem;
+      font-size: 4vw;
+      border: 0.5rem solid red;
+      padding: 0.5rem;
+
+    }
+    
     &:hover {
       border-color: blue;
+      filter: none;
     }
   }
+
+  ul {
+    @include breakpoint(small only) {
+      padding-left: 2rem;
+    }
+  }
+}
+
+
+article.sensory-room-with-42-cooling-fans section#portable-sensory-room {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  
+  color: black;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+   background: rgb(219,122,226);
+   background: linear-gradient(31deg, rgba(219,122,226,1) 0%, rgba(36,0,255,1) 25%, rgba(255,0,0,1) 50%, rgba(143,251,255,1) 72%, rgba(154,255,176,1) 100%);
+
+   h1 {
+     color: blue;
+     font-size: 10vw;
+   }
+
+   h2 {
+     color: blue;
+     font-size: 5vw;
+     text-align: center;
+   }
+   
+  // p,
+  // ul,
+  // figure {
+  //   width: 100%;
+
+  //   @include breakpoint(large) {
+  //     width: 60%;
+  //   }
+  // }
+
+  ul {
+    padding-left: 2rem;
+
+    @include breakpoint(large) {
+      padding-left: 1rem;
+    }
+    
+  }
+  
+  li:before {
+    color:blue;
+  }
+
+  figure video {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+
+  figure {
+
+    img {
+      border: solid 0.2em blue;
+
+      &.no-border {
+        border: none;
+      }
+    }
+    
+    figcaption {
+      background-color: blue;
+      color: white;
+      font-family: monospace;
+      font-size: larger;
+
+      padding-left: 0.2em;
+      padding-right: 0.2em;
+    }
+  }
+  
+}
+
+article.sensory-room-with-42-cooling-fans section#history-behind {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  color: blue;
+  font-size: 18px;
+  line-height: 1.65;
+
+  
+  box-shadow: inset 0 0 1rem blue, inset 0 0 1.5rem blue;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  p,
+  figure {
+    width: 100%;
+
+    @include breakpoint(large) {
+      width: 60%;
+    }
+  }
+
+  p::first-line {
+    color: red;
+  }
+
+  
+  figure {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+
+
+    @include breakpoint(large) {
+      margin-left: -10vw;
+      flex-direction: row;
+    }
+    
+    img {
+      width: 100%;
+      border: blue 0.2em solid;
+
+      @include breakpoint(large) {
+        width: 70%;
+      }
+    }
+
+    figcaption {
+      font-family: monospace;
+      font-size: smaller;
+
+      color: white;
+      background-color: blue;
+      
+      font-weight: bold;
+      // word-wrap: break-word;
+      hyphens: auto;
+
+      @include breakpoint(large) {
+        border-right: blue 0.2em solid;
+        background: none;
+        color: blue;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        max-width: 30%;
+        display: inline-block;
+        height: fit-content;
+        text-align: right;
+
+      }
+    }
+  }
+
 }
