@@ -518,6 +518,51 @@
   // END OF OUTSOURCING PARADISE
   //
   // 
+
+
+  //
+  //
+  // ALGOSOLIDARITY
+  // 
+  //
+
+
+  onAlgocolidarityLinkCLick = function (self) {
+    const targetClass = $(self.target).data("target");
+    self.preventDefault();
+    // console.log($(`.answer.${targetClass}`));
+
+    $(`.answer.${targetClass}`).parent().toggleClass("unfolded");
+    
+    $(`.answer.${targetClass}`).toggle();
+
+    //scroll to fresh unfolded
+    if ($(`.answer.${targetClass}`).parent().hasClass("unfolded")) {
+      // $("selector").offset();
+
+      // console.log("scrolling");
+      
+      // console.log($(`.answer.${targetClass}`).parent());
+
+      // $(`.answer.${targetClass}`)[0].scrollIntoView({block: "start", inline: "nearest", behavior: "instant"});
+      
+      $(`.answer.${targetClass}`).parent()[0].scrollIntoView({block: "start", inline: "nearest", behavior: "smooth"});
+    }
+    
+  };
+  
+  // init function
+  var initAlgosolidarity = function () {
+    // setup answers toggling 
+    $("article.algorithmic-solidarity h2 a").each(function(i, link) {
+      $(link).click(onAlgocolidarityLinkCLick);
+    });
+  };
+  //
+  //
+  // END OF ALGOSOLIDARITY
+  //
+  // 
   
   //
   //
@@ -531,6 +576,7 @@
     initScootersWalk();
     initBlocksLayout();
     initOutsourcingParadiseLayout();
+    initAlgosolidarity();
     //
     // dynamic light
     //
