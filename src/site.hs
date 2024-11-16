@@ -55,7 +55,7 @@ main :: IO ()
 main = do
   caches <- Cache.newCaches
 
-  hakyllWith config $
+  hakyllWith config' $
     do
 
        --
@@ -107,6 +107,9 @@ main = do
        --
        flowBlockRules caches
        flowIndexRules caches
+
+  where
+    config' = config {providerDirectory = "web"}
 
 --------------------------------------------------------------------------------
 

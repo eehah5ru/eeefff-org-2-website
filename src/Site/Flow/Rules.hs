@@ -18,7 +18,7 @@ import Site.Flow.Context
 
 flowIndexRules :: Cache.Caches -> Rules ()
 flowIndexRules c = do
-  matchMultiLang rules' rules' "flow/index.md" Nothing
+  matchMultiLang rules' rules' Nothing "flow/index.md"
 
   where
     rules' locale =
@@ -28,7 +28,7 @@ flowIndexRules c = do
 
 flowBlockRules :: Cache.Caches -> Rules ()
 flowBlockRules c = do
-  matchMultiLang rules' rules' "flow/*.md" (Just ["flow/index.md"])
+  matchMultiLang rules' rules' (Just ["flow/index.md"]) "flow/*.md"
 
   where
     rules' locale =

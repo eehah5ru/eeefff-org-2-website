@@ -21,12 +21,12 @@ projectsRules caches = do
   match projectsDeps $ compile getResourceBody
 
   withProjectsDeps $ do
-    staticPandocPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.md" Nothing
-    staticSlimPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.slim" Nothing
-    staticHtmlPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) "projects/*.html" Nothing
+    staticPandocPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) Nothing "projects/*.md"
+    staticSlimPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) Nothing "projects/*.slim"
+    staticHtmlPageRulesM rootTpl (Just projectPageTpl) Nothing (mkProjectCtx caches) Nothing "projects/*.html"
 
-    staticPandocPageRulesM rootTpl (Just simplePagePageTpl) Nothing (mkProjectCtx caches) "pages/*.md" Nothing
-    staticHtmlPageRulesM rootTpl (Just simplePagePageTpl) Nothing (mkProjectCtx caches) "pages/*.html" Nothing
+    staticPandocPageRulesM rootTpl (Just simplePagePageTpl) Nothing (mkProjectCtx caches) Nothing "pages/*.md"
+    staticHtmlPageRulesM rootTpl (Just simplePagePageTpl) Nothing (mkProjectCtx caches) Nothing "pages/*.html"
 
 
   --
@@ -35,11 +35,11 @@ projectsRules caches = do
 
   -- characters pages
   withProjectsDeps $ do
-    staticPandocPageRulesM rootTpl (Just projectPageTpl) (Just "templates/economic-orangery-character.slim") (mkProjectCtx caches) "projects/economic-orangery/*.md" Nothing
+    staticPandocPageRulesM rootTpl (Just projectPageTpl) (Just "templates/economic-orangery-character.slim") (mkProjectCtx caches) Nothing "projects/economic-orangery/*.md"
 
   -- game master page
   withProjectsDeps $ do
-    staticPandocPageRulesM rootTpl (Just projectPageTpl) (Just "templates/economic-orangery-gm-panel.slim") (mkEconomyOrangeryCtx caches) "projects/economic-orangery-gm-panel/index.md" Nothing
+    staticPandocPageRulesM rootTpl (Just projectPageTpl) (Just "templates/economic-orangery-gm-panel.slim") (mkEconomyOrangeryCtx caches) Nothing "projects/economic-orangery-gm-panel/index.md"
 
 
 withProjectsDeps rules = do

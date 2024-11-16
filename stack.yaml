@@ -21,11 +21,12 @@ resolver: lts-22.13
 # Local packages, usually specified by relative directory name
 packages:
 - '.'
+- 'w7w'
 
 # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
 extra-deps:
   # temporary fix while waiting for new version of hakyll in stack
-  # - hakyll-4.15.1.1
+  - hakyll-4.16.3.0
   - lrucache-1.2.0.1
   #
   # sass stuff
