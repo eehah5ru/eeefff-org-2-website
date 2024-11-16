@@ -1,0 +1,54 @@
+name: eeefff-org
+version: 0.1.0.0
+synopsis: eeefff.org website generator
+description: See README.md
+author: eeefff
+maintainer: eeefff
+github: eehah5ru/eeefff-org
+category: Web
+# extra-source-files:
+#   - CHANGELOG.md
+#   - resources/**/*
+
+ghc-options: -threaded
+language: Haskell2010
+
+dependencies:
+  - base >=4 && <5
+  - data-default
+  - hakyll >=4.16.3.0 && <4.17
+  - hakyll-sass >=0.2 && <0.3
+  - hsass == 0.8.0
+  - aeson
+  - attoparsec
+  - binary
+  - bytestring
+  - cache
+  - colour
+  - containers
+  - data-default
+  - directory
+  - errors
+  - filepath
+  - hashable
+  - MissingH
+  - mtl
+  - pandoc
+  - rainbow
+  - random
+  - raw-strings-qq
+  - string-conversions
+  - text
+  - transformers
+  - w7w
+  - yaml
+
+library:
+  source-dirs: src
+
+executables:
+  site:
+    main: site.hs
+    source-dirs: src
+    dependencies:
+      - eeefff-org
